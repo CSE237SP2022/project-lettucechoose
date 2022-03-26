@@ -49,7 +49,7 @@ public class main {
 		System.out.println("Dine-In or To-go?");
 		String eatingplace = cst.nextLine(); 
 		System.out.println("eating option: " + eatingplace);
-
+ 
 
 		System.out.println("Would you like to tip? 10%, 15%, 20%, and custom");
 		double tip = cst.nextInt(); 
