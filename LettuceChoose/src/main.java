@@ -6,9 +6,15 @@ public class main {
 	
 		Scanner cst = new Scanner(System.in);
 	    System.out.println("Your name please");
-	    System.out.println(cst);
-	    		
 		String name = cst.nextLine();
+	    System.out.println("Hi" + name);
+	    
+	    System.out.println("Any allergies?");
+		String tk = cst.nextLine();
+	    System.out.println(name);
+	    
+	    
+	    		
 
 		int age = cst.nextInt();
 	    double salary = cst.nextDouble();
@@ -16,8 +22,6 @@ public class main {
 	    System.out.println("Any allergies?");
 	    System.out.println(name);
 
-	    System.out.println(age);
-	    System.out.println(salary);
 
 
 		
