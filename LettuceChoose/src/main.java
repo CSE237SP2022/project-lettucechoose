@@ -58,7 +58,6 @@ public class main {
 
 
 		double price;
-		//commit test
 		price = 0.0;    
 		System.out.println("Your total order price is: " + price);
 		System.out.println("Thank you for your oder." + name + " Here is" + protein + base + " with " + toppings + "and " + drizzle);
