@@ -63,14 +63,6 @@ public class main {
 		System.out.println("Thank you for your oder." + name + " Here is" + protein + base + " with " + toppings + "and " + drizzle);
 
 
-
-
-
-
-
-
-
-
 	}
 
 
