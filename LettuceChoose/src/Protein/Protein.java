@@ -1,9 +1,5 @@
 package Protein;
 
-import Base.Base.Lettuce;
-import Base.Base.Rice;
-import Base.Base.Soba;
-
 public class Protein {
 	Beef beef;
 	Chicken chicken;
