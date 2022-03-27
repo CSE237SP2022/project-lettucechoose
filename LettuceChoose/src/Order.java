@@ -1,11 +1,15 @@
+import Base.Base;
+import Protein.Protein;
+import Topping.Topping;
+
 
 public class Order {
 
 	String user;
 	int diet;
-	int base;
-	int protein;
-	int[] toppings;
+	Base base;
+	Protein protein;
+	Topping[] toppings;
 	double tip;
 	
 	public Order(String user) {
@@ -18,18 +22,17 @@ public class Order {
 		
 	}
 	
-	public void chooseBase(int num) {
-		this.base = num;
+	public void chooseBase(Base b) {
+		this.base = b;
+	}
+	
+	public void chooseProtein(Protein p) {
+		this.protein = p;
 		
 	}
 	
-	public void chooseProtein(int num) {
-		this.protein = num;
-		
-	}
-	
-	public void chooseToppings(int[] nums) {
-		this.toppings = nums;
+	public void chooseToppings(Topping[] t) {
+		this.toppings = t;
 		
 	}
 	

@@ -3,7 +3,6 @@ public class main {
 
 	public static void main(String args[]){    
 
-
 		Scanner cst = new Scanner(System.in);
 		System.out.println("Your name please");
 		String name = cst.nextLine();
@@ -49,7 +48,7 @@ public class main {
 		System.out.println("Dine-In or To-go?");
 		String eatingplace = cst.nextLine(); 
 		System.out.println("eating option: " + eatingplace);
-
+ 
 
 		System.out.println("Would you like to tip? 10%, 15%, 20%, and custom");
 		double tip = cst.nextInt(); 
@@ -61,18 +60,6 @@ public class main {
 		price = 0.0;    
 		System.out.println("Your total order price is: " + price);
 		System.out.println("Thank you for your oder." + name + " Here is" + protein + base + " with " + toppings + "and " + drizzle);
-
-
-
-
-
-
-
-
-
-
 	}
-
-
 
 }
