@@ -25,6 +25,7 @@ public class main {
 		String protein = cst.nextLine(); 
 		System.out.println("protein: " + protein);
 
+		
 		System.out.println("Choose your toppings: edamame, guacamole, tomato, onions, masago");
 		System.out.println("You can choose up to 3 toppings. Otherwise, there will be extra charge.");
 		String toppings = cst.nextLine();
@@ -45,22 +46,23 @@ public class main {
 		int utensils = cst.nextInt(); 
 		System.out.println("number of utensils: " + utensils);
 
-
+		cst.nextLine();
 		System.out.println("Dine-In or To-go?");
 		String eatingplace = cst.nextLine(); 
 		System.out.println("eating option: " + eatingplace);
  
+		
 
 		System.out.println("Would you like to tip? 10%, 15%, 20%, and custom");
 		double tip = cst.nextInt(); 
 		System.out.println("tip: " + tip);
-
+		cst.nextLine();
 
 
 		double price;
 		price = 0.0;    
 		System.out.println("Your total order price is: " + price);
-		System.out.println("Thank you for your order, " + name + "! Here is " + protein + base + " with " + toppings + " and " + drizzle);
+		System.out.println("Thank you for your order, " + name + "! Here is " + protein + " " + base + " with " + toppings + " and " + drizzle);
 	}
 
 }
