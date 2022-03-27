@@ -42,7 +42,6 @@ public class Order {
 		Object baseObject = this.base.baseMap.get(b);
 		
 		return this.base.isAvailable(baseObject, baseChosen);
-
 	}
 	
 	public void chooseProtein(Protein p) {
