@@ -1,14 +1,55 @@
 package Base;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Base {
 	Lettuce lettuce;
 	Rice rice;
 	Soba soba;
+	public Map<Integer, Object> baseMap;
+	
 	
 	Base(){
-		lettuce = new Lettuce(3);
-		rice = new Rice(3);
-		soba = new Soba(3);
+		this.lettuce = new Lettuce(3);
+		this.rice = new Rice(3);
+		this.soba = new Soba(3);
+		
+		baseMap = new HashMap<Integer, Object>();
+		baseMap.put(1, this.lettuce);
+		baseMap.put(2, this.rice);
+		baseMap.put(3, this.soba);
+		
+	}
+	
+	public Boolean isAvailable(Object whichBase, String baseChosen) {
+		if (whichBase == this.lettuce) {
+			if (this.lettuce.quantity > 0){
+				this.lettuce.quantity -= 1;
+				baseChosen = "lettuce";
+				return true;
+			}else {
+				return false;
+			}
+		}else if (whichBase == this.rice) {
+			if (this.rice.quantity > 0){
+				this.rice.quantity -= 1;
+				baseChosen = "rice";
+				return true;
+			}else {
+				return false;
+			}
+		}else if (whichBase == this.soba) {
+			if (this.soba.quantity > 0) {
+				this.soba.quantity -= 1;
+				baseChosen = "soba";
+				return true;
+			}else {
+				return false;
+			}
+		}else {
+			return false;
+		}
 	}
 	
 	public class Lettuce {
@@ -16,14 +57,6 @@ public class Base {
 		
 		Lettuce(int quantityInput){
 			this.quantity = quantityInput;
-		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
 		}
 	}
 	
@@ -33,14 +66,6 @@ public class Base {
 		Rice(int quantityInput){
 			this.quantity = quantityInput;
 		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
 	}
 	
 	public class Soba {
@@ -48,14 +73,6 @@ public class Base {
 		
 		Soba(int quantityInput){
 			this.quantity = quantityInput;
-		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
 		}
 
 	}
