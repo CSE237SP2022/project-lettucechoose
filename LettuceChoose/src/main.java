@@ -1,7 +1,11 @@
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
+
 public class main {
 
 	public static void main(String args[]){    
+		
 
 		Scanner cst = new Scanner(System.in);
 		System.out.println("Hi! Welcome to the LettuceChoose!🥗✔️ ");
@@ -61,8 +65,49 @@ public class main {
 
 		double price;
 		price = 0.0;    
+		
 		System.out.println("Your total order price is: " + price);
 		System.out.println("Thank you for your order, " + name + "! Here is " + protein + " " + base + " with " + toppings + " and " + drizzle);
+	
+		printReceipt();
+	}
+	
+	public static void printReceipt() {
+		
+//		─ │ ┌ ┐ ┘ └ ├ ┬ ┤ ┴ ┼   <- use these!!
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();  
+		
+		System.out.println("┌───────────────────────────────┐");
+		System.out.println("│                               │");
+		
+		System.out.println("│        LettuceChoose          │");
+		
+		System.out.println("│      " + dtf.format(now) + "      │");  
+		System.out.println("│                               │");
+		System.out.println("│   Salad                 $10   │");
+		System.out.println("│     Base: Salad               │");  
+		System.out.println("│     Protein: Beef             │");  
+		System.out.println("│     Toppings: Edamame         │");   // should add $$ for additional toppings
+		System.out.println("│               Masago          │");
+		System.out.println("│               Onions          │");
+		System.out.println("│               Tomato    $2    │");
+		System.out.println("│    Drizzle: Ranch             │");
+		System.out.println("│             Masago            │");
+		System.out.println("│   Drink: Diet Coke      $5    │");
+		System.out.println("│  ===========================  │");
+		System.out.println("│   Subtotal              $17   │");
+		System.out.println("│   Tax                   $3    │");
+		System.out.println("│   Tip                   $3    │");
+		System.out.println("│   Total                 $23   │");
+		System.out.println("│                               │");
+		System.out.println("│       T h a n k  y o u        │");
+		System.out.println("└───────────────────────────────┘");
+
+
+
+
 	}
 
 }
