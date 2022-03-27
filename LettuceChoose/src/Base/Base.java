@@ -11,8 +11,6 @@ public class Base {
 		soba = new Soba(3);
 	}
 	
-	
-	
 	public class Lettuce {
 		int quantity;
 		
