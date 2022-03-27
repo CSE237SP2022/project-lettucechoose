@@ -1,4 +1,5 @@
 Lettuce Choose - a kiosk app for customized salad!
+   
 By YJ Yoon, Kon Yoo, Tony Kwon, Jiwoo Seo
 
 1st Iteration 
