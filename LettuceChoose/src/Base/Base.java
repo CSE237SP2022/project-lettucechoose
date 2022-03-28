@@ -10,7 +10,7 @@ public class Base {
 	public Map<Integer, Object> baseMap;
 	
 	
-	Base(){
+	public Base(){
 		this.lettuce = new Lettuce(3);
 		this.rice = new Rice(3);
 		this.soba = new Soba(3);
@@ -48,6 +48,7 @@ public class Base {
 				return false;
 			}
 		}else {
+			System.out.println("not found in isAvailable()");
 			return false;
 		}
 	}

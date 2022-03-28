@@ -6,7 +6,7 @@ public class Protein {
 	Salmon salmon;
 	Tofu tofu;
 	
-	Protein(){
+	public Protein(){
 		beef = new Beef(3);
 		chicken = new Chicken(3);
 		salmon = new Salmon(3);
