@@ -7,7 +7,7 @@ public class Topping {
 	Onion onion;
 	Masago masago;
 	
-	Topping(){
+	public Topping(){
 		edamame = new Edamame(3);
 		guacamole = new Guacamole(3);
 		tomato = new Tomato(3);

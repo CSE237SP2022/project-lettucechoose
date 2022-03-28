@@ -11,7 +11,7 @@ public class Order {
 	
 	Base base;
 	Protein protein;
-	Topping[] toppings;
+	Topping topping;
 	
 	String baseChosen;
 	String proteinChosen;
@@ -20,13 +20,11 @@ public class Order {
 	double totalPrice;
 	double tip;
 	
-	public Order(String user, int diet, Base base, Protein protein, Topping[] toppings) {
-		this.user = user;
-		this.diet = diet;
+	public Order(Base base, Protein protein, Topping topping) {
 		
 		this.base = base;
 		this.protein = protein;
-		this.toppings = toppings;
+		this.topping = topping;
 		
 		this.totalPrice = 0.0;
 		this.tip = 0.0;
@@ -41,7 +39,7 @@ public class Order {
 	public boolean chooseBase(int b) {
 		Object baseObject = this.base.baseMap.get(b);
 		
-		return this.base.isAvailable(baseObject, baseChosen);
+		return this.base.isAvailable(baseObject, this.baseChosen);
 	}
 	
 	public void chooseProtein(Protein p) {
@@ -49,8 +47,8 @@ public class Order {
 		
 	}
 	
-	public void chooseToppings(Topping[] t) {
-		this.toppings = t;
+	public void chooseToppings(Topping t) {
+		this.topping = t;
 		
 	}
 	
