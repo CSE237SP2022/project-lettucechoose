@@ -1,2 +1,1 @@
-cd src
-javac LettuceChoose/src/main.java
+java LettuceChoose/src/main.java
