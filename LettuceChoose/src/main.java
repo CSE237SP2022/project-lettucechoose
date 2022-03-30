@@ -23,13 +23,15 @@ public class main {
 			
 			String name = cst.nextLine();
 			orderObject.user = name;
-			System.out.println("Hi, " + orderObject.user + ". Do you have any allergies?");
-
-			String allergies = cst.nextLine();
-
-			System.out.println("What is your diet? Pescatarian, Vegan, Keto, None");
-			String diet = cst.nextLine();
-
+			
+			/*  This will be implemented by the next iteration  */
+//			System.out.println("Hi, " + orderObject.user + ". Do you have any allergies?");
+//			String allergies = cst.nextLine();
+//
+//			System.out.println("What is your diet? Pescatarian, Vegan, Keto, None");
+//			String diet = cst.nextLine();
+			
+			System.out.println("Hi, " + name + "! Let's build your own salad bowl :)");
 			boolean isBaseChosen = false;
 			while(!isBaseChosen) {
 				System.out.println("Choose your base: 1) Salad, 2) Soba, 3) Rice. Please type in numbers.");
@@ -73,6 +75,7 @@ public class main {
 			
 			System.out.println("Toppings: " + orderObject.toppingChosen[0] + ", " + orderObject.toppingChosen[1] + ", " + orderObject.toppingChosen[2]);
 
+			
 //			System.out.println("Choose drizzle: Roasted Garlic Sauce, Chilli Honey Sauce, Ranch, Ponzu Sauce");
 //			String drizzle = cst.nextLine(); 
 //			System.out.println("drizzles: " + drizzle);
@@ -81,7 +84,6 @@ public class main {
 //			String drinks = cst.nextLine(); 
 //			System.out.println("drinks: " + drinks);
 
-			
 			System.out.println("Would you like to tip? If so, how much? You can put 0");
 			double tip = cst.nextDouble(); 
 			System.out.println("tip: $" + tip);
@@ -91,7 +93,6 @@ public class main {
 //			System.out.println("Thank you for your order, " + name + "! Here is " + protein + " " + base + " with " + toppings + " and " + drizzle);
 
 			System.out.println("Processing your order, " + name + "!");
-			
 			
 			// salad bowl + drinks + tip + tax
 			int saladBowlPrice = 10;
