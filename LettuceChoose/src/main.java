@@ -79,11 +79,20 @@ public class main {
 
 
 	private static void askProteinAndAddProtein(Order orderObject, Scanner cst) {
-		System.out.println("Choose one protein: 1) Beef, 2) Chicken, 3) Salmon, 4) Tofu. Please type in numbers.");
-		String protein = cst.nextLine(); 
-		int proteinInt = Integer.parseInt(protein);
-		orderObject.proteinChosen = "" + Protein.ProteinChoice.valueOf(proteinInt);
-		System.out.println("Protein: " + orderObject.proteinChosen);
+		boolean isProteinChosen = false;
+		while(!isProteinChosen) {
+			System.out.println("Choose one protein: 1) Beef, 2) Chicken, 3) Salmon, 4) Tofu. Please type in numbers.");
+			String protein = cst.nextLine(); 
+			Integer proteinInt = tryStringToInt(protein); 
+			if (proteinInt == null) {
+				System.out.println("Please enter a valid number");
+				continue;
+			}
+			orderObject.proteinChosen = "" + Protein.ProteinChoice.valueOf(proteinInt);
+			isProteinChosen = true;
+			System.out.println("Protein: " + orderObject.proteinChosen);
+		}
+
 	}
 
 
@@ -92,7 +101,11 @@ public class main {
 		while(!isBaseChosen) {
 			System.out.println("Choose your base: 1) Salad, 2) Soba, 3) Rice. Please type in numbers.");
 			String base = cst.nextLine(); 
-			int baseInt = Integer.parseInt(base); 
+			Integer baseInt = tryStringToInt(base); 
+			if (baseInt == null) {
+				System.out.println("Please enter a valid number");
+				continue;
+			}
 			Boolean successOrNot = orderObject.chooseBase(baseInt);
 			if (successOrNot) {
 				orderObject.baseChosen = "" + Base.BaseChoice.valueOf(baseInt);
@@ -112,7 +125,7 @@ public class main {
 		String name = cst.nextLine();
 		orderObject.customerName = name;
 		
-		System.out.println("Hi, " + name + "! Let's build your own salad bowl :)");
+		System.out.println("Hi, " + orderObject.customerName + "! Let's build your own salad bowl :)");
 	}
 	
 	
@@ -149,5 +162,13 @@ public class main {
 		System.out.println("└───────────────────────────────┘");
 
 	}
+	
+	public static Integer tryStringToInt(String text) {
+		  try {
+		    return Integer.parseInt(text);
+		  } catch (NumberFormatException e) {
+		    return null;
+		  }
+		}
 
 }
