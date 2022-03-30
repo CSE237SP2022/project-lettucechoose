@@ -21,11 +21,8 @@ _1st Iteration_
 * We are trying to make our code as neat as possible - So some concerns arise in constructing classes and inner-classes.
 
 ### What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)
-* To run our program, the user must run main.java located in LettuceChoose/src
-* At the root folder, run:
-         
-      ./script.sh
-* If you are unable to run the bash script, try chmod 744 to the script.sh
+* At the root folder, run: <code> ./script.sh </code>
+* If you are unable to run the bash script, try <code> chmod 744 ./script.sh </code>
 
 * The user will be prompted to answer a set of questions to order a bowl of salad
 * Below is an screenshot of a sample order
