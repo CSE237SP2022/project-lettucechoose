@@ -11,7 +11,7 @@ _1st Iteration_
 * Users will be able to make multiple orders after orders. 
 * There will be limited quantity of base, protein.. Users may encounter sold-out items.
 * Prettier receipts with String Formatter
-
+* The menu will adjust to the user's diet/allergies.
 
 ### Is there anything that you implemented but doesn't currently work?
 * We are trying to make our code as neat as possible - So some concerns arise in constructing classes and inner-classes.
