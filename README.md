@@ -5,10 +5,11 @@ By YJ Yoon, Kon Yoo, Tony Kwon, Jiwoo Seo
 _1st Iteration_
 ### What user stories were completed this iteration?
 * Users can order customized salad in command lines. 
+* Users can make multiple orders after orders. 
+* Some items have limited quantity. If there's no stock, users are prompted to make other choice.
 
 ### What user stories do you intend to complete next iteration?
 * We need to implement other customizable items (such as drizzles, drinks) and allow more creativity to users.
-* Users will be able to make multiple orders after orders. 
 * There will be limited quantity of base, protein.. Users may encounter sold-out items.
 * Prettier receipts with String Formatter
 * The menu will adjust to the user's diet/allergies.
