@@ -88,9 +88,15 @@ public class main {
 				System.out.println("Please enter a valid number");
 				continue;
 			}
-			orderObject.proteinChosen = "" + Protein.ProteinChoice.valueOf(proteinInt);
-			isProteinChosen = true;
-			System.out.println("Protein: " + orderObject.proteinChosen);
+			Boolean proteinSuccessOrNot = orderObject.chooseProtein(proteinInt);
+			if (proteinSuccessOrNot) {
+				orderObject.proteinChosen = "" + Protein.ProteinChoice.valueOf(proteinInt);
+				isProteinChosen = true;
+				System.out.println("Protein: " + orderObject.proteinChosen);
+			}else {
+				System.out.println("We are out of " + Protein.ProteinChoice.valueOf(proteinInt) +". Please choose other protein");
+			}
+			
 		}
 
 	}
@@ -106,8 +112,8 @@ public class main {
 				System.out.println("Please enter a valid number");
 				continue;
 			}
-			Boolean successOrNot = orderObject.chooseBase(baseInt);
-			if (successOrNot) {
+			Boolean baseSuccessOrNot = orderObject.chooseBase(baseInt);
+			if (baseSuccessOrNot) {
 				orderObject.baseChosen = "" + Base.BaseChoice.valueOf(baseInt);
 				System.out.println("Base: " + orderObject.baseChosen);
 				isBaseChosen = true;

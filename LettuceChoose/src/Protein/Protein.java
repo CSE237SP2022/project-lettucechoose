@@ -11,7 +11,7 @@ public class Protein {
 	public Chicken chicken;
 	public Salmon salmon;
 	public Tofu tofu;
-	
+	public Map<Integer, Object> proteinMap;
 	
 	public enum ProteinChoice{
 		Beef(1),
@@ -46,6 +46,12 @@ public class Protein {
 		chicken = new Chicken(3);
 		salmon = new Salmon(3);
 		tofu = new Tofu(3);
+		
+		proteinMap = new HashMap<Integer, Object>();
+		proteinMap.put(1, this.beef);
+		proteinMap.put(2, this.chicken);
+		proteinMap.put(3, this.salmon);
+		proteinMap.put(4, this.tofu);
 	}
 	
 	
