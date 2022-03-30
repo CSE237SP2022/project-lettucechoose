@@ -8,9 +8,9 @@ _1st Iteration_
 
 ### What user stories do you intend to complete next iteration?
 * We need to implement other customizable items (such as drizzles, drinks) and allow more creativity to users.
-* printReceipt() will be moved to Order.java
 * Users will be able to make multiple orders after orders. 
 * There will be limited quantity of base, protein.. Users may encounter sold-out items.
+* Prettier receipts with String Formatter
 
 
 ### Is there anything that you implemented but doesn't currently work?
