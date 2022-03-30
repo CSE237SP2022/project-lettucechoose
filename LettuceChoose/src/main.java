@@ -44,11 +44,11 @@ public class main {
 
 	private static double askTipAndAddTip(Order orderObject, Scanner cst) {
 		System.out.println("Would you like to tip? If so, how much? You can put 0");
-		double enteredTip = cst.nextDouble(); 
-		orderObject.tip = enteredTip;
+		double userInput = cst.nextDouble(); 
+		orderObject.tip = userInput;
 		System.out.println("tip: $" + orderObject.tip);
 		cst.nextLine();
-		return enteredTip;
+		return userInput;
 	}
 
 
@@ -56,16 +56,16 @@ public class main {
 		System.out.println("Choose 3 toppings: 1) edamame, 2) guacamole, 3) tomato, 4) onions, 5) masago");
 
 		System.out.println("Type in your first topping! (in numbers)");
-		String topping1 = cst.nextLine();
-		int topping1Int = Integer.parseInt(topping1);
+		String topping1Input = cst.nextLine();
+		int topping1Int = Integer.parseInt(topping1Input);
 		
 		System.out.println("Type in your second topping! (in numbers)");
-		String topping2 = cst.nextLine();
-		int topping2Int = Integer.parseInt(topping2);
+		String topping2Input = cst.nextLine();
+		int topping2Int = Integer.parseInt(topping2Input);
 		
 		System.out.println("Type in your third topping! (in numbers)");
-		String topping3 = cst.nextLine();
-		int topping3Int = Integer.parseInt(topping3);
+		String topping3Input = cst.nextLine();
+		int topping3Int = Integer.parseInt(topping3Input);
 		
 		String topping1Str = ""+Topping.ToppingChoice.valueOf(topping1Int);
 		String topping2Str = ""+Topping.ToppingChoice.valueOf(topping2Int);
@@ -82,8 +82,8 @@ public class main {
 		boolean isProteinChosen = false;
 		while(!isProteinChosen) {
 			System.out.println("Choose one protein: 1) Beef, 2) Chicken, 3) Salmon, 4) Tofu. Please type in numbers.");
-			String protein = cst.nextLine(); 
-			Integer proteinInt = tryStringToInt(protein); 
+			String userInput = cst.nextLine(); 
+			Integer proteinInt = tryStringToInt(userInput); 
 			if (proteinInt == null) {
 				System.out.println("Please enter a valid number");
 				continue;
@@ -100,8 +100,8 @@ public class main {
 		boolean isBaseChosen = false;
 		while(!isBaseChosen) {
 			System.out.println("Choose your base: 1) Salad, 2) Soba, 3) Rice. Please type in numbers.");
-			String base = cst.nextLine(); 
-			Integer baseInt = tryStringToInt(base); 
+			String userInput = cst.nextLine(); 
+			Integer baseInt = tryStringToInt(userInput); 
 			if (baseInt == null) {
 				System.out.println("Please enter a valid number");
 				continue;
@@ -122,8 +122,8 @@ public class main {
 		System.out.println("Hi! Welcome to the LettuceChoose!🥗✔️ ");
 		System.out.println("Your name please?");
 		
-		String name = cst.nextLine();
-		orderObject.customerName = name;
+		String userInput = cst.nextLine();
+		orderObject.customerName = userInput;
 		
 		System.out.println("Hi, " + orderObject.customerName + "! Let's build your own salad bowl :)");
 	}
@@ -133,14 +133,14 @@ public class main {
 		
 //		─ │ ┌ ┐ ┘ └ ├ ┬ ┤ ┴ ┼   <- use these!!
 		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-		LocalDateTime now = LocalDateTime.now();  
+		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime currentTime = LocalDateTime.now();  
 		System.out.println(".");
 		System.out.println(".");
 		System.out.println("┌───────────────────────────────┐");
 		System.out.println("│                               │");
 		System.out.println("│         LettuceChoose         │");
-		System.out.println("│      " + dtf.format(now) + "      │");  
+		System.out.println("│      " + dateTimeFormat.format(currentTime) + "      │");  
 		System.out.println("│                               │");
 		System.out.println("│  Order for: " + rName + "      ");
 		System.out.println("│                               │");
