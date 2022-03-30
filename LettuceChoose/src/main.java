@@ -76,21 +76,11 @@ public class main {
 			System.out.println("Toppings: " + orderObject.toppingChosen[0] + ", " + orderObject.toppingChosen[1] + ", " + orderObject.toppingChosen[2]);
 
 			
-//			System.out.println("Choose drizzle: Roasted Garlic Sauce, Chilli Honey Sauce, Ranch, Ponzu Sauce");
-//			String drizzle = cst.nextLine(); 
-//			System.out.println("drizzles: " + drizzle);
-
-//			System.out.println("Any drinks? Coke, Sprite, Water");
-//			String drinks = cst.nextLine(); 
-//			System.out.println("drinks: " + drinks);
 
 			System.out.println("Would you like to tip? If so, how much? You can put 0");
 			double tip = cst.nextDouble(); 
 			System.out.println("tip: $" + tip);
 			cst.nextLine();
-
-//			System.out.println("Your total order price is: " + price);
-//			System.out.println("Thank you for your order, " + name + "! Here is " + protein + " " + base + " with " + toppings + " and " + drizzle);
 
 			System.out.println("Processing your order, " + name + "!");
 			
@@ -127,7 +117,6 @@ public class main {
 		System.out.println("│     Toppings: " + rToppings[0] + " ");   // should add $$ for additional toppings
 		System.out.println("│               " + rToppings[1] +"  ");
 		System.out.println("│               " + rToppings[2] + " ");
-//		System.out.println("│               Tomato    $2    │");
 //		System.out.println("│     Drizzle: Ranch            │");
 //		System.out.println("│   Drink: Diet Coke      $5    │");
 		System.out.println("│  ===========================  │");
