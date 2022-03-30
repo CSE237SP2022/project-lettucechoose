@@ -5,9 +5,9 @@ import java.util.Map;
 
 @SuppressWarnings("unchecked")
 public class Base {
-	Lettuce lettuce;
-	Rice rice;
-	Soba soba;
+	public Lettuce lettuce;
+	public Rice rice;
+	public Soba soba;
 	public Map<Integer, Object> baseMap;
 	
 	public enum BaseChoice{
@@ -83,24 +83,36 @@ public class Base {
 	public class Lettuce {
 		int quantity;
 		
-		Lettuce(int quantityInput){
+		public Lettuce(int quantityInput){
 			this.quantity = quantityInput;
+		}
+		
+		public int getCount() {
+			return this.quantity;
 		}
 	}
 	
 	public class Rice {
 		int quantity;
 		
-		Rice(int quantityInput){
+		public Rice(int quantityInput){
 			this.quantity = quantityInput;
+		}
+		
+		public int getCount() {
+			return this.quantity;
 		}
 	}
 	
 	public class Soba {
 		int quantity;
 		
-		Soba(int quantityInput){
+		public Soba(int quantityInput){
 			this.quantity = quantityInput;
+		}
+		
+		public int getCount() {
+			return this.quantity;
 		}
 
 	}
