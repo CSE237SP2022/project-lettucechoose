@@ -53,7 +53,7 @@ public class main {
 		String topping1 = cst.nextLine();
 		System.out.println("Type in your second topping! (in numbers)");
 		String topping2 = cst.nextLine();
-		System.out.println("Type in your second topping! (in numbers)");
+		System.out.println("Type in your third topping! (in numbers)");
 		String topping3 = cst.nextLine();
 		
 		int topping1Int = Integer.parseInt(topping1);

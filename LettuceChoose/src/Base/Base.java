@@ -3,6 +3,7 @@ package Base;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("unchecked")
 public class Base {
 	Lettuce lettuce;
 	Rice rice;

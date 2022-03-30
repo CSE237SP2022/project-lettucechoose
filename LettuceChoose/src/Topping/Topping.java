@@ -5,6 +5,7 @@ import java.util.Map;
 
 import Protein.Protein.ProteinChoice;
 
+@SuppressWarnings("unchecked")
 public class Topping {
 	Edamame edamame;
 	Guacamole guacamole;
