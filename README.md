@@ -10,7 +10,6 @@ _1st Iteration_
 
 ### What user stories do you intend to complete next iteration?
 * We need to implement other customizable items (such as drizzles, drinks) and allow more creativity to users.
-* There will be limited quantity of base, protein.. Users may encounter sold-out items.
 * Prettier receipts with String Formatter
 * The menu will adjust to the user's diet/allergies.
 
