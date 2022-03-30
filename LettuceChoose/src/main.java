@@ -30,7 +30,7 @@ public class main {
 		askTipAndAddTip(orderObject, commandLineScanner);
 		System.out.println("Processing your order, " + orderObject.customerName + "!");
 		calculatePriceAndPrintRecipt(orderObject);
-		System.out.println("-------------------"+"\n"+"Next in line!"+"\n"+"-------------------");
+		System.out.println("-------------------"+"\n"+ "🙋🙋‍♀️ Next in line!"+"\n"+"-------------------");
 	}
 
 
@@ -102,10 +102,6 @@ public class main {
 	}
 
 
-	private static Integer tryStringToInt(String topping3Input) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	private static void askProteinAndAddProtein(Order orderObject, Scanner cst) {
