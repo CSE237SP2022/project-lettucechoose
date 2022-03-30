@@ -25,6 +25,8 @@ _1st Iteration_
 * At the root folder, run:
          
       ./script.sh
+* If you are unable to run the bash script, try chmod 744 to the script.sh
+
 * The user will be prompted to answer a set of questions to order a bowl of salad
 * Below is an screenshot of a sample order
 <img width="614" alt="image" src="https://user-images.githubusercontent.com/43775491/160733696-0236273a-29d8-4311-9340-cb2bcd286f40.png">
