@@ -53,28 +53,58 @@ public class main {
 
 
 	private static void askToppingsAndAddToppings(Order orderObject, Scanner cst) {
-		System.out.println("Choose 3 toppings: 1) edamame, 2) guacamole, 3) tomato, 4) onions, 5) masago");
 
-		System.out.println("Type in your first topping! (in numbers)");
-		String topping1Input = cst.nextLine();
-		int topping1Int = Integer.parseInt(topping1Input);
+
+		Boolean isTopping1Chosen = false, isTopping2Chosen = false, isTopping3Chosen = false;
+		String topping1Str = "", topping2Str = "", topping3Str = "";
 		
-		System.out.println("Type in your second topping! (in numbers)");
-		String topping2Input = cst.nextLine();
-		int topping2Int = Integer.parseInt(topping2Input);
+		System.out.println("Choose 3 toppings: 1) Edamame, 2) Guacamole, 3) Tomato, 4) Onions, 5) Masago");
 		
-		System.out.println("Type in your third topping! (in numbers)");
-		String topping3Input = cst.nextLine();
-		int topping3Int = Integer.parseInt(topping3Input);
-		
-		String topping1Str = ""+Topping.ToppingChoice.valueOf(topping1Int);
-		String topping2Str = ""+Topping.ToppingChoice.valueOf(topping2Int);
-		String topping3Str = ""+Topping.ToppingChoice.valueOf(topping3Int);
+		while(!isTopping1Chosen) {
+			System.out.println("Type in your first topping! (in numbers)");
+			String topping1Input = cst.nextLine();
+			Integer topping1Integer = tryStringToInt(topping1Input);
+			if (topping1Integer == null) {
+				System.out.println("Please enter a valid number");
+				continue;
+			}
+			topping1Str = ""+Topping.ToppingChoice.valueOf(Integer.parseInt(topping1Input));
+			isTopping1Chosen = true;
+		}
+		while(!isTopping2Chosen) {
+			System.out.println("Type in your second topping! (in numbers)");
+			String topping2Input = cst.nextLine();
+			Integer topping2Integer = tryStringToInt(topping2Input);
+			if (topping2Integer == null) {
+				System.out.println("Please enter a valid number");
+				continue;
+			}
+			topping2Str = ""+Topping.ToppingChoice.valueOf(Integer.parseInt(topping2Input));
+			isTopping2Chosen = true;
+		}
+		while(!isTopping3Chosen) {
+			System.out.println("Type in your third topping! (in numbers)");
+			String topping3Input = cst.nextLine();
+			Integer topping3Integer = tryStringToInt(topping3Input);
+			if (topping3Integer == null) {
+				System.out.println("Please enter a valid number");
+				continue;
+			}
+			topping3Str = ""+Topping.ToppingChoice.valueOf(Integer.parseInt(topping3Input));
+			isTopping3Chosen = true;
+		}
+
 		
 		String[] toppingsArr = {topping1Str, topping2Str, topping3Str};
 		orderObject.toppingChosen = toppingsArr;
 		
 		System.out.println("Toppings: " + orderObject.toppingChosen[0] + ", " + orderObject.toppingChosen[1] + ", " + orderObject.toppingChosen[2]);
+	}
+
+
+	private static Integer tryStringToInt(String topping3Input) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
@@ -147,10 +177,10 @@ public class main {
 		System.out.println("│   Salad                 $10   │");
 		System.out.println("│     Base:  " + rBase + "       ");  
 		System.out.println("│     Protein: " + rProtein + " ");  
-		System.out.println("│     Toppings: " + rToppings[0] + " ");   // should add $$ for additional toppings
+		System.out.println("│     Toppings: " + rToppings[0] + " ");   
 		System.out.println("│               " + rToppings[1] +"  ");
 		System.out.println("│               " + rToppings[2] + " ");
-//		System.out.println("│     Drizzle: Ranch            │");
+//		System.out.println("│     Drizzle: Ranch            │");  WILL BE IMPLEMENTED SOON
 //		System.out.println("│   Drink: Diet Coke      $5    │");
 		System.out.println("│  ===========================  │");
 		System.out.println("│   Subtotal              $10   │");
