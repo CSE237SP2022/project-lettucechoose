@@ -24,31 +24,33 @@ public class main {
 		System.out.println("Hi, " + orderObject.user + ". Do you have any allergies?");
 
 		String allergies = cst.nextLine();
-		System.out.println(allergies);
 
 		System.out.println("What is your diet? Pescatarian, Vegan, Keto, None");
 		String diet = cst.nextLine();
-		System.out.println(diet);
 
-		while(true) {
-			System.out.println("Choose your base: Salad, Soba, Rice");
+//		while(true) {
+			System.out.println("Choose your base: 1) Salad, 2) Soba, 3) Rice. Please type in numbers.");
 			String base = cst.nextLine(); 
-			int baseInt = Integer.parseInt(base);
+			int baseInt = Integer.parseInt(base); 
 			Boolean successOrNot = orderObject.chooseBase(baseInt);
 			if (successOrNot) {
+				orderObject.baseChosen = "" + Base.BaseChoice.valueOf(baseInt);
 				System.out.println("Base: " + orderObject.baseChosen);
 			}else {
-				System.out.println("We are out of _____. Please choose other base");
+				System.out.println("We are out of " + orderObject.baseChosen +". Please choose other base");
 			}
-		}
+//		}
 
-//		System.out.println("Choose one protein: Beef, Chicken, Salmon, Tofu");
-//		String protein = cst.nextLine(); 
-//		System.out.println("protein: " + protein);
-//
-//		
-//		System.out.println("Choose your toppings: edamame, guacamole, tomato, onions, masago");
-//		System.out.println("You can choose up to 3 toppings. Otherwise, there will be extra charge.");
+		System.out.println("Choose one protein: 1) Beef, 2) Chicken, 3) Salmon, 4) Tofu. Please type in numbers.");
+		String protein = cst.nextLine(); 
+		int proteinInt = Integer.parseInt(protein);
+		orderObject.proteinChosen = "" + Protein.ProteinChoice.valueOf(proteinInt);
+		System.out.println("Protein: " + orderObject.proteinChosen);
+
+		
+//		System.out.println("Choose your toppings: 1) edamame, 2) guacamole, 3) tomato, 4) onions, 5) masago");
+//		System.out.println("You can choose up to 3 toppings. Additional toppings will be charged.");
+//		System.out.println("Type in your first topping! (in numbers)");
 //		String toppings = cst.nextLine();
 //		System.out.println("Toppings: " + toppings);
 //
@@ -100,7 +102,6 @@ public class main {
 		System.out.println("│                               │");
 		
 		System.out.println("│        LettuceChoose          │");
-		
 		System.out.println("│      " + dtf.format(now) + "      │");  
 		System.out.println("│                               │");
 		System.out.println("│   Salad                 $10   │");
