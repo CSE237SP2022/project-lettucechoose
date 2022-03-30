@@ -14,85 +14,105 @@ public class main {
 		Topping toppingObject = new Topping();
 		
 		while(true) {
-			
-			Order orderObject = new Order(baseObject, proteinObject, toppingObject);
-
-			Scanner cst = new Scanner(System.in);
-			System.out.println("Hi! Welcome to the LettuceChoose!🥗✔️ ");
-			System.out.println("Your name please?");
-			
-			String name = cst.nextLine();
-			orderObject.user = name;
-			
-			/*  This will be implemented by the next iteration  */
-//			System.out.println("Hi, " + orderObject.user + ". Do you have any allergies?");
-//			String allergies = cst.nextLine();
-//
-//			System.out.println("What is your diet? Pescatarian, Vegan, Keto, None");
-//			String diet = cst.nextLine();
-			
-			System.out.println("Hi, " + name + "! Let's build your own salad bowl :)");
-			boolean isBaseChosen = false;
-			while(!isBaseChosen) {
-				System.out.println("Choose your base: 1) Salad, 2) Soba, 3) Rice. Please type in numbers.");
-				String base = cst.nextLine(); 
-				int baseInt = Integer.parseInt(base); 
-				Boolean successOrNot = orderObject.chooseBase(baseInt);
-				if (successOrNot) {
-					orderObject.baseChosen = "" + Base.BaseChoice.valueOf(baseInt);
-					System.out.println("Base: " + orderObject.baseChosen);
-					isBaseChosen = true;
-				}else {
-					System.out.println("We are out of " + Base.BaseChoice.valueOf(baseInt) +". Please choose other base");
-				}
-			}
-
-			System.out.println("Choose one protein: 1) Beef, 2) Chicken, 3) Salmon, 4) Tofu. Please type in numbers.");
-			String protein = cst.nextLine(); 
-			int proteinInt = Integer.parseInt(protein);
-			orderObject.proteinChosen = "" + Protein.ProteinChoice.valueOf(proteinInt);
-			System.out.println("Protein: " + orderObject.proteinChosen);
-
-			
-			System.out.println("Choose 3 toppings: 1) edamame, 2) guacamole, 3) tomato, 4) onions, 5) masago");
-			System.out.println("Type in your first topping! (in numbers)");
-			String topping1 = cst.nextLine();
-			System.out.println("Type in your second topping! (in numbers)");
-			String topping2 = cst.nextLine();
-			System.out.println("Type in your third topping! (in numbers)");
-			String topping3 = cst.nextLine();
-			
-			int topping1Int = Integer.parseInt(topping1);
-			int topping2Int = Integer.parseInt(topping2);
-			int topping3Int = Integer.parseInt(topping3);
-			
-			String topping1Str = ""+Topping.ToppingChoice.valueOf(topping1Int);
-			String topping2Str = ""+Topping.ToppingChoice.valueOf(topping2Int);
-			String topping3Str = ""+Topping.ToppingChoice.valueOf(topping3Int);
-			
-			String[] toppingsArr = {topping1Str, topping2Str, topping3Str};
-			orderObject.toppingChosen = toppingsArr;
-			
-			System.out.println("Toppings: " + orderObject.toppingChosen[0] + ", " + orderObject.toppingChosen[1] + ", " + orderObject.toppingChosen[2]);
-
-			
-
-			System.out.println("Would you like to tip? If so, how much? You can put 0");
-			double tip = cst.nextDouble(); 
-			System.out.println("tip: $" + tip);
-			cst.nextLine();
-
-			System.out.println("Processing your order, " + name + "!");
-			
-			// salad bowl + drinks + tip + tax
-			int saladBowlPrice = 10;
-			double total = saladBowlPrice + tip + saladBowlPrice * 0.15;
-			printReceipt(orderObject.baseChosen, orderObject.proteinChosen, orderObject.toppingChosen, tip, total, name);
-			
-			System.out.println("-------------------"+"\n"+"Next in line!"+"\n"+"-------------------");
-			
+			takeNewOrder(baseObject, proteinObject, toppingObject);
 		}
+	}
 
+
+	private static void takeNewOrder(Base baseObject, Protein proteinObject, Topping toppingObject) {
+		Order orderObject = new Order(baseObject, proteinObject, toppingObject);
+		Scanner commandLineScanner = new Scanner(System.in);
+		
+		askNameAndAddName(orderObject, commandLineScanner);
+		askBaseAndAddBase(orderObject, commandLineScanner);
+		askProteinAndAddProtein(orderObject, commandLineScanner);
+		askToppingsAndAddToppings(orderObject, commandLineScanner);
+		askTipAndAddTip(orderObject, commandLineScanner);
+		System.out.println("Processing your order, " + orderObject.customerName + "!");
+		calculatePriceAndPrintRecipt(orderObject);
+		System.out.println("-------------------"+"\n"+"Next in line!"+"\n"+"-------------------");
+	}
+
+
+	private static void calculatePriceAndPrintRecipt(Order orderObject) {
+		// salad bowl + drinks + tip + tax
+		int saladBowlPrice = 10;
+		double totalPrice = saladBowlPrice + orderObject.tip + saladBowlPrice * 0.15;
+		printReceipt(orderObject.baseChosen, orderObject.proteinChosen, orderObject.toppingChosen, orderObject.tip, totalPrice, orderObject.customerName);
+	}
+
+
+	private static double askTipAndAddTip(Order orderObject, Scanner cst) {
+		System.out.println("Would you like to tip? If so, how much? You can put 0");
+		double enteredTip = cst.nextDouble(); 
+		orderObject.tip = enteredTip;
+		System.out.println("tip: $" + orderObject.tip);
+		cst.nextLine();
+		return enteredTip;
+	}
+
+
+	private static void askToppingsAndAddToppings(Order orderObject, Scanner cst) {
+		System.out.println("Choose 3 toppings: 1) edamame, 2) guacamole, 3) tomato, 4) onions, 5) masago");
+
+		System.out.println("Type in your first topping! (in numbers)");
+		String topping1 = cst.nextLine();
+		int topping1Int = Integer.parseInt(topping1);
+		
+		System.out.println("Type in your second topping! (in numbers)");
+		String topping2 = cst.nextLine();
+		int topping2Int = Integer.parseInt(topping2);
+		
+		System.out.println("Type in your third topping! (in numbers)");
+		String topping3 = cst.nextLine();
+		int topping3Int = Integer.parseInt(topping3);
+		
+		String topping1Str = ""+Topping.ToppingChoice.valueOf(topping1Int);
+		String topping2Str = ""+Topping.ToppingChoice.valueOf(topping2Int);
+		String topping3Str = ""+Topping.ToppingChoice.valueOf(topping3Int);
+		
+		String[] toppingsArr = {topping1Str, topping2Str, topping3Str};
+		orderObject.toppingChosen = toppingsArr;
+		
+		System.out.println("Toppings: " + orderObject.toppingChosen[0] + ", " + orderObject.toppingChosen[1] + ", " + orderObject.toppingChosen[2]);
+	}
+
+
+	private static void askProteinAndAddProtein(Order orderObject, Scanner cst) {
+		System.out.println("Choose one protein: 1) Beef, 2) Chicken, 3) Salmon, 4) Tofu. Please type in numbers.");
+		String protein = cst.nextLine(); 
+		int proteinInt = Integer.parseInt(protein);
+		orderObject.proteinChosen = "" + Protein.ProteinChoice.valueOf(proteinInt);
+		System.out.println("Protein: " + orderObject.proteinChosen);
+	}
+
+
+	private static void askBaseAndAddBase(Order orderObject, Scanner cst) {
+		boolean isBaseChosen = false;
+		while(!isBaseChosen) {
+			System.out.println("Choose your base: 1) Salad, 2) Soba, 3) Rice. Please type in numbers.");
+			String base = cst.nextLine(); 
+			int baseInt = Integer.parseInt(base); 
+			Boolean successOrNot = orderObject.chooseBase(baseInt);
+			if (successOrNot) {
+				orderObject.baseChosen = "" + Base.BaseChoice.valueOf(baseInt);
+				System.out.println("Base: " + orderObject.baseChosen);
+				isBaseChosen = true;
+			}else {
+				System.out.println("We are out of " + Base.BaseChoice.valueOf(baseInt) +". Please choose other base");
+			}
+		}
+	}
+
+
+	private static void askNameAndAddName(Order orderObject, Scanner cst) {
+		System.out.println("Hi! Welcome to the LettuceChoose!🥗✔️ ");
+		System.out.println("Your name please?");
+		
+		String name = cst.nextLine();
+		orderObject.customerName = name;
+		
+		System.out.println("Hi, " + name + "! Let's build your own salad bowl :)");
 	}
 	
 	

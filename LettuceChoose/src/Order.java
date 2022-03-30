@@ -6,7 +6,7 @@ import Topping.Topping;
 
 public class Order {
 
-	String user;
+	String customerName;
 	int diet;
 	
 	Base base;
