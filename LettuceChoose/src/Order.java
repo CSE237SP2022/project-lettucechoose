@@ -42,9 +42,9 @@ public class Order {
 		return this.base.isAvailable(baseObject, this.baseChosen);
 	}
 	
-	public void chooseProtein(Protein p) {
-		this.protein = p;
-		
+	public boolean chooseProtein(int p) {
+		Object proteinObject = this.protein.proteinMap.get(p);
+		return this.protein.isAvailable(proteinObject, this.proteinChosen);
 	}
 	
 	public void chooseToppings(Topping t) {
