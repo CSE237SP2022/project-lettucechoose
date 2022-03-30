@@ -13,6 +13,7 @@ _1st Iteration_
 * Prettier receipts with String Formatter
 * The menu will adjust to the user's diet/allergies.
 * There will be an extra charge If the customer ordered two or more protein.
+* We want to count every selling profit by each customer to show how much we sold for a given period of time.
 
 ### Is there anything that you implemented but doesn't currently work?
 * We are trying to make our code as neat as possible - So some concerns arise in constructing classes and inner-classes.
