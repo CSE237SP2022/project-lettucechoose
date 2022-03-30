@@ -9,6 +9,32 @@ public class Base {
 	Soba soba;
 	public Map<Integer, Object> baseMap;
 	
+	public enum BaseChoice{
+		Salad(1),
+		Soba(2),
+		Rice(3);
+
+		private int value;
+	    private static Map map = new HashMap<>();
+
+	    private BaseChoice(int value) {
+	        this.value = value;
+	    }
+
+	    static {
+	        for (BaseChoice bc : BaseChoice.values()) {
+	            map.put(bc.value, bc);
+	        }
+	    }
+
+	    public static BaseChoice valueOf(int bc) {
+	        return (BaseChoice) map.get(bc);
+	    }
+
+	    public int getValue() {
+	        return value;
+	    }
+	}
 	
 	public Base(){
 		this.lettuce = new Lettuce(3);
