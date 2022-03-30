@@ -48,77 +48,85 @@ public class main {
 		System.out.println("Protein: " + orderObject.proteinChosen);
 
 		
-//		System.out.println("Choose your toppings: 1) edamame, 2) guacamole, 3) tomato, 4) onions, 5) masago");
-//		System.out.println("You can choose up to 3 toppings. Additional toppings will be charged.");
-//		System.out.println("Type in your first topping! (in numbers)");
-//		String toppings = cst.nextLine();
-//		System.out.println("Toppings: " + toppings);
-//
-//
+		System.out.println("Choose 3 toppings: 1) edamame, 2) guacamole, 3) tomato, 4) onions, 5) masago");
+		System.out.println("Type in your first topping! (in numbers)");
+		String topping1 = cst.nextLine();
+		System.out.println("Type in your second topping! (in numbers)");
+		String topping2 = cst.nextLine();
+		System.out.println("Type in your second topping! (in numbers)");
+		String topping3 = cst.nextLine();
+		
+		int topping1Int = Integer.parseInt(topping1);
+		int topping2Int = Integer.parseInt(topping2);
+		int topping3Int = Integer.parseInt(topping3);
+		
+		String topping1Str = ""+Topping.ToppingChoice.valueOf(topping1Int);
+		String topping2Str = ""+Topping.ToppingChoice.valueOf(topping2Int);
+		String topping3Str = ""+Topping.ToppingChoice.valueOf(topping3Int);
+		
+		String[] toppingsArr = {topping1Str, topping2Str, topping3Str};
+		orderObject.toppingChosen = toppingsArr;
+		
+		System.out.println("Toppings: " + orderObject.toppingChosen[0] + ", " + orderObject.toppingChosen[1] + ", " + orderObject.toppingChosen[2]);
+
 //		System.out.println("Choose drizzle: Roasted Garlic Sauce, Chilli Honey Sauce, Ranch, Ponzu Sauce");
 //		String drizzle = cst.nextLine(); 
 //		System.out.println("drizzles: " + drizzle);
-// 
-//
-//		System.out.println("Any drinks? Coke, Sprite, water");
+
+//		System.out.println("Any drinks? Coke, Sprite, Water");
 //		String drinks = cst.nextLine(); 
 //		System.out.println("drinks: " + drinks);
-//
-//
-//		System.out.println("How many utensils do you need?");
-//		int utensils = cst.nextInt(); 
-//		System.out.println("number of utensils: " + utensils);
-//
-//		
-//		cst.nextLine();
-//		System.out.println("Dine-In or To-go?");
-//		String eatingplace = cst.nextLine(); 
-//		System.out.println("eating option: " + eatingplace);
-// 
-//		
-//		System.out.println("Would you like to tip? 10%, 15%, 20%, and custom");
-//		double tip = cst.nextInt(); 
-//		System.out.println("tip: " + tip + "%");
-//		cst.nextLine();
-//	
-//
-//		double price;
-//		price = 0.0;    
-//		
+
+		
+		System.out.println("Would you like to tip? If so, how much? You can put 0");
+		double tip = cst.nextDouble(); 
+		System.out.println("tip: $" + tip);
+		cst.nextLine();
+
 //		System.out.println("Your total order price is: " + price);
-////		System.out.println("Thank you for your order, " + name + "! Here is " + protein + " " + base + " with " + toppings + " and " + drizzle);
-//	
-//		printReceipt();
+//		System.out.println("Thank you for your order, " + name + "! Here is " + protein + " " + base + " with " + toppings + " and " + drizzle);
+
+		System.out.println("Processing your order, " + name + "!");
+		
+		
+		// salad bowl + drinks + tip + tax
+		int saladBowlPrice = 10;
+		double total = saladBowlPrice + tip + saladBowlPrice * 0.15;
+		printReceipt(orderObject.baseChosen, orderObject.proteinChosen, orderObject.toppingChosen, tip, total, name);
 	}
 	
-	public static void printReceipt() {
+	
+	
+	
+	public static void printReceipt(String rBase, String rProtein, String[] rToppings, double rTip, double rTotal, String rName) {
 		
 //		─ │ ┌ ┐ ┘ └ ├ ┬ ┤ ┴ ┼   <- use these!!
 		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
-		
+		System.out.println(".");
+		System.out.println(".");
 		System.out.println("┌───────────────────────────────┐");
 		System.out.println("│                               │");
-		
-		System.out.println("│        LettuceChoose          │");
+		System.out.println("│         LettuceChoose         │");
 		System.out.println("│      " + dtf.format(now) + "      │");  
 		System.out.println("│                               │");
+		System.out.println("│  Order for: " + rName + "      ");
+		System.out.println("│                               │");
 		System.out.println("│   Salad                 $10   │");
-		System.out.println("│     Base: Salad               │");  
-		System.out.println("│     Protein: Beef             │");  
-		System.out.println("│     Toppings: Edamame         │");   // should add $$ for additional toppings
-		System.out.println("│               Masago          │");
-		System.out.println("│               Onions          │");
-		System.out.println("│               Tomato    $2    │");
-		System.out.println("│    Drizzle: Ranch             │");
-		System.out.println("│             Masago            │");
-		System.out.println("│   Drink: Diet Coke      $5    │");
+		System.out.println("│     Base:  " + rBase + "       ");  
+		System.out.println("│     Protein: " + rProtein + " ");  
+		System.out.println("│     Toppings: " + rToppings[0] + " ");   // should add $$ for additional toppings
+		System.out.println("│               " + rToppings[1] +"  ");
+		System.out.println("│               " + rToppings[2] + " ");
+//		System.out.println("│               Tomato    $2    │");
+//		System.out.println("│     Drizzle: Ranch            │");
+//		System.out.println("│   Drink: Diet Coke      $5    │");
 		System.out.println("│  ===========================  │");
-		System.out.println("│   Subtotal              $17   │");
-		System.out.println("│   Tax                   $3    │");
-		System.out.println("│   Tip                   $3    │");
-		System.out.println("│   Total                 $23   │");
+		System.out.println("│   Subtotal              $10   │");
+		System.out.println("│   Tax                   $1.5  │");
+		System.out.println("│   Tip                   $" + rTip + "  ");
+		System.out.println("│   Total                 $" + rTotal + " ");
 		System.out.println("│                               │");
 		System.out.println("│       T h a n k  y o u        │");
 		System.out.println("└───────────────────────────────┘");
