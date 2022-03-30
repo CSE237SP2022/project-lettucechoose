@@ -5,6 +5,7 @@ import java.util.Map;
 
 import Base.Base.BaseChoice;
 
+@SuppressWarnings("unchecked")
 public class Protein {
 	Beef beef;
 	Chicken chicken;
