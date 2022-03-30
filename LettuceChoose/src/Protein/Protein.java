@@ -7,10 +7,10 @@ import Base.Base.BaseChoice;
 
 @SuppressWarnings("unchecked")
 public class Protein {
-	Beef beef;
-	Chicken chicken;
-	Salmon salmon;
-	Tofu tofu;
+	public Beef beef;
+	public Chicken chicken;
+	public Salmon salmon;
+	public Tofu tofu;
 	
 	
 	public enum ProteinChoice{
@@ -48,6 +48,46 @@ public class Protein {
 		tofu = new Tofu(3);
 	}
 	
+	
+	public Boolean isAvailable(Object whichProtein, String proteinChosen) {
+		if (whichProtein == this.beef) {
+			if (this.beef.quantity > 0){
+				this.beef.quantity -= 1;
+				proteinChosen = "beef";
+				return true;
+			}else {
+				return false;
+			}
+		}else if (whichProtein == this.chicken) {
+			if (this.chicken.quantity > 0){
+				this.chicken.quantity -= 1;
+				proteinChosen = "chicken";
+				return true;
+			}else {
+				return false;
+			}
+		}else if (whichProtein == this.salmon) {
+			if (this.salmon.quantity > 0) {
+				this.salmon.quantity -= 1;
+				proteinChosen = "salmon";
+				return true;
+			}else {
+				return false;
+			}
+		}else if (whichProtein == this.tofu) {
+			if (this.tofu.quantity > 0) {
+				this.tofu.quantity -= 1;
+				proteinChosen = "tofu";
+				return true;
+			}else {
+				return false;
+			}
+		}else {
+			System.out.println("not found in isAvailable()");
+			return false;
+		}
+	}
+	
 	public class Beef {
 		int quantity;
 		
@@ -62,6 +102,7 @@ public class Protein {
 				return false;
 			}
 		}
+
 	}
 	
 	public class Chicken {
