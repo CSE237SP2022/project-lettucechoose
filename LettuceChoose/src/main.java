@@ -44,15 +44,16 @@ public class main {
 
 	private static double askTipAndAddTip(Order orderObject, Scanner cst) {
 		System.out.println("Would you like to tip? If so, how much? You can put 0");
-		double enteredTip = cst.nextDouble(); 
-		orderObject.tip = enteredTip;
+		double userInput = cst.nextDouble(); 
+		orderObject.tip = userInput;
 		System.out.println("tip: $" + orderObject.tip);
 		cst.nextLine();
-		return enteredTip;
+		return userInput;
 	}
 
 
 	private static void askToppingsAndAddToppings(Order orderObject, Scanner cst) {
+
 
 		Boolean isTopping1Chosen = false, isTopping2Chosen = false, isTopping3Chosen = false;
 		String topping1Str = "", topping2Str = "", topping3Str = "";
@@ -92,6 +93,7 @@ public class main {
 			topping3Str = ""+Topping.ToppingChoice.valueOf(Integer.parseInt(topping3Input));
 			isTopping3Chosen = true;
 		}
+
 		
 		String[] toppingsArr = {topping1Str, topping2Str, topping3Str};
 		orderObject.toppingChosen = toppingsArr;
@@ -107,11 +109,20 @@ public class main {
 
 
 	private static void askProteinAndAddProtein(Order orderObject, Scanner cst) {
-		System.out.println("Choose one protein: 1) Beef, 2) Chicken, 3) Salmon, 4) Tofu. Please type in numbers.");
-		String protein = cst.nextLine(); 
-		int proteinInt = Integer.parseInt(protein);
-		orderObject.proteinChosen = "" + Protein.ProteinChoice.valueOf(proteinInt);
-		System.out.println("Protein: " + orderObject.proteinChosen);
+		boolean isProteinChosen = false;
+		while(!isProteinChosen) {
+			System.out.println("Choose one protein: 1) Beef, 2) Chicken, 3) Salmon, 4) Tofu. Please type in numbers.");
+			String userInput = cst.nextLine(); 
+			Integer proteinInt = tryStringToInt(userInput); 
+			if (proteinInt == null) {
+				System.out.println("Please enter a valid number");
+				continue;
+			}
+			orderObject.proteinChosen = "" + Protein.ProteinChoice.valueOf(proteinInt);
+			isProteinChosen = true;
+			System.out.println("Protein: " + orderObject.proteinChosen);
+		}
+
 	}
 
 
@@ -119,8 +130,12 @@ public class main {
 		boolean isBaseChosen = false;
 		while(!isBaseChosen) {
 			System.out.println("Choose your base: 1) Salad, 2) Soba, 3) Rice. Please type in numbers.");
-			String base = cst.nextLine(); 
-			int baseInt = Integer.parseInt(base); 
+			String userInput = cst.nextLine(); 
+			Integer baseInt = tryStringToInt(userInput); 
+			if (baseInt == null) {
+				System.out.println("Please enter a valid number");
+				continue;
+			}
 			Boolean successOrNot = orderObject.chooseBase(baseInt);
 			if (successOrNot) {
 				orderObject.baseChosen = "" + Base.BaseChoice.valueOf(baseInt);
@@ -137,10 +152,10 @@ public class main {
 		System.out.println("Hi! Welcome to the LettuceChoose!🥗✔️ ");
 		System.out.println("Your name please?");
 		
-		String name = cst.nextLine();
-		orderObject.customerName = name;
+		String userInput = cst.nextLine();
+		orderObject.customerName = userInput;
 		
-		System.out.println("Hi, " + name + "! Let's build your own salad bowl :)");
+		System.out.println("Hi, " + orderObject.customerName + "! Let's build your own salad bowl :)");
 	}
 	
 	
@@ -148,14 +163,14 @@ public class main {
 		
 //		─ │ ┌ ┐ ┘ └ ├ ┬ ┤ ┴ ┼   <- use these!!
 		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-		LocalDateTime now = LocalDateTime.now();  
+		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime currentTime = LocalDateTime.now();  
 		System.out.println(".");
 		System.out.println(".");
 		System.out.println("┌───────────────────────────────┐");
 		System.out.println("│                               │");
 		System.out.println("│         LettuceChoose         │");
-		System.out.println("│      " + dtf.format(now) + "      │");  
+		System.out.println("│      " + dateTimeFormat.format(currentTime) + "      │");  
 		System.out.println("│                               │");
 		System.out.println("│  Order for: " + rName + "      ");
 		System.out.println("│                               │");
@@ -177,5 +192,13 @@ public class main {
 		System.out.println("└───────────────────────────────┘");
 
 	}
+	
+	public static Integer tryStringToInt(String text) {
+		  try {
+		    return Integer.parseInt(text);
+		  } catch (NumberFormatException e) {
+		    return null;
+		  }
+		}
 
 }
