@@ -1,8 +1,25 @@
-## Lettuce Choose - a kiosk app for customized salad!
+# Lettuce Choose - a kiosk app for customized salad!
    
 By YJ Yoon, Kon Yoo, Tony Kwon, Jiwoo Seo
 
-_1st Iteration_
+
+## 2nd Iteration
+### What user stories were completed this iteration?
+
+### What user stories do you intend to complete next iteration?
+
+### Is there anything that you implemented but doesn't currently work?
+
+### What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)
+* At the root folder, run: <code> ./script.sh </code>
+* If you are unable to run the bash script, try <code> chmod 744 script.sh </code>
+
+* The user will be prompted to answer a set of questions to order a bowl of salad
+
+
+
+
+## 1st Iteration
 ### What user stories were completed this iteration?
 * Users can order customized salad in command lines. 
 * Users can make multiple orders after orders. 
