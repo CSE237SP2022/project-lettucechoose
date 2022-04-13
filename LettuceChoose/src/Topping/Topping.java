@@ -6,6 +6,11 @@ import java.util.Map;
 
 @SuppressWarnings("unchecked")
 public class Topping {
+	
+	/**
+	 *  ingredientsInventory - keeps track of the quantity of each topping. 
+	 *  integerToIngredient - maps the integer value & string value of topping. 
+	 */
 	public Map<String, Integer> ingredientsInventory;
 	private Map<Integer, String> integerToIngredient;
 	
@@ -27,10 +32,22 @@ public class Topping {
 		integerToIngredient.put(6, "none");
 	}
 	
+	/**
+	 * @param selected - the value that Scanner reads (the user input)
+	 * @return - returns true when the value is in the map, returns false otherwise
+	 * 
+	 * This is to check whether the user input is a valid value for topping
+	 */
 	public Boolean doesExists(Integer selected) {
 		return this.integerToIngredient.containsKey(selected);
 	}
 	
+	
+	/**
+	 * 
+	 * @param selectedTopping - the value that user picks for the topping
+	 * @return - returns true if the selectedTopping is in stock. returns false otherwise.
+	 */
 	public Boolean isAvailable(String selectedTopping) {
 		int ingredientCount = this.ingredientsInventory.get(selectedTopping);
 		
@@ -42,6 +59,14 @@ public class Topping {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param selectedTopping - The value the user types in the command line
+	 * @return - String value of the topping. 
+	 * 
+	 * Users are prompted to type integer value of the topping.
+	 * This is to find the string value of the topping. 
+	 */
 	public String getToppingString(Integer selectedTopping) {
 		return this.integerToIngredient.get(selectedTopping);
 	}
