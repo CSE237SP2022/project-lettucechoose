@@ -55,81 +55,30 @@ public class main {
 	}
 
 
-	private static void askToppingsAndAddToppings(Order orderObject, Topping toppingObject, Scanner cst) {
-
-
-		Boolean isTopping1Chosen = false, isTopping2Chosen = false, isTopping3Chosen = false;
-		String topping1Str = "", topping2Str = "", topping3Str = "";
-		
+	private static void askToppingsAndAddToppings(Order orderObject, Topping toppingObject, Scanner cst) {		
 		System.out.println("Choose 3 toppings: 1) Edamame, 2) Guacamole, 3) Tomato, 4) Onions, 5) Masago");
-		
-		while(!isTopping1Chosen) {
-			System.out.println("Type in your first topping! (in numbers)");
-			String topping1Input = cst.nextLine();
-			Integer topping1Integer = tryStringToInt(topping1Input);
-			if (topping1Integer == null) {
+		int currentTopping = 1;
+		while(currentTopping != 4) {
+			System.out.println("Type in your topping"+currentTopping+"! (in numbers)");
+			String toppingInput = cst.nextLine();
+			Integer toppingInteger = tryStringToInt(toppingInput);
+			if (toppingInteger == null) {
 				System.out.println("Please enter a valid number");
 				continue;
 			}
-			if (!toppingObject.doesExists(topping1Integer)) {
+			if (!toppingObject.doesExists(toppingInteger)) {
 				System.out.println("Please select an available option");
 				continue;
 			}
 			
-			String topping1ChosenString = toppingObject.getToppingString(topping1Integer);
-			Boolean isTopping1Left = toppingObject.isAvailable(topping1ChosenString);
-			if (isTopping1Left) {
-				orderObject.assignTopping(topping1ChosenString);
-				System.out.println("Topping 1: " + topping1ChosenString);
-				isTopping1Chosen = true;
+			String toppingChosenString = toppingObject.getToppingString(toppingInteger);
+			Boolean isToppingLeft = toppingObject.isAvailable(toppingChosenString);
+			if (isToppingLeft) {
+				orderObject.assignTopping(toppingChosenString);
+				System.out.println("Topping"+currentTopping+": " + toppingChosenString);
+				currentTopping+=1;
 			}else {
-				System.out.println("We are out of " + topping1ChosenString +". Please choose other topping");
-			}
-		}
-		while(!isTopping2Chosen) {
-			System.out.println("Type in your second topping! (in numbers)");
-			String topping2Input = cst.nextLine();
-			Integer topping2Integer = tryStringToInt(topping2Input);
-			if (topping2Integer == null) {
-				System.out.println("Please enter a valid number");
-				continue;
-			}
-			if (!toppingObject.doesExists(topping2Integer)) {
-				System.out.println("Please select an available option");
-				continue;
-			}
-			
-			String topping2ChosenString = toppingObject.getToppingString(topping2Integer);
-			Boolean isTopping2Left = toppingObject.isAvailable(topping2ChosenString);
-			if (isTopping2Left) {
-				orderObject.assignTopping(topping2ChosenString);
-				System.out.println("Topping 2: " + topping2ChosenString);
-				isTopping2Chosen = true;
-			}else {
-				System.out.println("We are out of " + topping2ChosenString +". Please choose other topping");
-			}
-		}
-		while(!isTopping3Chosen) {
-			System.out.println("Type in your third topping! (in numbers)");
-			String topping3Input = cst.nextLine();
-			Integer topping3Integer = tryStringToInt(topping3Input);
-			if (topping3Integer == null) {
-				System.out.println("Please enter a valid number");
-				continue;
-			}
-			if (!toppingObject.doesExists(topping3Integer)) {
-				System.out.println("Please select an available option");
-				continue;
-			}
-			
-			String topping3ChosenString = toppingObject.getToppingString(topping3Integer);
-			Boolean isTopping3Left = toppingObject.isAvailable(topping3ChosenString);
-			if (isTopping3Left) {
-				orderObject.assignTopping(topping3ChosenString);
-				System.out.println("Topping 3: " + topping3ChosenString);
-				isTopping3Chosen = true;
-			}else {
-				System.out.println("We are out of " + topping3ChosenString +". Please choose other topping");
+				System.out.println("We are out of " + toppingChosenString +". Please choose other topping");
 			}
 		}
 		
