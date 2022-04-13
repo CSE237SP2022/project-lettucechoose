@@ -5,6 +5,7 @@ By YJ Yoon, Kon Yoo, Tony Kwon, Jiwoo Seo
 
 ## 2nd Iteration
 ### What user stories were completed this iteration?
+* Refactored structures of classes (Base, Protein, Topping) based on feedbacks and updated main() to reflect those changes.
 
 ### What user stories do you intend to complete next iteration?
 
