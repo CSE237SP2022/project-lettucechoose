@@ -1,7 +1,6 @@
 package Topping;
 
 import java.util.HashMap;
-
 import java.util.Map;
 
 @SuppressWarnings("unchecked")
@@ -32,6 +31,8 @@ public class Topping {
 		integerToIngredient.put(6, "none");
 	}
 	
+	
+	
 	/**
 	 * @param selected - the value that Scanner reads (the user input)
 	 * @return - returns true when the value is in the map, returns false otherwise
@@ -41,6 +42,8 @@ public class Topping {
 	public Boolean doesExists(Integer selected) {
 		return this.integerToIngredient.containsKey(selected);
 	}
+	
+	
 	
 	
 	/**
@@ -58,6 +61,9 @@ public class Topping {
 		this.ingredientsInventory.put(selectedTopping, ingredientCount-1);
 		return true;
 	}
+	
+	
+	
 	
 	/**
 	 * 

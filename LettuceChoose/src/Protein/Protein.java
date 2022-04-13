@@ -1,7 +1,6 @@
 package Protein;
 
 import java.util.HashMap;
-
 import java.util.Map;
 
 @SuppressWarnings("unchecked")
@@ -11,7 +10,6 @@ public class Protein {
 	 *  ingredientsInventory - keeps track of the quantity of each protein. 
 	 *  integerToIngredient - maps the integer value & string value of protein.
 	 */
-	
 	public Map<String, Integer> ingredientsInventory;
 	private Map<Integer, String> integerToIngredient;
 	
@@ -29,6 +27,8 @@ public class Protein {
 		integerToIngredient.put(4, "tofu");
 	}
 	
+	
+	
 	/**
 	 * 
 	 * @param selected - the value that Scanner reads (the user input)
@@ -39,6 +39,9 @@ public class Protein {
 	public Boolean doesExists(Integer selected) {
 		return this.integerToIngredient.containsKey(selected);
 	}
+	
+	
+	
 	
 	/**
 	 * 
@@ -55,6 +58,9 @@ public class Protein {
 		this.ingredientsInventory.put(selectedProtein, ingredientCount-1);
 		return true;
 	}
+	
+	
+	
 	
 	
 	/**
