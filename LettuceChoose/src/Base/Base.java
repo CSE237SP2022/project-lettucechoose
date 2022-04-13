@@ -9,11 +9,8 @@ public class Base {
 	 *  ingredientsInventory - keeps track of the quantity of each base. 
 	 *  integerToIngredient - maps the integer value & string value of base. 
 	 */
-	
 	public Map<String, Integer> ingredientsInventory;
 	private Map<Integer, String> integerToIngredient;
-	
-	
 	
 	public Base(){
 		
@@ -29,6 +26,10 @@ public class Base {
 		integerToIngredient.put(3, "rice");
 	}
 	
+	
+	
+	
+	
 	/**
 	 * 
 	 * @param selected - the value that Scanner reads (the user input)
@@ -39,6 +40,10 @@ public class Base {
 	public Boolean doesExists(Integer selected) {
 		return this.integerToIngredient.containsKey(selected);
 	}
+	
+	
+	
+	
 	
 	/**
 	 * 
@@ -55,6 +60,9 @@ public class Base {
 		this.ingredientsInventory.put(selectedBase, ingredientCount-1);
 		return true;
 	}
+	
+	
+	
 	
 	/**
 	 * 

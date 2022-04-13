@@ -36,6 +36,8 @@ public class Drink {
 		drinkPrice.put("none", 0);
 	}
 	
+	
+	
 	/**
 	 * 
 	 * @param selected - the value that Scanner reads (the user input)
@@ -46,6 +48,7 @@ public class Drink {
 	public Boolean doesExists(Integer selected) {
 		return this.integerToDrinks.containsKey(selected);
 	}
+	
 	
 	
 	
@@ -67,6 +70,7 @@ public class Drink {
 	
 	
 	
+	
 	/**
 	 * 
 	 * @param selectedDrink - The value the user types in the command line
@@ -78,6 +82,7 @@ public class Drink {
 	public String getDrinkString(Integer selectedDrink) {
 		return this.integerToDrinks.get(selectedDrink);
 	}
+	
 	
 	
 	
