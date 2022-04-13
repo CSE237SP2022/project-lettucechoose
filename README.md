@@ -8,6 +8,7 @@ By YJ Yoon, Kon Yoo, Tony Kwon, Jiwoo Seo
 * Refactored structures of classes (Base, Protein, Topping) based on feedbacks and updated main() to reflect those changes.
 * We have set limited quantity for Base, Protein, and Toppings. If there's no stock, users are prompted to make other choice.
 * Drink menu is implemented - users can now add drinks to their orders. Each drink has different price.
+* The receipt is prettier- used String formatter to format it nicely (so that it looks like a piece of paper
 ### What user stories do you intend to complete next iteration?
 * We worked so that users can quit the order at anytime - we are having progress, but did not merge into main because it's not complete yet. We will try to implement it by the next iteration.
 * Vendors will be able to restock any sold-out items.
