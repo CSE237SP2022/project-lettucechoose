@@ -7,10 +7,13 @@ By YJ Yoon, Kon Yoo, Tony Kwon, Jiwoo Seo
 ### What user stories were completed this iteration?
 * Refactored structures of classes (Base, Protein, Topping) based on feedbacks and updated main() to reflect those changes.
 
+* Refactored structures of classes (Base, Protein, Topping) based on feedbacks and updated main() to reflect those changes.
+* We have set limited quantity for Base, Protein, and Toppings. If there's no stock, users are prompted to make other choice.
 ### What user stories do you intend to complete next iteration?
-
+* We worked so that users can quit the order at anytime - we are having progress, but did not merge into main because it's not complete yet. We will try to implement it by the next iteration.
+* Vendors will be able to restock any sold-out items.
 ### Is there anything that you implemented but doesn't currently work?
-
+* As mentioned above, we are trying to allow users to quit the order or the program.
 ### What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)
 * At the root folder, run: <code> ./script.sh </code>
 * If you are unable to run the bash script, try <code> chmod 744 script.sh </code>
