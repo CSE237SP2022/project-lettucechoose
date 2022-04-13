@@ -4,6 +4,8 @@ import Base.Base;
 import Protein.Protein;
 import Topping.Topping;
 import Drink.Drink;
+import Order.Order;
+
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
 
@@ -20,7 +22,7 @@ public class main {
 	}
 
 	
-	
+
 	
 	private static void takeNewOrder(Base baseObject, Protein proteinObject, Topping toppingObject, Drink drinkObject) {
 		Order orderObject = new Order();
