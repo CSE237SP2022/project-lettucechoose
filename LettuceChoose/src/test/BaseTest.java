@@ -1,46 +1,112 @@
 package test;
 
 import Base.Base;
-import Base.Base.Lettuce;
-import Base.Base.Soba;
-import Base.Base.Rice;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Assert;
-
-import static org.junit.Assert.*;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BaseTest {
-
 	
-	Base base = new Base();
+	private Base base;
 	
-	@Test
-	void sobaTest() {
-		base.isAvailable(base.soba, "soba");
-		base.isAvailable(base.soba, "soba");
-		base.isAvailable(base.soba, "soba");
-		Assert.assertEquals(base.soba.getCount(), 0);
+	@BeforeEach
+	void setup() {
+		base = new Base();
 	}
 	
+	// test if each base exists in Map<String, Integer> ingredientsInventory of base class when initialized
 	
 	@Test
-	void riceTest() {
-		base.isAvailable(base.rice, "rice");
-		base.isAvailable(base.rice, "rice");
-		base.isAvailable(base.rice, "rice");
-		Assert.assertEquals(base.rice.getCount(), 0);
+	void testSobaExistsInitially() {		
+		Assert.assertEquals(base.doesExists(1), true);
 	}
 	
 	@Test
-	void lettuceTest() {
-		base.isAvailable(base.lettuce, "lettuce");
-		base.isAvailable(base.lettuce, "lettuce");
-		base.isAvailable(base.lettuce, "lettuce");
-		Assert.assertEquals(base.lettuce.getCount(), 0);
+	void testRiceExistsInitially() {
+		Assert.assertEquals(base.doesExists(2), true);
+	}
+	
+	@Test
+	void testSaladExistsInitially() {
+		Assert.assertEquals(base.doesExists(3), true);
 	}
 
+	// test if each base is available after base object is initialized
+	
+	@Test
+	void testSobaAvailability() {
+		base.isAvailable("soba");
+		base.isAvailable("soba");
+		Assert.assertEquals(base.isAvailable("soba"), true);
+	}
+	
+	
+	@Test
+	void testRiceAvailability() {
+		base.isAvailable("rice");
+		base.isAvailable("rice");
+		Assert.assertEquals(base.isAvailable("rice"), true);
+	}
+	
+	@Test
+	void testSaladAvailability() {
+		base.isAvailable("salad");
+		base.isAvailable("salad");
+		Assert.assertEquals(base.isAvailable("salad"), true);
+	}
+	
+	// test if each base becomes unavailable after 3 calls of isAvailable
+	
+	@Test
+	void testSobaUnAvailable() {
+		base.isAvailable("soba");
+		base.isAvailable("soba");
+		base.isAvailable("soba");
+		Assert.assertEquals(base.isAvailable("soba"), false);
+	}
+	
+	@Test
+	void testRiceUnAvailable() {
+		base.isAvailable("rice");
+		base.isAvailable("rice");
+		base.isAvailable("rice");
+		Assert.assertEquals(base.isAvailable("rice"), false);
+	}
+	
+	@Test
+	void testSaladUnAvailable() {
+		base.isAvailable("salad");
+		base.isAvailable("salad");
+		base.isAvailable("salad");
+		Assert.assertEquals(base.isAvailable("salad"), false);
+	}
+	
+	// test if each base exists in Map<String, Integer> ingredientsInventory of base class regardless of their count or availability
+	
+	@Test
+	void testSobaExists() {
+		base.isAvailable("soba");
+		base.isAvailable("soba");
+		base.isAvailable("soba");
+		Assert.assertEquals(base.doesExists(1), true);
+	}
+	
+	@Test
+	void testRiceExists() {
+		base.isAvailable("rice");
+		base.isAvailable("rice");
+		base.isAvailable("rice");
+		Assert.assertEquals(base.doesExists(2), true);
+	}
+	
+	@Test
+	void testSaladExists() {
+		base.isAvailable("salad");
+		base.isAvailable("salad");
+		base.isAvailable("salad");
+		Assert.assertEquals(base.doesExists(3), true);
+	}
+	
+	
 }
