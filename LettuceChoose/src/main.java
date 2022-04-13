@@ -3,7 +3,7 @@ import java.util.Scanner;
 import Base.Base;
 import Protein.Protein;
 import Topping.Topping;
-
+import Drink.Drink;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
 
@@ -13,16 +13,16 @@ public class main {
 		Base baseObject = new Base();
 		Protein proteinObject = new Protein();
 		Topping toppingObject = new Topping();
-		
+		Drink drinkObject = new Drink();
 		while(true) {
-			takeNewOrder(baseObject, proteinObject, toppingObject);
+			takeNewOrder(baseObject, proteinObject, toppingObject, drinkObject);
 		}
 	}
 
 	
 	
 
-	private static void takeNewOrder(Base baseObject, Protein proteinObject, Topping toppingObject) {
+	private static void takeNewOrder(Base baseObject, Protein proteinObject, Topping toppingObject, Drink drinkObject) {
 		Order orderObject = new Order();
 		Scanner commandLineScanner = new Scanner(System.in);
 		
@@ -30,6 +30,8 @@ public class main {
 		askBaseAndAddBase(orderObject, baseObject, commandLineScanner);
 		askProteinAndAddProtein(orderObject, proteinObject, commandLineScanner);
 		askToppingsAndAddToppings(orderObject, toppingObject, commandLineScanner);
+		askDrinkAndAddDrink(orderObject, drinkObject, commandLineScanner);
+		
 		askTipAndAddTip(orderObject, commandLineScanner);
 		System.out.println("Processing your order, " + orderObject.customerName + "!");
 		calculatePriceAndPrintRecipt(orderObject);
@@ -40,8 +42,10 @@ public class main {
 	private static void calculatePriceAndPrintRecipt(Order orderObject) {
 		// salad bowl + drinks + tip + tax
 		int saladBowlPrice = 10;
-		double totalPrice = saladBowlPrice + orderObject.tip + saladBowlPrice * 0.15;
-		printReceipt(orderObject.baseChosen, orderObject.proteinChosen, orderObject.toppingChosen, orderObject.tip, totalPrice, orderObject.customerName);
+		int subTotal = saladBowlPrice + orderObject.drinkPrice;
+		Double taxRate = 0.15;
+		double totalPrice = subTotal + orderObject.tip + subTotal * taxRate;
+		printReceipt(orderObject.baseChosen, orderObject.proteinChosen, orderObject.toppingChosen, orderObject.drinkChosen, orderObject.drinkPrice, orderObject.tip, totalPrice, orderObject.customerName);
 	}
 
 
@@ -54,7 +58,37 @@ public class main {
 		return userInput;
 	}
 
-
+	private static void askDrinkAndAddDrink(Order orderObject, Drink drinkObject, Scanner cst) {
+		
+		boolean isDrinkChosen = false;
+		while(!isDrinkChosen) {
+			System.out.println("Choose a drink: 1) Coke $2,  2) Sprite $3,  3) Iced Tea  $2,  4) None");
+			String userInput = cst.nextLine(); 
+			Integer drinkInt = tryStringToInt(userInput); 
+			if (drinkInt == null) {
+				System.out.println("Please enter a valid number");
+				continue;
+			}
+			
+			if (!drinkObject.doesExists(drinkInt)) {
+				System.out.println("Please select an available option");
+				continue;
+			}
+			
+			String drinkChosenString = drinkObject.getDrinkString(drinkInt);
+			Boolean isDrinkLeft = drinkObject.isAvailable(drinkChosenString);
+			if (isDrinkLeft) {
+				orderObject.assignDrink(drinkChosenString);
+				System.out.println("Drink: " + orderObject.drinkChosen);
+				orderObject.drinkPrice = drinkObject.getDrinkPrice(drinkInt);
+				isDrinkChosen = true;
+			}else {
+				System.out.println("We are out of " + drinkChosenString +". Please choose other base");
+			}
+			
+		}
+	}
+	
 	private static void askToppingsAndAddToppings(Order orderObject, Topping toppingObject, Scanner cst) {		
 		System.out.println("Choose 3 toppings: 1) Edamame, 2) Guacamole, 3) Tomato, 4) Onions, 5) Masago, 6) None");
 		int currentTopping = 1;
@@ -159,14 +193,14 @@ public class main {
 	}
 	
 	
-	public static void printReceipt(String receiptBase, String receiptProtein, ArrayList<String> receiptToppings, double receiptTip, double receiptTotal, String receiptName) {
+	public static void printReceipt(String receiptBase, String receiptProtein, ArrayList<String> receiptToppings, String receiptDrink, int receiptDrinkPrice, double receiptTip, double receiptTotal, String receiptName) {
 		
 		int saladPrice = 10;
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime currentTime = LocalDateTime.now();  
 		String emptySpace = "│                               │";
 		String receiptTextSalad = String.format("|%-10s", "     Salad: ");
-		String receiptTextSaladPrice = String.format("%16s   |", "$"+saladPrice);
+		String receiptTextSaladPrice = String.format("%15s    |", "$"+saladPrice);
 		
 		String receiptTextBase = String.format("|%-10s", "     Base: ");
 		String receiptTextBaseChoice = String.format("%-20s|", receiptBase);
@@ -174,6 +208,8 @@ public class main {
 		String receiptTextProtein = String.format("|%-10s", "     Protein: ");
 		String receiptTextProteinChoice = String.format("%-17s|", receiptProtein);
 		
+		double taxAmount = (10+receiptDrinkPrice)* 0.15;
+		double roundOffTax = Math.round(taxAmount * 100.0) / 100.0;
 		System.out.println(".");
 		System.out.println(".");
 		
@@ -185,21 +221,19 @@ public class main {
 		System.out.println(emptySpace);
 		System.out.println("│  Order for: " + receiptName + "      ");
 		System.out.println(emptySpace);
-		
+
 		System.out.println(receiptTextSalad + receiptTextSaladPrice);
 		System.out.println(receiptTextBase + receiptTextBaseChoice);
 		System.out.println(receiptTextProtein + receiptTextProteinChoice);
-		
 		System.out.println("│     Toppings: " + receiptToppings.get(0) + " ");   
 		System.out.println("│               " + receiptToppings.get(1) +"  ");
 		System.out.println("│               " + receiptToppings.get(2) + " ");
-//		System.out.println("│     Drizzle: Ranch            │");  WILL BE IMPLEMENTED SOON
-//		System.out.println("│   Drink: Diet Coke      $5    │");
+		System.out.println("│   Drink: " + receiptDrink + "          $" + receiptDrinkPrice +" ");
 		System.out.println("│  ===========================  │");
-		System.out.println("│   Subtotal              $10   │");
-		System.out.println("│   Tax                   $1.5  │");
-		System.out.println("│   Tip                   $" + receiptTip + "  ");
-		System.out.println("│   Total                 $" + receiptTotal + " ");
+		System.out.println("│   Subtotal             $" +  (10+receiptDrinkPrice) +"  ");
+		System.out.println("│   Tax                  $" + roundOffTax +" ");
+		System.out.println("│   Tip                  $" + receiptTip + "  ");
+		System.out.println("│   Total                $" + receiptTotal + " ");
 		System.out.println("│                               │");
 		System.out.println("│       T h a n k  y o u        │");
 		System.out.println("└───────────────────────────────┘");
