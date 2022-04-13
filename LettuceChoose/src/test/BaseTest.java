@@ -1,47 +1,42 @@
 package test;
 
 import Base.Base;
-//import Base.Base.Lettuce;
-//import Base.Base.Soba;
-//import Base.Base.Rice;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Map;
 
 import org.junit.Assert;
-
-import static org.junit.Assert.*;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BaseTest {
 	
+	private Base base;
+	
+	@BeforeEach
+	void setup() {
+		base = new Base();
+	}
+	
 	// test if each base exists in Map<String, Integer> ingredientsInventory of base class when initialized
 	
 	@Test
-	void testSobaExistsInitially() {
-		Base base = new Base(); // set up
+	void testSobaExistsInitially() {		
 		Assert.assertEquals(base.doesExists(1), true);
 	}
 	
 	@Test
 	void testRiceExistsInitially() {
-		Base base = new Base(); // set up
 		Assert.assertEquals(base.doesExists(2), true);
 	}
 	
 	@Test
 	void testSaladExistsInitially() {
-		Base base = new Base(); // set up
 		Assert.assertEquals(base.doesExists(3), true);
 	}
 
-	// test if each base is available after base is initialized
+	// test if each base is available after base object is initialized
 	
 	@Test
 	void testSobaAvailability() {
-		Base base = new Base(); // set up
+		base.isAvailable("soba");
 		base.isAvailable("soba");
 		Assert.assertEquals(base.isAvailable("soba"), true);
 	}
@@ -49,14 +44,14 @@ class BaseTest {
 	
 	@Test
 	void testRiceAvailability() {
-		Base base = new Base(); // set up
+		base.isAvailable("rice");
 		base.isAvailable("rice");
 		Assert.assertEquals(base.isAvailable("rice"), true);
 	}
 	
 	@Test
 	void testSaladAvailability() {
-		Base base = new Base(); // set up
+		base.isAvailable("salad");
 		base.isAvailable("salad");
 		Assert.assertEquals(base.isAvailable("salad"), true);
 	}
@@ -65,7 +60,6 @@ class BaseTest {
 	
 	@Test
 	void testSobaUnAvailable() {
-		Base base = new Base(); // set up
 		base.isAvailable("soba");
 		base.isAvailable("soba");
 		base.isAvailable("soba");
@@ -74,7 +68,6 @@ class BaseTest {
 	
 	@Test
 	void testRiceUnAvailable() {
-		Base base = new Base(); // set up
 		base.isAvailable("rice");
 		base.isAvailable("rice");
 		base.isAvailable("rice");
@@ -83,7 +76,6 @@ class BaseTest {
 	
 	@Test
 	void testSaladUnAvailable() {
-		Base base = new Base(); // set up
 		base.isAvailable("salad");
 		base.isAvailable("salad");
 		base.isAvailable("salad");
@@ -94,7 +86,6 @@ class BaseTest {
 	
 	@Test
 	void testSobaExists() {
-		Base base = new Base(); // set up
 		base.isAvailable("soba");
 		base.isAvailable("soba");
 		base.isAvailable("soba");
@@ -103,7 +94,6 @@ class BaseTest {
 	
 	@Test
 	void testRiceExists() {
-		Base base = new Base(); // set up
 		base.isAvailable("rice");
 		base.isAvailable("rice");
 		base.isAvailable("rice");
@@ -112,7 +102,6 @@ class BaseTest {
 	
 	@Test
 	void testSaladExists() {
-		Base base = new Base(); // set up
 		base.isAvailable("salad");
 		base.isAvailable("salad");
 		base.isAvailable("salad");
@@ -120,8 +109,4 @@ class BaseTest {
 	}
 	
 	
-	
-	
-	
-
 }
