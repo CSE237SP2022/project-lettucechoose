@@ -196,7 +196,6 @@ public class main {
 	public static void printReceipt(String receiptBase, String receiptProtein, ArrayList<String> receiptToppings, String receiptDrink, int receiptDrinkPrice, double receiptTip, double receiptTotal, String receiptName) {
 		
 		int saladPrice = 10;
-
 		double taxAmount = (10+receiptDrinkPrice)* 0.15;
 		double roundOffTax = Math.round(taxAmount * 100.0) / 100.0;
 		
@@ -208,7 +207,6 @@ public class main {
 		// String formatting customer name
 		String nameText = String.format("│%-8s", "   Order for: ");
 		String nameValueText = String.format("%-17s│", receiptName);
-//		System.out.println("│  Order for: " + receiptName + "      ");
 		// String formatting the salad line and the price
 		String saladText = String.format("│%-12s", "   Salad: ");
 		String saladPriceText = String.format("%15s    │", "$"+saladPrice);
@@ -244,8 +242,6 @@ public class main {
 		String totalPriceText = String.format("%-7s│", "$"+ receiptTotal);
 		
 		
-		double taxAmount = (10+receiptDrinkPrice)* 0.15;
-		double roundOffTax = Math.round(taxAmount * 100.0) / 100.0;
 		System.out.println(".");
 		System.out.println(".");
 		
