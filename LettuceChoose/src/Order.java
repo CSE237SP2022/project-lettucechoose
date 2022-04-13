@@ -18,6 +18,7 @@ public class Order {
 	double totalPrice;
 	double tip;
 	
+	@SuppressWarnings("unchecked")
 	public Order() {
 		this.toppingChosen = new ArrayList();
 	}
