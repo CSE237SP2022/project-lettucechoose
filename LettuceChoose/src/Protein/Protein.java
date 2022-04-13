@@ -1,164 +1,44 @@
 package Protein;
 
 import java.util.HashMap;
-import java.util.Map;
 
-import Base.Base.BaseChoice;
+import java.util.Map;
 
 @SuppressWarnings("unchecked")
 public class Protein {
-	public Beef beef;
-	public Chicken chicken;
-	public Salmon salmon;
-	public Tofu tofu;
-	public Map<Integer, Object> proteinMap;
-	
-	public enum ProteinChoice{
-		Beef(1),
-		Chicken(2),
-		Salmon(3),
-		Tofu(4);
-
-		private int value;
-	    private static Map map = new HashMap<>();
-
-	    private ProteinChoice(int value) {
-	        this.value = value;
-	    }
-
-	    static {
-	        for (ProteinChoice pc : ProteinChoice.values()) {
-	            map.put(pc.value, pc);
-	        }
-	    }
-
-	    public static ProteinChoice valueOf(int pc) {
-	        return (ProteinChoice) map.get(pc);
-	    }
-
-	    public int getValue() {
-	        return value;
-	    }
-	}
+	public Map<String, Integer> ingredientsInventory;
+	private Map<Integer, String> integerToIngredient;
 	
 	public Protein(){
-		beef = new Beef(3);
-		chicken = new Chicken(3);
-		salmon = new Salmon(3);
-		tofu = new Tofu(3);
+		ingredientsInventory = new HashMap<String,Integer>();
+		ingredientsInventory.put("beef", 3);
+		ingredientsInventory.put("chicken", 3);
+		ingredientsInventory.put("salmon", 3);
+		ingredientsInventory.put("tofu", 3);
 		
-		proteinMap = new HashMap<Integer, Object>();
-		proteinMap.put(1, this.beef);
-		proteinMap.put(2, this.chicken);
-		proteinMap.put(3, this.salmon);
-		proteinMap.put(4, this.tofu);
+		integerToIngredient = new HashMap<Integer,String>();
+		integerToIngredient.put(1, "beef");
+		integerToIngredient.put(2, "chicken");
+		integerToIngredient.put(3, "salmon");
+		integerToIngredient.put(3, "tofu");
 	}
 	
+	public Boolean doesExists(Integer selected) {
+		return this.integerToIngredient.containsKey(selected);
+	}
 	
-	public Boolean isAvailable(Object whichProtein, String proteinChosen) {
-		if (whichProtein == this.beef) {
-			if (this.beef.quantity > 0){
-				this.beef.quantity -= 1;
-				proteinChosen = "beef";
-				return true;
-			}else {
-				return false;
-			}
-		}else if (whichProtein == this.chicken) {
-			if (this.chicken.quantity > 0){
-				this.chicken.quantity -= 1;
-				proteinChosen = "chicken";
-				return true;
-			}else {
-				return false;
-			}
-		}else if (whichProtein == this.salmon) {
-			if (this.salmon.quantity > 0) {
-				this.salmon.quantity -= 1;
-				proteinChosen = "salmon";
-				return true;
-			}else {
-				return false;
-			}
-		}else if (whichProtein == this.tofu) {
-			if (this.tofu.quantity > 0) {
-				this.tofu.quantity -= 1;
-				proteinChosen = "tofu";
-				return true;
-			}else {
-				return false;
-			}
-		}else {
-			System.out.println("not found in isAvailable()");
+	public Boolean isAvailable(String selectedProtein) {
+		int ingredientCount = this.ingredientsInventory.get(selectedProtein);
+		
+		if (ingredientCount < 1) {
 			return false;
 		}
+		
+		this.ingredientsInventory.put(selectedProtein, ingredientCount-1);
+		return true;
 	}
 	
-	public class Beef {
-		int quantity;
-		
-		Beef(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
-
+	public String getProteinString(Integer selectedProtein) {
+		return this.integerToIngredient.get(selectedProtein);
 	}
-	
-	public class Chicken {
-		int quantity;
-		
-		Chicken(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
-	}
-	
-	public class Salmon {
-		int quantity;
-		
-		Salmon(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
-
-	}
-	
-	public class Tofu {
-		int quantity;
-		
-		Tofu(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
-
-	}
-
 }

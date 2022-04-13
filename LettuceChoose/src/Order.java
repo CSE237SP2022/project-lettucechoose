@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import Base.Base;
 import Protein.Protein;
 import Topping.Topping;
@@ -9,47 +11,33 @@ public class Order {
 	String customerName;
 	int diet;
 	
-	Base base;
-	Protein protein;
-	Topping topping;
-	
 	String baseChosen;
 	String proteinChosen;
-	String[] toppingChosen;
+	ArrayList<String> toppingChosen;
 	
 	double totalPrice;
 	double tip;
 	
-	public Order(Base base, Protein protein, Topping topping) {
-		
-		this.base = base;
-		this.protein = protein;
-		this.topping = topping;
-		
-		this.totalPrice = 0.0;
-		this.tip = 0.0;
+	public Order() {
+		this.toppingChosen = new ArrayList();
 	}
+
 	
-	public void chooseDiet(int num) {
+	public void assignDiet(int num) {
 		// create ENUM for diets
 		this.diet = num;
-		
 	}
 	
-	public boolean chooseBase(int b) {
-		Object baseObject = this.base.baseMap.get(b);
-		
-		return this.base.isAvailable(baseObject, this.baseChosen);
+	public void assignBase(String baseChosen) {
+		this.baseChosen = baseChosen;
 	}
 	
-	public boolean chooseProtein(int p) {
-		Object proteinObject = this.protein.proteinMap.get(p);
-		return this.protein.isAvailable(proteinObject, this.proteinChosen);
+	public void assignProtein(String proteinChosen) {
+		this.proteinChosen = proteinChosen;
 	}
 	
-	public void chooseToppings(Topping t) {
-		this.topping = t;
-		
+	public void assignTopping(String toppingChosen) {
+		this.toppingChosen.add(toppingChosen);
 	}
 	
 	public void chooseTipAmount(double tip) {
@@ -59,8 +47,8 @@ public class Order {
 	public String summarizeOrder() {
 		String toppingsString = "";
 		
-		for (int i = 0; i < toppingChosen.length; i++) {
-			toppingsString+=toppingChosen[i];
+		for (int i = 0; i < toppingChosen.size(); i++) {
+			toppingsString+=toppingChosen.get(i);
 			toppingsString+=", ";
 		}
 		
