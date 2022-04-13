@@ -14,8 +14,10 @@ public class Order {
 	String baseChosen;
 	String proteinChosen;
 	ArrayList<String> toppingChosen;
+	String drinkChosen;
 	
 	double totalPrice;
+	int drinkPrice;
 	double tip;
 	
 	@SuppressWarnings("unchecked")
@@ -41,6 +43,9 @@ public class Order {
 		this.toppingChosen.add(toppingChosen);
 	}
 	
+	public void assignDrink(String drinkChosen) {
+		this.drinkChosen = drinkChosen;
+	}
 	public void chooseTipAmount(double tip) {
 		this.tip = tip;
 	}

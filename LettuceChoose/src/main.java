@@ -3,7 +3,7 @@ import java.util.Scanner;
 import Base.Base;
 import Protein.Protein;
 import Topping.Topping;
-
+import Drink.Drink;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
 
@@ -13,16 +13,16 @@ public class main {
 		Base baseObject = new Base();
 		Protein proteinObject = new Protein();
 		Topping toppingObject = new Topping();
-		
+		Drink drinkObject = new Drink();
 		while(true) {
-			takeNewOrder(baseObject, proteinObject, toppingObject);
+			takeNewOrder(baseObject, proteinObject, toppingObject, drinkObject);
 		}
 	}
 
 	
 	
 
-	private static void takeNewOrder(Base baseObject, Protein proteinObject, Topping toppingObject) {
+	private static void takeNewOrder(Base baseObject, Protein proteinObject, Topping toppingObject, Drink drinkObject) {
 		Order orderObject = new Order();
 		Scanner commandLineScanner = new Scanner(System.in);
 		
@@ -30,6 +30,8 @@ public class main {
 		askBaseAndAddBase(orderObject, baseObject, commandLineScanner);
 		askProteinAndAddProtein(orderObject, proteinObject, commandLineScanner);
 		askToppingsAndAddToppings(orderObject, toppingObject, commandLineScanner);
+		askDrinkAndAddDrink(orderObject, drinkObject, commandLineScanner);
+		
 		askTipAndAddTip(orderObject, commandLineScanner);
 		System.out.println("Processing your order, " + orderObject.customerName + "!");
 		calculatePriceAndPrintRecipt(orderObject);
@@ -40,8 +42,10 @@ public class main {
 	private static void calculatePriceAndPrintRecipt(Order orderObject) {
 		// salad bowl + drinks + tip + tax
 		int saladBowlPrice = 10;
-		double totalPrice = saladBowlPrice + orderObject.tip + saladBowlPrice * 0.15;
-		printReceipt(orderObject.baseChosen, orderObject.proteinChosen, orderObject.toppingChosen, orderObject.tip, totalPrice, orderObject.customerName);
+		int subTotal = saladBowlPrice + orderObject.drinkPrice;
+		Double taxRate = 0.15;
+		double totalPrice = subTotal + orderObject.tip + subTotal * taxRate;
+		printReceipt(orderObject.baseChosen, orderObject.proteinChosen, orderObject.toppingChosen, orderObject.drinkChosen, orderObject.drinkPrice, orderObject.tip, totalPrice, orderObject.customerName);
 	}
 
 
@@ -54,82 +58,61 @@ public class main {
 		return userInput;
 	}
 
-
-	private static void askToppingsAndAddToppings(Order orderObject, Topping toppingObject, Scanner cst) {
-
-
-		Boolean isTopping1Chosen = false, isTopping2Chosen = false, isTopping3Chosen = false;
-		String topping1Str = "", topping2Str = "", topping3Str = "";
+	private static void askDrinkAndAddDrink(Order orderObject, Drink drinkObject, Scanner cst) {
 		
-		System.out.println("Choose 3 toppings: 1) Edamame, 2) Guacamole, 3) Tomato, 4) Onions, 5) Masago");
-		
-		while(!isTopping1Chosen) {
-			System.out.println("Type in your first topping! (in numbers)");
-			String topping1Input = cst.nextLine();
-			Integer topping1Integer = tryStringToInt(topping1Input);
-			if (topping1Integer == null) {
+		boolean isDrinkChosen = false;
+		while(!isDrinkChosen) {
+			System.out.println("Choose a drink: 1) Coke $2,  2) Sprite $3,  3) Iced Tea  $2,  4) None");
+			String userInput = cst.nextLine(); 
+			Integer drinkInt = tryStringToInt(userInput); 
+			if (drinkInt == null) {
 				System.out.println("Please enter a valid number");
 				continue;
 			}
-			if (!toppingObject.doesExists(topping1Integer)) {
+			
+			if (!drinkObject.doesExists(drinkInt)) {
 				System.out.println("Please select an available option");
 				continue;
 			}
 			
-			String topping1ChosenString = toppingObject.getToppingString(topping1Integer);
-			Boolean isTopping1Left = toppingObject.isAvailable(topping1ChosenString);
-			if (isTopping1Left) {
-				orderObject.assignTopping(topping1ChosenString);
-				System.out.println("Topping 1: " + topping1ChosenString);
-				isTopping1Chosen = true;
+			String drinkChosenString = drinkObject.getDrinkString(drinkInt);
+			Boolean isDrinkLeft = drinkObject.isAvailable(drinkChosenString);
+			if (isDrinkLeft) {
+				orderObject.assignDrink(drinkChosenString);
+				System.out.println("Drink: " + orderObject.drinkChosen);
+				orderObject.drinkPrice = drinkObject.getDrinkPrice(drinkInt);
+				isDrinkChosen = true;
 			}else {
-				System.out.println("We are out of " + topping1ChosenString +". Please choose other topping");
+				System.out.println("We are out of " + drinkChosenString +". Please choose other base");
 			}
+			
 		}
-		while(!isTopping2Chosen) {
-			System.out.println("Type in your second topping! (in numbers)");
-			String topping2Input = cst.nextLine();
-			Integer topping2Integer = tryStringToInt(topping2Input);
-			if (topping2Integer == null) {
+	}
+	
+	private static void askToppingsAndAddToppings(Order orderObject, Topping toppingObject, Scanner cst) {		
+		System.out.println("Choose 3 toppings: 1) Edamame, 2) Guacamole, 3) Tomato, 4) Onions, 5) Masago, 6) None");
+		int currentTopping = 1;
+		while(currentTopping != 4) {
+			System.out.println("Type in your topping"+currentTopping+"! (in numbers)");
+			String toppingInput = cst.nextLine();
+			Integer toppingInteger = tryStringToInt(toppingInput);
+			if (toppingInteger == null) {
 				System.out.println("Please enter a valid number");
 				continue;
 			}
-			if (!toppingObject.doesExists(topping2Integer)) {
+			if (!toppingObject.doesExists(toppingInteger)) {
 				System.out.println("Please select an available option");
 				continue;
 			}
 			
-			String topping2ChosenString = toppingObject.getToppingString(topping2Integer);
-			Boolean isTopping2Left = toppingObject.isAvailable(topping2ChosenString);
-			if (isTopping2Left) {
-				orderObject.assignTopping(topping2ChosenString);
-				System.out.println("Topping 2: " + topping2ChosenString);
-				isTopping2Chosen = true;
+			String toppingChosenString = toppingObject.getToppingString(toppingInteger);
+			Boolean isToppingLeft = toppingObject.isAvailable(toppingChosenString);
+			if (isToppingLeft) {
+				orderObject.assignTopping(toppingChosenString);
+				System.out.println("Topping"+currentTopping+": " + toppingChosenString);
+				currentTopping+=1;
 			}else {
-				System.out.println("We are out of " + topping2ChosenString +". Please choose other topping");
-			}
-		}
-		while(!isTopping3Chosen) {
-			System.out.println("Type in your third topping! (in numbers)");
-			String topping3Input = cst.nextLine();
-			Integer topping3Integer = tryStringToInt(topping3Input);
-			if (topping3Integer == null) {
-				System.out.println("Please enter a valid number");
-				continue;
-			}
-			if (!toppingObject.doesExists(topping3Integer)) {
-				System.out.println("Please select an available option");
-				continue;
-			}
-			
-			String topping3ChosenString = toppingObject.getToppingString(topping3Integer);
-			Boolean isTopping3Left = toppingObject.isAvailable(topping3ChosenString);
-			if (isTopping3Left) {
-				orderObject.assignTopping(topping3ChosenString);
-				System.out.println("Topping 3: " + topping3ChosenString);
-				isTopping3Chosen = true;
-			}else {
-				System.out.println("We are out of " + topping3ChosenString +". Please choose other topping");
+				System.out.println("We are out of " + toppingChosenString +". Please choose other topping");
 			}
 		}
 		
@@ -210,7 +193,7 @@ public class main {
 	}
 	
 	
-	public static void printReceipt(String receiptBase, String receiptProtein, ArrayList<String> receiptToppings, double receiptTip, double receiptTotal, String receiptName) {
+	public static void printReceipt(String receiptBase, String receiptProtein, ArrayList<String> receiptToppings, String receiptDrink, int receiptDrinkPrice, double receiptTip, double receiptTotal, String receiptName) {
 		
 		int saladPrice = 10;
 
@@ -220,11 +203,7 @@ public class main {
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime currentTime = LocalDateTime.now();  
 		String emptySpace = "│                               │";
-<<<<<<< Updated upstream
-		String receiptTextSalad = String.format("|%-10s", "     Salad: ");
-		String receiptTextSaladPrice = String.format("%16s   |", "$"+saladPrice);
-=======
->>>>>>> Stashed changes
+
 		
 		// String formatting customer name
 		String nameText = String.format("│%-8s", "   Order for: ");
@@ -265,6 +244,8 @@ public class main {
 		String totalPriceText = String.format("%-7s│", "$"+ receiptTotal);
 		
 		
+		double taxAmount = (10+receiptDrinkPrice)* 0.15;
+		double roundOffTax = Math.round(taxAmount * 100.0) / 100.0;
 		System.out.println(".");
 		System.out.println(".");
 		
@@ -276,24 +257,6 @@ public class main {
 		System.out.println(emptySpace);
 		System.out.println(nameText+nameValueText);
 		System.out.println(emptySpace);
-<<<<<<< Updated upstream
-		
-		System.out.println(receiptTextSalad + receiptTextSaladPrice);
-		System.out.println(receiptTextBase + receiptTextBaseChoice);
-		System.out.println(receiptTextProtein + receiptTextProteinChoice);
-		
-		System.out.println("│     Toppings: " + receiptToppings.get(0) + " ");   
-		System.out.println("│               " + receiptToppings.get(1) +"  ");
-		System.out.println("│               " + receiptToppings.get(2) + " ");
-//		System.out.println("│     Drizzle: Ranch            │");  WILL BE IMPLEMENTED SOON
-//		System.out.println("│   Drink: Diet Coke      $5    │");
-		System.out.println("│  ===========================  │");
-		System.out.println("│   Subtotal              $10   │");
-		System.out.println("│   Tax                   $1.5  │");
-		System.out.println("│   Tip                   $" + receiptTip + "  ");
-		System.out.println("│   Total                 $" + receiptTotal + " ");
-		System.out.println("│                               │");
-=======
 		System.out.println(saladText + saladPriceText);
 		System.out.println(baseText + baseChoiceText);
 		System.out.println(proteinText + proteinChoiceText); 
@@ -307,7 +270,6 @@ public class main {
 		System.out.println(tipText+tipPriceText);
 		System.out.println(totalText+totalPriceText);
 		System.out.println(emptySpace);
->>>>>>> Stashed changes
 		System.out.println("│       T h a n k  y o u        │");
 		System.out.println("└───────────────────────────────┘");
 
