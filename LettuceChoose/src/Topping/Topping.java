@@ -21,8 +21,8 @@ public class Topping {
 		integerToIngredient.put(1, "edamame");
 		integerToIngredient.put(2, "guacamole");
 		integerToIngredient.put(3, "tomato");
-		integerToIngredient.put(3, "onion");
-		integerToIngredient.put(3, "masago");
+		integerToIngredient.put(4, "onion");
+		integerToIngredient.put(5, "masago");
 	}
 	
 	public Boolean doesExists(Integer selected) {

@@ -20,7 +20,7 @@ public class Protein {
 		integerToIngredient.put(1, "beef");
 		integerToIngredient.put(2, "chicken");
 		integerToIngredient.put(3, "salmon");
-		integerToIngredient.put(3, "tofu");
+		integerToIngredient.put(4, "tofu");
 	}
 	
 	public Boolean doesExists(Integer selected) {
