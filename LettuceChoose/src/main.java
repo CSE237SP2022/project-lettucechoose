@@ -21,7 +21,7 @@ public class main {
 
 	
 	
-
+	
 	private static void takeNewOrder(Base baseObject, Protein proteinObject, Topping toppingObject, Drink drinkObject) {
 		Order orderObject = new Order();
 		Scanner commandLineScanner = new Scanner(System.in);
@@ -62,7 +62,7 @@ public class main {
 		
 		boolean isDrinkChosen = false;
 		while(!isDrinkChosen) {
-			System.out.println("Choose a drink: 1) Coke $2,  2) Sprite $3,  3) Iced Tea  $2,  4) None");
+			System.out.println("Choose a drink: 1) Coke($2),  2) Sprite($3),  3) Iced Tea($4),  4) None");
 			String userInput = cst.nextLine(); 
 			Integer drinkInt = tryStringToInt(userInput); 
 			if (drinkInt == null) {
@@ -193,6 +193,18 @@ public class main {
 	}
 	
 	
+	/**
+	 * 
+	 * @param receiptBase 
+	 * @param receiptProtein
+	 * @param receiptToppings
+	 * @param receiptDrink
+	 * @param receiptDrinkPrice
+	 * @param receiptTip
+	 * @param receiptTotal
+	 * @param receiptName
+	 * It prints out the virtual receipt of the order. Used String.format() to format it in a rectangle.
+	 */
 	public static void printReceipt(String receiptBase, String receiptProtein, ArrayList<String> receiptToppings, String receiptDrink, int receiptDrinkPrice, double receiptTip, double receiptTotal, String receiptName) {
 		
 		int saladPrice = 10;
@@ -203,45 +215,6 @@ public class main {
 		LocalDateTime currentTime = LocalDateTime.now();  
 		String emptySpace = "│                               │";
 
-		
-		// String formatting customer name
-		String nameText = String.format("│%-8s", "   Order for: ");
-		String nameValueText = String.format("%-17s│", receiptName);
-		// String formatting the salad line and the price
-		String saladText = String.format("│%-12s", "   Salad: ");
-		String saladPriceText = String.format("%15s    │", "$"+saladPrice);
-		
-		// String formatting the base 
-		String baseText = String.format("│%-10s", "     Base: ");
-		String baseChoiceText = String.format("%-20s│", receiptBase);
-		
-		// String formatting the protein 
-		String proteinText = String.format("│%-10s", "     Protein: ");
-		String proteinChoiceText = String.format("%-17s│", receiptProtein);
-		
-		// String formatting the toppings
-		String toppingText = String.format("│%-10s", "     Toppings: ");
-		String toppingChoiceText1 = String.format("%-16s│", receiptToppings.get(0));
-		String toppingTextSpace = String.format("│%-15s", "");
-		String toppingChoiceText2 = String.format("%-16s│", receiptToppings.get(1));
-		String toppingChoiceText3 = String.format("%-16s│", receiptToppings.get(2));
-		
-		// String formatting the drink
-		String drinkText = String.format("│%-10s", "   Drink: ");
-		String drinkChoiceText = String.format("%-8s", receiptDrink);
-		String drinkPriceText = String.format("%8s     │", "$"+ receiptDrinkPrice);
-		
-		// String formatting subtotal, tip, tax, total
-		String subtotalText = String.format("│%-24s", "   Subtotal");
-		String subtotalPriceText = String.format("%-7s│", "$"+ (10+receiptDrinkPrice));
-		String taxText = String.format("│%-24s", "   Tax");
-		String taxPriceText = String.format("%-7s│", "$"+ roundOffTax);
-		String tipText = String.format("│%-24s", "   Tip");
-		String tipPriceText = String.format("%-7s│", "$"+ receiptTip);
-		String totalText = String.format("│%-24s", "   Total");
-		String totalPriceText = String.format("%-7s│", "$"+ receiptTotal);
-		
-		
 		System.out.println(".");
 		System.out.println(".");
 		
@@ -251,20 +224,20 @@ public class main {
 		System.out.println("│         LettuceChoose         │");
 		System.out.println("│      " + dateTimeFormat.format(currentTime) + "      │");  
 		System.out.println(emptySpace);
-		System.out.println(nameText+nameValueText);
+		System.out.println(String.format("│%-8s", "   Order for: ") + String.format("%-17s│", receiptName));
 		System.out.println(emptySpace);
-		System.out.println(saladText + saladPriceText);
-		System.out.println(baseText + baseChoiceText);
-		System.out.println(proteinText + proteinChoiceText); 
-		System.out.println(toppingText+toppingChoiceText1);
-		System.out.println(toppingTextSpace+toppingChoiceText2);
-		System.out.println(toppingTextSpace+toppingChoiceText3);
-		System.out.println(drinkText+drinkChoiceText+drinkPriceText);
+		System.out.println(String.format("│%-12s", "   Salad: ") + String.format("%15s    │", "$"+saladPrice));
+		System.out.println(String.format("│%-10s", "     Base: ") + String.format("%-20s│", receiptBase));
+		System.out.println(String.format("│%-10s", "     Protein: ") + String.format("%-17s│", receiptProtein)); 
+		System.out.println(String.format("│%-10s", "     Toppings: ") + String.format("%-16s│", receiptToppings.get(0)));
+		System.out.println(String.format("│%-15s", "") + String.format("%-16s│", receiptToppings.get(1)));
+		System.out.println(String.format("│%-15s", "") + String.format("%-16s│", receiptToppings.get(2)));
+		System.out.println(String.format("│%-10s", "   Drink: ") + String.format("%-8s", receiptDrink) + String.format("%8s     │", "$"+ receiptDrinkPrice));
 		System.out.println("│  ===========================  │");
-		System.out.println(subtotalText+subtotalPriceText);
-		System.out.println(taxText+taxPriceText);
-		System.out.println(tipText+tipPriceText);
-		System.out.println(totalText+totalPriceText);
+		System.out.println(String.format("│%-24s", "   Subtotal") + String.format("%-7s│", "$"+ (10+receiptDrinkPrice)));
+		System.out.println(String.format("│%-24s", "   Tax") + String.format("%-7s│", "$"+ roundOffTax));
+		System.out.println(String.format("│%-24s", "   Tip") + String.format("%-7s│", "$"+ receiptTip));
+		System.out.println(String.format("│%-24s", "   Total") + String.format("%-7s│", "$"+ receiptTotal));
 		System.out.println(emptySpace);
 		System.out.println("│       T h a n k  y o u        │");
 		System.out.println("└───────────────────────────────┘");
