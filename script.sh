@@ -4,6 +4,7 @@ javac Order.java
 javac Base/Base.java
 javac Protein/Protein.java
 javac Topping/Topping.java
+javac Drink/Drink.java
 javac main.java
 
 java main

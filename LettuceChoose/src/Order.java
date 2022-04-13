@@ -20,6 +20,7 @@ public class Order {
 	int drinkPrice;
 	double tip;
 	
+	@SuppressWarnings("unchecked")
 	public Order() {
 		this.toppingChosen = new ArrayList();
 	}
