@@ -1,3 +1,4 @@
+package Order;
 import java.util.ArrayList;
 
 import Base.Base;
@@ -5,20 +6,19 @@ import Protein.Protein;
 import Topping.Topping;
 
 
-
 public class Order {
 
-	String customerName;
+	public String customerName;
 	int diet;
 	
-	String baseChosen;
-	String proteinChosen;
-	ArrayList<String> toppingChosen;
-	String drinkChosen;
+	public String baseChosen;
+	public String proteinChosen;
+	public ArrayList<String> toppingChosen;
+	public String drinkChosen;
 	
-	double totalPrice;
-	int drinkPrice;
-	double tip;
+	public double totalPrice;
+	public int drinkPrice;
+	public double tip;
 	
 	@SuppressWarnings("unchecked")
 	public Order() {
