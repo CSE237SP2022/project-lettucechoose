@@ -19,6 +19,8 @@ public class main {
 		}
 	}
 
+	
+	
 
 	private static void takeNewOrder(Base baseObject, Protein proteinObject, Topping toppingObject) {
 		Order orderObject = new Order();
@@ -208,34 +210,47 @@ public class main {
 	}
 	
 	
-	public static void printReceipt(String rBase, String rProtein, ArrayList<String> rToppings, double rTip, double rTotal, String rName) {
+	public static void printReceipt(String receiptBase, String receiptProtein, ArrayList<String> receiptToppings, double receiptTip, double receiptTotal, String receiptName) {
 		
-//		─ │ ┌ ┐ ┘ └ ├ ┬ ┤ ┴ ┼   <- use these!!
-		
+		int saladPrice = 10;
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime currentTime = LocalDateTime.now();  
+		String emptySpace = "│                               │";
+		String receiptTextSalad = String.format("|%-10s", "     Salad: ");
+		String receiptTextSaladPrice = String.format("%16s   |", "$"+saladPrice);
+		
+		String receiptTextBase = String.format("|%-10s", "     Base: ");
+		String receiptTextBaseChoice = String.format("%-20s|", receiptBase);
+		
+		String receiptTextProtein = String.format("|%-10s", "     Protein: ");
+		String receiptTextProteinChoice = String.format("%-17s|", receiptProtein);
+		
 		System.out.println(".");
 		System.out.println(".");
-		System.out.println("┌───────────────────────────────┐");
-		System.out.println("│                               │");
+		
+		System.out.println("┌───────────────────────────────┐"); 
+
+		System.out.println(emptySpace);
 		System.out.println("│         LettuceChoose         │");
 		System.out.println("│      " + dateTimeFormat.format(currentTime) + "      │");  
-		System.out.println("│                               │");
-		System.out.println("│  Order for: " + rName + "      ");
-		System.out.println("│                               │");
-		System.out.println("│   Salad                 $10   │");
-		System.out.println("│     Base:  " + rBase + "       ");  
-		System.out.println("│     Protein: " + rProtein + " ");  
-		System.out.println("│     Toppings: " + rToppings.get(0) + " ");   
-		System.out.println("│               " + rToppings.get(1) +"  ");
-		System.out.println("│               " + rToppings.get(2) + " ");
+		System.out.println(emptySpace);
+		System.out.println("│  Order for: " + receiptName + "      ");
+		System.out.println(emptySpace);
+		
+		System.out.println(receiptTextSalad + receiptTextSaladPrice);
+		System.out.println(receiptTextBase + receiptTextBaseChoice);
+		System.out.println(receiptTextProtein + receiptTextProteinChoice);
+		
+		System.out.println("│     Toppings: " + receiptToppings.get(0) + " ");   
+		System.out.println("│               " + receiptToppings.get(1) +"  ");
+		System.out.println("│               " + receiptToppings.get(2) + " ");
 //		System.out.println("│     Drizzle: Ranch            │");  WILL BE IMPLEMENTED SOON
 //		System.out.println("│   Drink: Diet Coke      $5    │");
 		System.out.println("│  ===========================  │");
 		System.out.println("│   Subtotal              $10   │");
 		System.out.println("│   Tax                   $1.5  │");
-		System.out.println("│   Tip                   $" + rTip + "  ");
-		System.out.println("│   Total                 $" + rTotal + " ");
+		System.out.println("│   Tip                   $" + receiptTip + "  ");
+		System.out.println("│   Total                 $" + receiptTotal + " ");
 		System.out.println("│                               │");
 		System.out.println("│       T h a n k  y o u        │");
 		System.out.println("└───────────────────────────────┘");
