@@ -56,7 +56,7 @@ public class main {
 
 
 	private static void askToppingsAndAddToppings(Order orderObject, Topping toppingObject, Scanner cst) {		
-		System.out.println("Choose 3 toppings: 1) Edamame, 2) Guacamole, 3) Tomato, 4) Onions, 5) Masago");
+		System.out.println("Choose 3 toppings: 1) Edamame, 2) Guacamole, 3) Tomato, 4) Onions, 5) Masago, 6) None");
 		int currentTopping = 1;
 		while(currentTopping != 4) {
 			System.out.println("Type in your topping"+currentTopping+"! (in numbers)");
