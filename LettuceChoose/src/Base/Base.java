@@ -5,116 +5,38 @@ import java.util.Map;
 
 @SuppressWarnings("unchecked")
 public class Base {
-	public Lettuce lettuce;
-	public Rice rice;
-	public Soba soba;
-	public Map<Integer, Object> baseMap;
-	
-	public enum BaseChoice{
-		Salad(1),
-		Soba(2),
-		Rice(3);
-
-		private int value;
-	    private static Map map = new HashMap<>();
-
-	    private BaseChoice(int value) {
-	        this.value = value;
-	    }
-
-	    static {
-	        for (BaseChoice bc : BaseChoice.values()) {
-	            map.put(bc.value, bc);
-	        }
-	    }
-
-	    public static BaseChoice valueOf(int bc) {
-	        return (BaseChoice) map.get(bc);
-	    }
-
-	    public int getValue() {
-	        return value;
-	    }
-	}
+	public Map<String, Integer> ingredientsInventory;
+	private Map<Integer, String> integerToIngredient;
 	
 	public Base(){
-		this.lettuce = new Lettuce(3);
-		this.rice = new Rice(3);
-		this.soba = new Soba(3);
+		ingredientsInventory = new HashMap<String,Integer>();
+		ingredientsInventory.put("salad", 3);
+		ingredientsInventory.put("soba", 3);
+		ingredientsInventory.put("rice", 3);
 		
-		baseMap = new HashMap<Integer, Object>();
-		baseMap.put(1, this.lettuce);
-		baseMap.put(2, this.rice);
-		baseMap.put(3, this.soba);
-		
+		integerToIngredient = new HashMap<Integer,String>();
+		integerToIngredient.put(1, "salad");
+		integerToIngredient.put(2, "soba");
+		integerToIngredient.put(3, "rice");
 	}
 	
-	public Boolean isAvailable(Object whichBase, String baseChosen) {
-		if (whichBase == this.lettuce) {
-			if (this.lettuce.quantity > 0){
-				this.lettuce.quantity -= 1;
-				baseChosen = "lettuce";
-				return true;
-			}else {
-				return false;
-			}
-		}else if (whichBase == this.rice) {
-			if (this.rice.quantity > 0){
-				this.rice.quantity -= 1;
-				baseChosen = "rice";
-				return true;
-			}else {
-				return false;
-			}
-		}else if (whichBase == this.soba) {
-			if (this.soba.quantity > 0) {
-				this.soba.quantity -= 1;
-				baseChosen = "soba";
-				return true;
-			}else {
-				return false;
-			}
-		}else {
-			System.out.println("not found in isAvailable()");
+	public Boolean doesExists(Integer selected) {
+		return this.integerToIngredient.containsKey(selected);
+	}
+	
+	public Boolean isAvailable(String selectedBase) {
+		int ingredientCount = this.ingredientsInventory.get(selectedBase);
+		
+		if (ingredientCount < 1) {
 			return false;
 		}
+		
+		this.ingredientsInventory.put(selectedBase, ingredientCount-1);
+		return true;
 	}
 	
-	public class Lettuce {
-		int quantity;
-		
-		public Lettuce(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public int getCount() {
-			return this.quantity;
-		}
-	}
-	
-	public class Rice {
-		int quantity;
-		
-		public Rice(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public int getCount() {
-			return this.quantity;
-		}
-	}
-	
-	public class Soba {
-		int quantity;
-		
-		public Soba(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public int getCount() {
-			return this.quantity;
-		}
-
+	public String getBaseString(Integer selectedBase) {
+		return this.integerToIngredient.get(selectedBase);
 	}
 
 }

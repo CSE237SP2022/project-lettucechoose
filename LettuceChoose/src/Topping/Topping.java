@@ -1,136 +1,47 @@
 package Topping;
 
 import java.util.HashMap;
-import java.util.Map;
 
-import Protein.Protein.ProteinChoice;
+import java.util.Map;
 
 @SuppressWarnings("unchecked")
 public class Topping {
-	Edamame edamame;
-	Guacamole guacamole;
-	Tomato tomato;
-	Onion onion;
-	Masago masago;
-	
-	
-	public enum ToppingChoice{
-		Edamame(1),
-		Guacamole(2),
-		Tomato(3),
-		Onion(4),
-		Masago(5);
-
-		private int value;
-	    private static Map map = new HashMap<>();
-
-	    private ToppingChoice(int value) {
-	        this.value = value;
-	    }
-
-	    static {
-	        for (ToppingChoice tc : ToppingChoice.values()) {
-	            map.put(tc.value, tc);
-	        }
-	    }
-
-	    public static ToppingChoice valueOf(int tc) {
-	        return (ToppingChoice) map.get(tc);
-	    }
-
-	    public int getValue() {
-	        return value;
-	    }
-	}
+	public Map<String, Integer> ingredientsInventory;
+	private Map<Integer, String> integerToIngredient;
 	
 	public Topping(){
-		edamame = new Edamame(3);
-		guacamole = new Guacamole(3);
-		tomato = new Tomato(3);
-		onion = new Onion(3);
-		masago = new Masago(3);
+		ingredientsInventory = new HashMap<String,Integer>();
+		ingredientsInventory.put("edamame", 3);
+		ingredientsInventory.put("guacamole", 3);
+		ingredientsInventory.put("tomato", 3);
+		ingredientsInventory.put("onion", 3);
+		ingredientsInventory.put("masago", 3);
+		
+		integerToIngredient = new HashMap<Integer,String>();
+		integerToIngredient.put(1, "edamame");
+		integerToIngredient.put(2, "guacamole");
+		integerToIngredient.put(3, "tomato");
+		integerToIngredient.put(3, "onion");
+		integerToIngredient.put(3, "masago");
 	}
 	
-	public class Edamame {
-		int quantity;
-		
-		Edamame(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
+	public Boolean doesExists(Integer selected) {
+		return this.integerToIngredient.containsKey(selected);
 	}
 	
-	public class Guacamole {
-		int quantity;
+	public Boolean isAvailable(String selectedTopping) {
+		int ingredientCount = this.ingredientsInventory.get(selectedTopping);
 		
-		Guacamole(int quantityInput){
-			this.quantity = quantityInput;
+		if (ingredientCount < 1) {
+			return false;
 		}
 		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
+		this.ingredientsInventory.put(selectedTopping, ingredientCount-1);
+		return true;
 	}
 	
-	public class Tomato {
-		int quantity;
-		
-		Tomato(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
+	public String getToppingString(Integer selectedTopping) {
+		return this.integerToIngredient.get(selectedTopping);
+	}
 
-	}
-	
-	public class Onion {
-		int quantity;
-		
-		Onion(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
-
-	}
-	
-	public class Masago {
-		int quantity;
-		
-		Masago(int quantityInput){
-			this.quantity = quantityInput;
-		}
-		
-		public Boolean isAvailable() {
-			if (this.quantity > 0) {
-				return true;
-			}else {
-				return false;
-			}
-		}
-
-	}
 }

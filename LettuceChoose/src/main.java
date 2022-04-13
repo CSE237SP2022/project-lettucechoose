@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import Base.Base;
 import Protein.Protein;
@@ -20,13 +21,13 @@ public class main {
 
 
 	private static void takeNewOrder(Base baseObject, Protein proteinObject, Topping toppingObject) {
-		Order orderObject = new Order(baseObject, proteinObject, toppingObject);
+		Order orderObject = new Order();
 		Scanner commandLineScanner = new Scanner(System.in);
 		
 		askNameAndAddName(orderObject, commandLineScanner);
-		askBaseAndAddBase(orderObject, commandLineScanner);
-		askProteinAndAddProtein(orderObject, commandLineScanner);
-		askToppingsAndAddToppings(orderObject, commandLineScanner);
+		askBaseAndAddBase(orderObject, baseObject, commandLineScanner);
+		askProteinAndAddProtein(orderObject, proteinObject, commandLineScanner);
+		askToppingsAndAddToppings(orderObject, toppingObject, commandLineScanner);
 		askTipAndAddTip(orderObject, commandLineScanner);
 		System.out.println("Processing your order, " + orderObject.customerName + "!");
 		calculatePriceAndPrintRecipt(orderObject);
@@ -52,7 +53,7 @@ public class main {
 	}
 
 
-	private static void askToppingsAndAddToppings(Order orderObject, Scanner cst) {
+	private static void askToppingsAndAddToppings(Order orderObject, Topping toppingObject, Scanner cst) {
 
 
 		Boolean isTopping1Chosen = false, isTopping2Chosen = false, isTopping3Chosen = false;
@@ -68,8 +69,20 @@ public class main {
 				System.out.println("Please enter a valid number");
 				continue;
 			}
-			topping1Str = ""+Topping.ToppingChoice.valueOf(Integer.parseInt(topping1Input));
-			isTopping1Chosen = true;
+			if (!toppingObject.doesExists(topping1Integer)) {
+				System.out.println("Please select an available option");
+				continue;
+			}
+			
+			String topping1ChosenString = toppingObject.getToppingString(topping1Integer);
+			Boolean isTopping1Left = toppingObject.isAvailable(topping1ChosenString);
+			if (isTopping1Left) {
+				orderObject.assignTopping(topping1ChosenString);
+				System.out.println("Topping 1: " + topping1ChosenString);
+				isTopping1Chosen = true;
+			}else {
+				System.out.println("We are out of " + topping1ChosenString +". Please choose other topping");
+			}
 		}
 		while(!isTopping2Chosen) {
 			System.out.println("Type in your second topping! (in numbers)");
@@ -79,8 +92,20 @@ public class main {
 				System.out.println("Please enter a valid number");
 				continue;
 			}
-			topping2Str = ""+Topping.ToppingChoice.valueOf(Integer.parseInt(topping2Input));
-			isTopping2Chosen = true;
+			if (!toppingObject.doesExists(topping2Integer)) {
+				System.out.println("Please select an available option");
+				continue;
+			}
+			
+			String topping2ChosenString = toppingObject.getToppingString(topping2Integer);
+			Boolean isTopping2Left = toppingObject.isAvailable(topping2ChosenString);
+			if (isTopping2Left) {
+				orderObject.assignTopping(topping2ChosenString);
+				System.out.println("Topping 2: " + topping2ChosenString);
+				isTopping2Chosen = true;
+			}else {
+				System.out.println("We are out of " + topping2ChosenString +". Please choose other topping");
+			}
 		}
 		while(!isTopping3Chosen) {
 			System.out.println("Type in your third topping! (in numbers)");
@@ -90,21 +115,29 @@ public class main {
 				System.out.println("Please enter a valid number");
 				continue;
 			}
-			topping3Str = ""+Topping.ToppingChoice.valueOf(Integer.parseInt(topping3Input));
-			isTopping3Chosen = true;
+			if (!toppingObject.doesExists(topping3Integer)) {
+				System.out.println("Please select an available option");
+				continue;
+			}
+			
+			String topping3ChosenString = toppingObject.getToppingString(topping3Integer);
+			Boolean isTopping3Left = toppingObject.isAvailable(topping3ChosenString);
+			if (isTopping3Left) {
+				orderObject.assignTopping(topping3ChosenString);
+				System.out.println("Topping 3: " + topping3ChosenString);
+				isTopping3Chosen = true;
+			}else {
+				System.out.println("We are out of " + topping3ChosenString +". Please choose other topping");
+			}
 		}
-
 		
-		String[] toppingsArr = {topping1Str, topping2Str, topping3Str};
-		orderObject.toppingChosen = toppingsArr;
-		
-		System.out.println("Toppings: " + orderObject.toppingChosen[0] + ", " + orderObject.toppingChosen[1] + ", " + orderObject.toppingChosen[2]);
+		System.out.println("Toppings: " + orderObject.toppingChosen.get(0) + ", " + orderObject.toppingChosen.get(1) + ", " + orderObject.toppingChosen.get(2));
 	}
 
 
 
 
-	private static void askProteinAndAddProtein(Order orderObject, Scanner cst) {
+	private static void askProteinAndAddProtein(Order orderObject, Protein proteinObject, Scanner cst) {
 		boolean isProteinChosen = false;
 		while(!isProteinChosen) {
 			System.out.println("Choose one protein: 1) Beef, 2) Chicken, 3) Salmon, 4) Tofu. Please type in numbers.");
@@ -114,13 +147,20 @@ public class main {
 				System.out.println("Please enter a valid number");
 				continue;
 			}
-			Boolean proteinSuccessOrNot = orderObject.chooseProtein(proteinInt);
-			if (proteinSuccessOrNot) {
-				orderObject.proteinChosen = "" + Protein.ProteinChoice.valueOf(proteinInt);
-				isProteinChosen = true;
+			
+			if (!proteinObject.doesExists(proteinInt)) {
+				System.out.println("Please select an available option");
+				continue;
+			}
+			
+			String proteinChosenString = proteinObject.getProteinString(proteinInt);
+			Boolean isProteinLeft = proteinObject.isAvailable(proteinChosenString);
+			if (isProteinLeft) {
+				orderObject.assignProtein(proteinChosenString);
 				System.out.println("Protein: " + orderObject.proteinChosen);
+				isProteinChosen = true;
 			}else {
-				System.out.println("We are out of " + Protein.ProteinChoice.valueOf(proteinInt) +". Please choose other protein");
+				System.out.println("We are out of " + proteinChosenString +". Please choose other base");
 			}
 			
 		}
@@ -128,7 +168,7 @@ public class main {
 	}
 
 
-	private static void askBaseAndAddBase(Order orderObject, Scanner cst) {
+	private static void askBaseAndAddBase(Order orderObject, Base baseObject, Scanner cst) {
 		boolean isBaseChosen = false;
 		while(!isBaseChosen) {
 			System.out.println("Choose your base: 1) Salad, 2) Soba, 3) Rice. Please type in numbers.");
@@ -138,13 +178,20 @@ public class main {
 				System.out.println("Please enter a valid number");
 				continue;
 			}
-			Boolean baseSuccessOrNot = orderObject.chooseBase(baseInt);
-			if (baseSuccessOrNot) {
-				orderObject.baseChosen = "" + Base.BaseChoice.valueOf(baseInt);
+			
+			if (!baseObject.doesExists(baseInt)) {
+				System.out.println("Please select an available option");
+				continue;
+			}
+			
+			String baseChosenString = baseObject.getBaseString(baseInt);
+			Boolean baseLeft = baseObject.isAvailable(baseChosenString);
+			if (baseLeft) {
+				orderObject.assignBase(baseChosenString);
 				System.out.println("Base: " + orderObject.baseChosen);
 				isBaseChosen = true;
 			}else {
-				System.out.println("We are out of " + Base.BaseChoice.valueOf(baseInt) +". Please choose other base");
+				System.out.println("We are out of " + baseChosenString +". Please choose other base");
 			}
 		}
 	}
@@ -161,7 +208,7 @@ public class main {
 	}
 	
 	
-	public static void printReceipt(String rBase, String rProtein, String[] rToppings, double rTip, double rTotal, String rName) {
+	public static void printReceipt(String rBase, String rProtein, ArrayList<String> rToppings, double rTip, double rTotal, String rName) {
 		
 //		─ │ ┌ ┐ ┘ └ ├ ┬ ┤ ┴ ┼   <- use these!!
 		
@@ -179,9 +226,9 @@ public class main {
 		System.out.println("│   Salad                 $10   │");
 		System.out.println("│     Base:  " + rBase + "       ");  
 		System.out.println("│     Protein: " + rProtein + " ");  
-		System.out.println("│     Toppings: " + rToppings[0] + " ");   
-		System.out.println("│               " + rToppings[1] +"  ");
-		System.out.println("│               " + rToppings[2] + " ");
+		System.out.println("│     Toppings: " + rToppings.get(0) + " ");   
+		System.out.println("│               " + rToppings.get(1) +"  ");
+		System.out.println("│               " + rToppings.get(2) + " ");
 //		System.out.println("│     Drizzle: Ranch            │");  WILL BE IMPLEMENTED SOON
 //		System.out.println("│   Drink: Diet Coke      $5    │");
 		System.out.println("│  ===========================  │");
