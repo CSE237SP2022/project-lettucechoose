@@ -45,22 +45,22 @@ class DrinkTest {
 	
 	@Test
 	void testCokeAvailability() {
-		drink.isAvailable("coke");
-		drink.isAvailable("coke");
+		drink.decrementQuantity("coke");
+		drink.decrementQuantity("coke");
 		Assert.assertEquals(drink.isAvailable("coke"), true);
 	}
 	
 	@Test
 	void testSpriteAvailability() {
-		drink.isAvailable("sprite");
-		drink.isAvailable("sprite");
+		drink.decrementQuantity("sprite");
+		drink.decrementQuantity("sprite");
 		Assert.assertEquals(drink.isAvailable("sprite"), true);
 	}
 	
 	@Test
 	void testIcedTeaAvailability() {
-		drink.isAvailable("iced tea");
-		drink.isAvailable("iced tea");
+		drink.decrementQuantity("iced tea");
+		drink.decrementQuantity("iced tea");
 		Assert.assertEquals(drink.isAvailable("iced tea"), true);
 	}
 		
@@ -68,25 +68,25 @@ class DrinkTest {
 	
 	@Test
 	void testCokeUnavailable() {
-		drink.isAvailable("coke");
-		drink.isAvailable("coke");
-		drink.isAvailable("coke");
+		drink.decrementQuantity("coke");
+		drink.decrementQuantity("coke");
+		drink.decrementQuantity("coke");
 		Assert.assertEquals(drink.isAvailable("coke"), false);
 	}
 	
 	@Test
 	void testSpriteUnavailable() {
-		drink.isAvailable("sprite");
-		drink.isAvailable("sprite");
-		drink.isAvailable("sprite");		
+		drink.decrementQuantity("sprite");
+		drink.decrementQuantity("sprite");
+		drink.decrementQuantity("sprite");		
 		Assert.assertEquals(drink.isAvailable("sprite"), false);
 	}
 	
 	@Test
 	void testIcedTeaUnavailable() {
-		drink.isAvailable("iced tea");
-		drink.isAvailable("iced tea");
-		drink.isAvailable("iced tea");		
+		drink.decrementQuantity("iced tea");
+		drink.decrementQuantity("iced tea");
+		drink.decrementQuantity("iced tea");		
 		Assert.assertEquals(drink.isAvailable("iced tea"), false);
 	}
 	

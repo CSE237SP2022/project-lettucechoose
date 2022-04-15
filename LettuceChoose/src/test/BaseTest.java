@@ -13,6 +13,7 @@ class BaseTest {
 	@BeforeEach
 	void setup() {
 		base = new Base();
+		
 	}
 	
 	// test if each base exists in Map<String, Integer> ingredientsInventory of base class when initialized
@@ -36,23 +37,23 @@ class BaseTest {
 	
 	@Test
 	void testSobaAvailability() {
-		base.isAvailable("soba");
-		base.isAvailable("soba");
+		base.decrementQuantity("soba");
+		base.decrementQuantity("soba");
 		Assert.assertEquals(base.isAvailable("soba"), true);
 	}
 	
 	
 	@Test
 	void testRiceAvailability() {
-		base.isAvailable("rice");
-		base.isAvailable("rice");
+		base.decrementQuantity("rice");
+		base.decrementQuantity("rice");
 		Assert.assertEquals(base.isAvailable("rice"), true);
 	}
 	
 	@Test
 	void testSaladAvailability() {
-		base.isAvailable("salad");
-		base.isAvailable("salad");
+		base.decrementQuantity("salad");
+		base.decrementQuantity("salad");
 		Assert.assertEquals(base.isAvailable("salad"), true);
 	}
 	
@@ -60,25 +61,25 @@ class BaseTest {
 	
 	@Test
 	void testSobaUnAvailable() {
-		base.isAvailable("soba");
-		base.isAvailable("soba");
-		base.isAvailable("soba");
+		base.decrementQuantity("soba");
+		base.decrementQuantity("soba");
+		base.decrementQuantity("soba");
 		Assert.assertEquals(base.isAvailable("soba"), false);
 	}
 	
 	@Test
 	void testRiceUnAvailable() {
-		base.isAvailable("rice");
-		base.isAvailable("rice");
-		base.isAvailable("rice");
+		base.decrementQuantity("rice");
+		base.decrementQuantity("rice");
+		base.decrementQuantity("rice");
 		Assert.assertEquals(base.isAvailable("rice"), false);
 	}
 	
 	@Test
 	void testSaladUnAvailable() {
-		base.isAvailable("salad");
-		base.isAvailable("salad");
-		base.isAvailable("salad");
+		base.decrementQuantity("salad");
+		base.decrementQuantity("salad");
+		base.decrementQuantity("salad");
 		Assert.assertEquals(base.isAvailable("salad"), false);
 	}
 	

@@ -55,11 +55,16 @@ public class Protein {
 			return false;
 		}
 		
-		this.ingredientsInventory.put(selectedProtein, ingredientCount-1);
 		return true;
 	}
 	
 	
+	
+	
+	public void decrementQuantity(String selectedProtein) {
+		int ingredientCount = this.ingredientsInventory.get(selectedProtein);
+		this.ingredientsInventory.put(selectedProtein, ingredientCount-1);
+	}
 	
 	
 	

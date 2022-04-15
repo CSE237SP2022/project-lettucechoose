@@ -63,9 +63,13 @@ public class Drink {
 		if (drinkCount < 1) {
 			return false;
 		}
-		
-		this.drinksInventory.put(selectedDrink, drinkCount-1);
 		return true;
+	}
+	
+	
+	public void decrementQuantity(String selectedDrink) {
+		int ingredientCount = this.drinksInventory.get(selectedDrink);
+		this.drinksInventory.put(selectedDrink, ingredientCount-1);
 	}
 	
 	
