@@ -58,12 +58,14 @@ public class Topping {
 			return false;
 		}
 		
-		this.ingredientsInventory.put(selectedTopping, ingredientCount-1);
 		return true;
 	}
 	
 	
-	
+	public void decrementQuantity(String selectedTopping) {
+		int ingredientCount = this.ingredientsInventory.get(selectedTopping);
+		this.ingredientsInventory.put(selectedTopping, ingredientCount-1);
+	}
 	
 	/**
 	 * 

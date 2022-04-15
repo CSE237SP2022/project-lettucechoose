@@ -54,43 +54,43 @@ class ToppingTest {
 	
 	@Test
 	void testEdamameAvailability() {
-		topping.isAvailable("edamame");
-		topping.isAvailable("edamame");
+		topping.decrementQuantity("edamame");
+		topping.decrementQuantity("edamame");
 		Assert.assertEquals(topping.isAvailable("edamame"), true);
 	}
 	
 	@Test
 	void testGuacamoleAvailability() {
-		topping.isAvailable("guacamole");
-		topping.isAvailable("guacamole");
+		topping.decrementQuantity("guacamole");
+		topping.decrementQuantity("guacamole");
 		Assert.assertEquals(topping.isAvailable("guacamole"), true);
 	}
 	
 	@Test
 	void testTomatoAvailability() {
-		topping.isAvailable("tomato");
-		topping.isAvailable("tomato");
+		topping.decrementQuantity("tomato");
+		topping.decrementQuantity("tomato");
 		Assert.assertEquals(topping.isAvailable("tomato"), true);
 	}
 	
 	@Test
 	void testOnionAvailability() {
-		topping.isAvailable("onion");
-		topping.isAvailable("onion");
+		topping.decrementQuantity("onion");
+		topping.decrementQuantity("onion");
 		Assert.assertEquals(topping.isAvailable("onion"), true);
 	}
 	
 	@Test
 	void testMasagoAvailability() {
-		topping.isAvailable("masago");
-		topping.isAvailable("masago");
+		topping.decrementQuantity("masago");
+		topping.decrementQuantity("masago");
 		Assert.assertEquals(topping.isAvailable("masago"), true);
 	}
 	
 	@Test
 	void testNoneAvailability() {
-		topping.isAvailable("none");
-		topping.isAvailable("none");
+		topping.decrementQuantity("none");
+		topping.decrementQuantity("none");
 		Assert.assertEquals(topping.isAvailable("none"), true);
 	}
 		
@@ -98,41 +98,41 @@ class ToppingTest {
 	
 	@Test
 	void testEdamameUnavailable() {
-		topping.isAvailable("edamame");
-		topping.isAvailable("edamame");
-		topping.isAvailable("edamame");
+		topping.decrementQuantity("edamame");
+		topping.decrementQuantity("edamame");
+		topping.decrementQuantity("edamame");
 		Assert.assertEquals(topping.isAvailable("edamame"), false);
 	}
 	
 	@Test
 	void testGuacamoleUnavailable() {
-		topping.isAvailable("guacamole");
-		topping.isAvailable("guacamole");
-		topping.isAvailable("guacamole");
+		topping.decrementQuantity("guacamole");
+		topping.decrementQuantity("guacamole");
+		topping.decrementQuantity("guacamole");
 		Assert.assertEquals(topping.isAvailable("guacamole"), false);
 	}
 	
 	@Test
 	void testTomatoUnavailable() {
-		topping.isAvailable("tomato");
-		topping.isAvailable("tomato");
-		topping.isAvailable("tomato");
+		topping.decrementQuantity("tomato");
+		topping.decrementQuantity("tomato");
+		topping.decrementQuantity("tomato");
 		Assert.assertEquals(topping.isAvailable("tomato"), false);
 	}
 	
 	@Test
 	void testOnionUnavailable() {
-		topping.isAvailable("onion");
-		topping.isAvailable("onion");
-		topping.isAvailable("onion");
+		topping.decrementQuantity("onion");
+		topping.decrementQuantity("onion");
+		topping.decrementQuantity("onion");
 		Assert.assertEquals(topping.isAvailable("onion"), false);
 	}
 	
 	@Test
 	void testMasagoUnavailable() {
-		topping.isAvailable("masago");
-		topping.isAvailable("masago");
-		topping.isAvailable("masago");
+		topping.decrementQuantity("masago");
+		topping.decrementQuantity("masago");
+		topping.decrementQuantity("masago");
 		Assert.assertEquals(topping.isAvailable("masago"), false);
 	}
 

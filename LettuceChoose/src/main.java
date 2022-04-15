@@ -37,9 +37,8 @@ public class main {
 		askTipAndAddTip(orderObject, commandLineScanner);
 		System.out.println("Processing your order, " + orderObject.customerName + "!");
 		calculatePriceAndPrintRecipt(orderObject);
-		System.out.println("-------------------"+"\n"+ "🙋🙋‍♀️ Next in line!"+"\n"+"-------------------");
+		System.out.println("-------------------"+"\n"+ "Next in line!"+"\n"+"-------------------");
 	}
-
 
 	private static void calculatePriceAndPrintRecipt(Order orderObject) {
 		// salad bowl + drinks + tip + tax
@@ -80,6 +79,7 @@ public class main {
 			String drinkChosenString = drinkObject.getDrinkString(drinkInt);
 			Boolean isDrinkLeft = drinkObject.isAvailable(drinkChosenString);
 			if (isDrinkLeft) {
+				drinkObject.decrementQuantity(drinkChosenString);
 				orderObject.assignDrink(drinkChosenString);
 				System.out.println("Drink: " + orderObject.drinkChosen);
 				orderObject.drinkPrice = drinkObject.getDrinkPrice(drinkInt);
@@ -110,6 +110,7 @@ public class main {
 			String toppingChosenString = toppingObject.getToppingString(toppingInteger);
 			Boolean isToppingLeft = toppingObject.isAvailable(toppingChosenString);
 			if (isToppingLeft) {
+				toppingObject.decrementQuantity(toppingChosenString);
 				orderObject.assignTopping(toppingChosenString);
 				System.out.println("Topping"+currentTopping+": " + toppingChosenString);
 				currentTopping+=1;
@@ -143,6 +144,7 @@ public class main {
 			String proteinChosenString = proteinObject.getProteinString(proteinInt);
 			Boolean isProteinLeft = proteinObject.isAvailable(proteinChosenString);
 			if (isProteinLeft) {
+				proteinObject.decrementQuantity(proteinChosenString);
 				orderObject.assignProtein(proteinChosenString);
 				System.out.println("Protein: " + orderObject.proteinChosen);
 				isProteinChosen = true;
@@ -174,6 +176,7 @@ public class main {
 			String baseChosenString = baseObject.getBaseString(baseInt);
 			Boolean baseLeft = baseObject.isAvailable(baseChosenString);
 			if (baseLeft) {
+				baseObject.decrementQuantity(baseChosenString);
 				orderObject.assignBase(baseChosenString);
 				System.out.println("Base: " + orderObject.baseChosen);
 				isBaseChosen = true;
@@ -185,7 +188,7 @@ public class main {
 
 
 	private static void askNameAndAddName(Order orderObject, Scanner cst) {
-		System.out.println("Hi! Welcome to the LettuceChoose!🥗✔️ ");
+		System.out.println("Hi! Welcome to the LettuceChoose! :) ");
 		System.out.println("Your name please?");
 		
 		String userInput = cst.nextLine();
@@ -247,11 +250,11 @@ public class main {
 	}
 	
 	public static Integer tryStringToInt(String text) {
-		  try {
-		    return Integer.parseInt(text);
-		  } catch (NumberFormatException e) {
-		    return null;
-		  }
-		}
+		try {
+			return Integer.parseInt(text);
+		} catch (NumberFormatException e) {
+			return null;
+			}
+	}
 
 }

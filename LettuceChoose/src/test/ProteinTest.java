@@ -36,29 +36,29 @@ class ProteinTest {
 	
 	@Test
 	void testBeefAvailability() {
-		protein.isAvailable("beef");
-		protein.isAvailable("beef");
+		protein.decrementQuantity("beef");
+		protein.decrementQuantity("beef");
 		Assert.assertEquals(protein.isAvailable("beef"), true);
 	}
 	
 	@Test
 	void testChickenAvailabilty() {
-		protein.isAvailable("chicken");
-		protein.isAvailable("chicken");
+		protein.decrementQuantity("chicken");
+		protein.decrementQuantity("chicken");
 		Assert.assertEquals(protein.isAvailable("chicken"), true);
 	}
 	
 	@Test
 	void testSalmonAvailabilty() {
-		protein.isAvailable("salmon");
-		protein.isAvailable("salmon");
+		protein.decrementQuantity("salmon");
+		protein.decrementQuantity("salmon");
 		Assert.assertEquals(protein.isAvailable("salmon"), true);
 	}
 	
 	@Test
 	void testTofuAvailabilty() {
-		protein.isAvailable("tofu");
-		protein.isAvailable("tofu");
+		protein.decrementQuantity("tofu");
+		protein.decrementQuantity("tofu");
 		Assert.assertEquals(protein.isAvailable("tofu"), true);
 	}
 		
@@ -66,33 +66,33 @@ class ProteinTest {
 	
 	@Test
 	void testBeefUnavailable() {
-		protein.isAvailable("beef");
-		protein.isAvailable("beef");
-		protein.isAvailable("beef");
+		protein.decrementQuantity("beef");
+		protein.decrementQuantity("beef");
+		protein.decrementQuantity("beef");
 		Assert.assertEquals(protein.isAvailable("beef"), false);
 	}
 	
 	@Test
 	void testChickenUnavailable() {
-		protein.isAvailable("chicken");
-		protein.isAvailable("chicken");
-		protein.isAvailable("chicken");
+		protein.decrementQuantity("chicken");
+		protein.decrementQuantity("chicken");
+		protein.decrementQuantity("chicken");
 		Assert.assertEquals(protein.isAvailable("chicken"), false);
 	}
 	
 	@Test
 	void testSalmonUnavailable() {
-		protein.isAvailable("salmon");
-		protein.isAvailable("salmon");
-		protein.isAvailable("salmon");
+		protein.decrementQuantity("salmon");
+		protein.decrementQuantity("salmon");
+		protein.decrementQuantity("salmon");
 		Assert.assertEquals(protein.isAvailable("salmon"), false);
 	}
 	
 	@Test
 	void testTofuUnavailable() {
-		protein.isAvailable("tofu");
-		protein.isAvailable("tofu");
-		protein.isAvailable("tofu");
+		protein.decrementQuantity("tofu");
+		protein.decrementQuantity("tofu");
+		protein.decrementQuantity("tofu");
 		Assert.assertEquals(protein.isAvailable("tofu"), false);
 	}
 	

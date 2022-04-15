@@ -1,6 +1,6 @@
 cd LettuceChoose/src
 
-javac Order.java
+javac Order/Order.java
 javac Base/Base.java
 javac Protein/Protein.java
 javac Topping/Topping.java

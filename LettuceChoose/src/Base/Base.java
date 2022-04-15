@@ -57,8 +57,13 @@ public class Base {
 			return false;
 		}
 		
-		this.ingredientsInventory.put(selectedBase, ingredientCount-1);
 		return true;
+	}
+	
+	
+	public void decrementQuantity(String selectedBase) {
+		int ingredientCount = this.ingredientsInventory.get(selectedBase);
+		this.ingredientsInventory.put(selectedBase, ingredientCount-1);
 	}
 	
 	
