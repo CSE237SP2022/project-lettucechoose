@@ -22,9 +22,9 @@ public class Restaurant {
 		Ingredient beef = new Ingredient("protein", "beef", 5, 3);
 		Ingredient edamame = new Ingredient("topping", "edamame", 1, 3);
 		
-		this.inventory.put("Salad", salad);
-		this.inventory.put("Beef", beef);
-		this.inventory.put("Edamame", edamame);
+		this.inventory.put("salad", salad);
+		this.inventory.put("beef", beef);
+		this.inventory.put("edamame", edamame);
 	}
 	
 	
@@ -59,12 +59,17 @@ public class Restaurant {
 		order.setName(inputName);
 	}
 
+	public void promptItemsInCategory(String category) {
+		
+		
+	}
 
 
 	public void askAndSetIngredients(Order order, String category, Scanner scanner) {
 		Boolean isChosen = false;
 		while(!isChosen) {
-			System.out.println("Please select your" + category);
+			System.out.println("Please select your " + category);
+			promptOptions(category);
 			String inputIngredient = scanner.nextLine();
 			if (isValidIngredient(inputIngredient) && isInStock(inputIngredient) && isInCategory(inputIngredient, category)) {
 				decrementQuantity(inputIngredient);
@@ -75,9 +80,20 @@ public class Restaurant {
 				}else if (category.equals("topping")) {
 					order.setTopping(inputIngredient);
 				}
-				
 				isChosen = true;
+			}else {
+				System.out.println("Please select a valid item");
 			}
+		}
+	}
+	
+	public void promptOptions(String category) {
+		if (category.equals("base")) {
+			System.out.println("Options: salad");
+		}else if (category.equals("protein")) {
+			System.out.println("Options: beef");
+		}else {
+			System.out.println("Options: edamame");
 		}
 	}
 
