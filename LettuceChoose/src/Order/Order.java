@@ -1,73 +1,61 @@
 package Order;
 import java.util.ArrayList;
+import Ingredient.Ingredient;
+import Restaurant.Restaurant;
 
-import Base.Base;
-import Protein.Protein;
-import Topping.Topping;
 
 
 public class Order {
-
-	public String customerName;
-	int diet;
 	
-	public String baseChosen;
-	public String proteinChosen;
-	public ArrayList<String> toppingChosen;
-	public String drinkChosen;
 	
-	public double totalPrice;
-	public int drinkPrice;
-	public double tip;
+	Restaurant restaurant;
 	
-	@SuppressWarnings("unchecked")
+	String base;
+	String protein;
+	String[] topping;
+	
+	double tip;
+	double taxRate = 0.15;
+	
 	public Order() {
-		this.toppingChosen = new ArrayList();
-	}
-
-	
-	public void assignDiet(int num) {
-		// create ENUM for diets
-		this.diet = num;
+		restaurant = new Restaurant();
 	}
 	
-	public void assignBase(String baseChosen) {
-		this.baseChosen = baseChosen;
+	// MANAGES:
+	// name of the customer
+	// total price (subtotal+tax+tip)
+	// total chosen ingredients
+	// print Receipt
+	
+	public void setBase(String baseInput) {
+		this.base = baseInput;
 	}
 	
-	public void assignProtein(String proteinChosen) {
-		this.proteinChosen = proteinChosen;
+	public void setProtein(String proteinInput) {
+		this.protein = proteinInput;
 	}
 	
-	public void assignTopping(String toppingChosen) {
-		this.toppingChosen.add(toppingChosen);
+	public void setTopping(String topping1, String topping2, String topping3) {
+		this.topping = new String[]{topping1, topping2, topping3};
 	}
 	
-	public void assignDrink(String drinkChosen) {
-		this.drinkChosen = drinkChosen;
-	}
-	public void chooseTipAmount(double tip) {
+	public void setTipAmount(double tip) {
 		this.tip = tip;
 	}
 	
-	public String summarizeOrder() {
-		String toppingsString = "";
+	public void calculateSubtotal() {
+		double basePrice = restaurant.getInventory().get(base).getPrice();
+		double proteinPrice = restaurant.getInventory().get(protein).getPrice();
+//		double toppingPrice = restaurant.getInventory().get(topping).getPrice();
 		
-		for (int i = 0; i < toppingChosen.size(); i++) {
-			toppingsString+=toppingChosen.get(i);
-			toppingsString+=", ";
-		}
 		
-		String res = "Your base is:" + baseChosen + "\n" +"Your protein is: " + proteinChosen + "\n" + "Your toppings are: " + toppingsString + "\n" + "\n";
-		
-		double totalPriceWithTip = this.totalPrice + this.tip;
-		
-		res += "Total Price: " + totalPriceWithTip;
-		
-		return res;
+		double subtotal = basePrice + proteinPrice + toppingPrice;
+		subtotal += subtotal * this.taxRate;
+		double finalTotal = subtotal + this.tip;
 	}
-	
-	
+	public void printReceipt() {
+		
+	}
 	
 	
 }
