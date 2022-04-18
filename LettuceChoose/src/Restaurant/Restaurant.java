@@ -59,11 +59,6 @@ public class Restaurant {
 		order.setName(inputName);
 	}
 
-	public void promptItemsInCategory(String category) {
-		
-		
-	}
-
 
 	public void askAndSetIngredients(Order order, String category, Scanner scanner) {
 		Boolean isChosen = false;
