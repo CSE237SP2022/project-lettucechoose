@@ -1,20 +1,20 @@
 package Ingredient;
 
 public class Ingredient {
-	String type;
+	String category;
 	String name;
 	double price;
 	int quantity;
 
-	public Ingredient(String type, String name, double price, int quantity) {
-		this.type = type;
+	public Ingredient(String category, String name, double price, int quantity) {
+		this.category = category;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
 	}
 	
-	public String getType() {
-		return this.type;
+	public String getCategory() {
+		return this.category;
 	}
 	
 	public String getName() {
