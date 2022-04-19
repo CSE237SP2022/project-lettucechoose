@@ -54,7 +54,7 @@ public class Order {
 		this.tip = tip;
 	}
 
-	public void calculateSubtotal() {
+	public double calculateSubtotal() {
 		double basePrice = restaurant.getInventory().get(base).getPrice();
 		double proteinPrice = restaurant.getInventory().get(protein).getPrice();
 		double toppingPrice = 0;
@@ -63,14 +63,16 @@ public class Order {
 		}
 
 		this.subTotal = basePrice + proteinPrice + toppingPrice;
+		return this.subTotal;
 	}
 
 	public void calculateTax() {
 		this.tax = Math.round(this.subTotal * taxRate * 100.0) / 100.0;
 	}
 	
-	public void calculateTotal() {
+	public double calculateTotal() {
 		this.finalTotal = this.subTotal + this.tax + this.tip;
+		return this.finalTotal;
 	}
 
 	public void printReceipt() {
