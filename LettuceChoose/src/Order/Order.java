@@ -17,6 +17,10 @@ public class Order {
 	String protein;
 	List<String> toppings;
 
+	double basePrice;
+	double proteinPrice;
+	double toppingPrice;
+	
 	double tip;
 	double taxRate = 0.15;
 	double tax;
@@ -28,12 +32,7 @@ public class Order {
 		toppings = new ArrayList<String>();
 	}
 
-	// MANAGES:
-	// name of the customer
-	// total price (subtotal+tax+tip)
-	// total chosen ingredients
-	// print Receipt
-
+	
 	public void setName(String nameInput) {
 		this.name = nameInput;
 	}
@@ -55,14 +54,14 @@ public class Order {
 	}
 
 	public void calculateSubtotal() {
-		double basePrice = restaurant.getInventory().get(base).getPrice();
-		double proteinPrice = restaurant.getInventory().get(protein).getPrice();
-		double toppingPrice = 0;
+		basePrice = restaurant.getInventory().get(base).getPrice();
+		proteinPrice = restaurant.getInventory().get(protein).getPrice();
+		toppingPrice = 0;
 		for (String topping : this.toppings) {
 			toppingPrice += restaurant.getInventory().get(topping).getPrice();
 		}
-
 		this.subTotal = basePrice + proteinPrice + toppingPrice;
+		System.out.println("PRICE: " + basePrice + ",  " + proteinPrice );
 	}
 
 	public void calculateTax() {
@@ -75,7 +74,10 @@ public class Order {
 
 	public void printReceipt() {
 
-
+		calculateSubtotal();
+		calculateTax();
+		calculateTotal();
+		
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime currentTime = LocalDateTime.now();
 		String emptySpace = "│                               │";
@@ -91,17 +93,18 @@ public class Order {
 		System.out.println(emptySpace);
 		System.out.println(String.format("│%-8s", "   Order for: ") + String.format("%-17s│", this.name));
 		System.out.println(emptySpace);
-//		System.out.println(String.format("│%-12s", "   Salad: ") + String.format("%15s    │", "$" + saladPrice));
 		System.out.println(String.format("│%-10s", "     Base: ") + String.format("%-20s│", this.base));
 		System.out.println(String.format("│%-10s", "     Protein: ") + String.format("%-17s│", this.protein));
-//		System.out.println(String.format("│%-10s", "     Toppings: ") + String.format("%-16s│", this.toppings[0]));
-//		System.out.println(String.format("│%-15s", "") + String.format("%-16s│", receiptToppings.get(1)));
-//		System.out.println(String.format("│%-15s", "") + String.format("%-16s│", receiptToppings.get(2)));
+		
+		for (String topping : this.toppings) {
+			System.out.println(String.format("│%-10s", "     Topping: ") + String.format("%-17s│", topping));
+		}
+		
 		// System.out.println(String.format("│%-10s", " Drink: ") +
 		// String.format("%-8s", receiptDrink) + String.format("%8s │", "$"+
 		// receiptDrinkPrice));
 		System.out.println("│  ===========================  │");
-		System.out.println(String.format("│%-24s", " Subtotal") + String.format("%-7s│", "$"+ this.subTotal));
+		System.out.println(String.format("│%-24s", "   Subtotal") + String.format("%-7s│", "$"+ this.subTotal));
 		System.out.println(String.format("│%-24s", "   Tax") + String.format("%-7s│", "$" + this.tax));
 		System.out.println(String.format("│%-24s", "   Tip") + String.format("%-7s│", "$" + this.tip));
 		System.out.println(String.format("│%-24s", "   Total") + String.format("%-7s│", "$" + this.finalTotal));
