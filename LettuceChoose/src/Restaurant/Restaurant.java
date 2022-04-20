@@ -58,14 +58,9 @@ public class Restaurant {
 	}
 	
 	public void askAndSetName(Order order, Scanner scanner) {
-		System.out.println("Please enter your name");
+		System.out.println("Please enter your name!");
 		String inputName = scanner.nextLine();
 		order.setName(inputName);
-	}
-
-	public void promptItemsInCategory(String category) {
-		
-		
 	}
 
 
@@ -86,7 +81,7 @@ public class Restaurant {
 				}
 				isChosen = true;
 			}else {
-				System.out.println("Please select a valid item");
+				System.out.println("Please select a valid item from the options");
 			}
 		}
 	}
@@ -103,10 +98,7 @@ public class Restaurant {
 
 
 	private boolean isInCategory(String inputIngredient, String category) {
-		if (this.inventory.get(inputIngredient).getCategory().equals(category)) {
-			return true;
-		}
-		return false;
+		return this.inventory.get(inputIngredient).getCategory().equals(category);
 	}
 
 	

@@ -1,7 +1,6 @@
 import java.util.Scanner;
-
-import Order.Order;
-import Restaurant.Restaurant;    
+import Restaurant.Restaurant;
+import Order.Order;    
 
 public class main {
 
@@ -16,12 +15,15 @@ public class main {
 	private static void takeNewOrder(Restaurant restaurant) {
 		Scanner scanner = new Scanner(System.in);
 		Order order = new Order();
+		System.out.println("Hi, Welcome to LettuceChoose!");
 		restaurant.askAndSetName(order, scanner);
 		restaurant.askAndSetIngredients(order, "base", scanner);
 		restaurant.askAndSetIngredients(order, "protein", scanner);
 		restaurant.askAndSetIngredients(order, "topping", scanner);
 		restaurant.askAndSetIngredients(order, "topping", scanner);
 		restaurant.askAndSetIngredients(order, "topping", scanner);
+		
+		order.printReceipt();
 	}
 		
 	
