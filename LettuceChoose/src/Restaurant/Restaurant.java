@@ -108,6 +108,7 @@ public class Restaurant {
 			System.out.println("Options: beef, chicken, tofu");
 		}else {
 			System.out.println("Options: edamame, avocado, tomato, mango");
+
 		}
 	}
 
