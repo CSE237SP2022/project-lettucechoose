@@ -50,8 +50,6 @@ class OrderTest {
 		order.calculateTax();
 		
 		assertEquals(17.95, order.calculateTotal());
-		
-		
 	}
 
 }
