@@ -2,30 +2,34 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.PrintStream;
 import Order.Order;
 import Ingredient.Ingredient;
 import Restaurant.Restaurant;
 
 
 class IngredientsTest {
-
-	Restaurant testRestaurant;
+	
+	Ingredient testSalad;
 	
 	@BeforeEach
 	void setup() {
-		testRestaurant = new Restaurant();
+		testSalad = new Ingredient("base", "salad", 3, 3);
 	}
-	
-	@Test
-	void testDecrementQuantity() {
-		testRestaurant.decrementQuantity("Salad");
-		Ingredient selectedIngredient = testRestaurant.getInventory().get("Salad");
-		int quantity = selectedIngredient.getQuantity();
-		assertEquals(2, quantity);
-	}
-	
-	
 
+	@Test
+	void testUpdateQuantity() {
+		testSalad.updateQuantity(10);
+		assertEquals(13, testSalad.getQuantity());
+	}
+	
+	
+ 
 }
