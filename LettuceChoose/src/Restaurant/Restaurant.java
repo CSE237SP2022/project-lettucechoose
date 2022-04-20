@@ -21,10 +21,14 @@ public class Restaurant {
 		Ingredient salad = new Ingredient("base", "salad", 3.5, 3);
 		Ingredient beef = new Ingredient("protein", "beef", 5, 3);
 		Ingredient edamame = new Ingredient("topping", "edamame", 1, 3);
+		Ingredient onion = new Ingredient("topping", "green", 1.5, 3);
+		Ingredient mango = new Ingredient("topping", "mango", 2, 3);
 		
 		this.inventory.put("salad", salad);
 		this.inventory.put("beef", beef);
 		this.inventory.put("edamame", edamame);
+		this.inventory.put("onion", onion);
+		this.inventory.put("mango", mango);
 	}
 	
 	
