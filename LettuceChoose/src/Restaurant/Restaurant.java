@@ -28,7 +28,7 @@ public class Restaurant {
 		
 		Ingredient edamame = new Ingredient("topping", "edamame", 1, 3);
 		Ingredient avocado = new Ingredient("topping", "avocado", 2.5, 3);
-		Ingredient onion = new Ingredient("topping", "green", 1.5, 3);
+		Ingredient tomato = new Ingredient("topping", "tomato", 1.5, 3);
 		Ingredient mango = new Ingredient("topping", "mango", 2, 3);
 		
 		this.inventory.put("salad", salad);
@@ -41,7 +41,7 @@ public class Restaurant {
 		
 		this.inventory.put("edamame", edamame);
 		this.inventory.put("avocado", avocado);
-		this.inventory.put("onion", onion);
+		this.inventory.put("tomato", tomato);
 		this.inventory.put("mango", mango);
 	}
 	
@@ -107,10 +107,16 @@ public class Restaurant {
 		}else if (category.equals("protein")) {
 			System.out.println("Options: beef, chicken, tofu");
 		}else {
-			System.out.println("Options: edamame, avocado, masago, mango");
+			System.out.println("Options: edamame, avocado, tomato, mango");
+
 		}
 	}
 
+	public void askForTip(Order order, Scanner scanner) {
+		System.out.println("Would you like to tip? Please enter in numbers");
+		double inputTip = scanner.nextDouble();
+		order.setTipAmount(inputTip);
+	}
 
 	// visibility changed to public for the testing purposes
 	public boolean isInCategory(String inputIngredient, String category) {
