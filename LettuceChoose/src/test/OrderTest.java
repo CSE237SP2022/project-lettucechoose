@@ -18,12 +18,7 @@ class OrderTest {
 	}
 
 
-	@Test
-	void testQuantity() {
-		//order.Order(soba, protein, topping, drink, tip);
-		//check if the quantity matches
-		//assertEquals(1, soba.quantity);
-	}
+
 	
 	
 	@Test
