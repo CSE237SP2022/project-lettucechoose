@@ -64,8 +64,9 @@ public class Order {
 		return this.subTotal;
 	}
 
-	public void calculateTax() {
+	public double calculateTax() {
 		this.tax = Math.round(this.subTotal * taxRate * 100.0) / 100.0;
+		return this.tax;
 	}
 	
 	public double calculateTotal() {
