@@ -44,30 +44,14 @@ public class main {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("====Vendor Page====");
 		
-		System.out.println("Type in any ingredients that you'd like to check the quantity");
-		String checkIngredient = scanner.nextLine();
-		int ingredientQuantity = restaurant.checkQuantity(checkIngredient);
-		if (ingredientQuantity == -1) {
-			System.out.println("Invalid ingredient name");
-		} else {
-			System.out.println(checkIngredient + ": " + ingredientQuantity);
-			System.out.println("Would you like to restock " + checkIngredient + "? (y/n)");
-			String yn = scanner.nextLine();
-			if (yn.equals("y")) {
-				System.out.println("How much quantity are you restocking?");
-				int restockCount = scanner.nextInt();
-				restaurant.incrementQuantity(checkIngredient, restockCount);
-			} else if (yn.equals("n")) {
-				
-			} else {
-				System.out.println("Please answer in y or n");
-			}
-			
-			System.out.println("Please type 'continue' if you'd like to check other ingredients");
-			String continueOrNot = scanner.nextLine();
-			if (continueOrNot.equals("continue")) {
-				// continue
-			}
+
+		Boolean vendorContinue = true;
+		while(vendorContinue) {
+			String ingredient = restaurant.vendorCheckIngredientQuantity(scanner);
+			if (!ingredient.equals("Invalid")) {
+				restaurant.vendorRestockQuantity(ingredient, scanner);
+			} 		
+			vendorContinue = restaurant.vendorAskQuit(scanner);
 		}
 		
 		
