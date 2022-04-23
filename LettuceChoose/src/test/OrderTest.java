@@ -15,38 +15,31 @@ class OrderTest {
 	@BeforeEach
 	void setup() {
 		order = new Order();
-	}
-
-
-
-	
-	
-	@Test
-	void testcalculateSubTotal() {
 		order.setBase("salad");
 		order.setProtein("beef");
 		order.setTopping("edamame");
-		order.setTopping("onion");
+		order.setTopping("tomato");
 		order.setTopping("mango");
-		
+	}
+
+	@Test
+	void testcalculateSubTotal() {
 		assertEquals(13, order.calculateSubtotal());
+	}
+
+	@Test
+	void testcalculateTax() {
+		order.calculateSubtotal();
+		assertEquals(1.95, order.calculateTax());
 	}
 	
 	@Test
 	void testcalculateFinalTotal() {
-		order.setBase("salad");
-		order.setProtein("beef");
-		order.setTopping("edamame");
-		order.setTopping("onion");
-		order.setTopping("mango");
 		order.setTipAmount(3.0);
-		
 		order.calculateSubtotal();
 		order.calculateTax();
 		
 		assertEquals(17.95, order.calculateTotal());
-		
-		
 	}
 
 }
