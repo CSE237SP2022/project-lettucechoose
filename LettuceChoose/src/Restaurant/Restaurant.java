@@ -69,10 +69,24 @@ public class Restaurant {
 		return false;
 	}
 	
+	public int checkQuantity(String item) {
+		if (isValidIngredient(item)) {
+			Ingredient selectedIngredient = this.getInventory().get(item);
+			return selectedIngredient.getQuantity();
+		} else {
+			return -1;
+		}
+	}
+	
 	
 	public void decrementQuantity(String item) {
 		Ingredient selectedIngredient = this.getInventory().get(item);
 		selectedIngredient.updateQuantity(-1);
+	}
+	
+	public void incrementQuantity(String item, int amount) {
+		Ingredient selectedIngredient = this.getInventory().get(item);
+		selectedIngredient.updateQuantity(amount);
 	}
 	
 	
@@ -133,6 +147,53 @@ public class Restaurant {
 		return this.inventory.get(inputIngredient).getCategory().equals(category);
 	}
 
+	
+	
+	
+	//vendor functionalities
+
+	public String vendorCheckIngredientQuantity(Scanner scanner) {
+		System.out.println("Type in any ingredients that you'd like to check the quantity");
+		String checkIngredient = scanner.nextLine();
+		
+		int ingredientQuantity = this.checkQuantity(checkIngredient);
+		if (ingredientQuantity == -1) {
+			System.out.println("Invalid ingredient name");
+			return "Invalid";
+		} 
+		System.out.println(checkIngredient + ": " + ingredientQuantity);
+		return checkIngredient;
+	}
+	
+	public void vendorRestockQuantity(String ingredient, Scanner scanner) {
+		System.out.println("Would you like to restock " + ingredient + "? (y/n)");
+		String yn = scanner.nextLine();
+		if (yn.equals("y")) {
+			System.out.println("How much quantity are you restocking?");
+			int restockCount = scanner.nextInt();
+			scanner.nextLine();
+			this.incrementQuantity(ingredient, restockCount);
+			System.out.println("You have successfully restocked " + ingredient);
+		} else if (yn.equals("n")) {
+			System.out.println("You have successfully not restocked " + ingredient);
+		} else {
+			System.out.println("Please answer in y or n");
+			vendorRestockQuantity(ingredient, scanner);
+		}
+		
+		
+	}
+	
+	public Boolean vendorAskQuit(Scanner scanner) {
+		System.out.println("Please type 'q' if you'd like to quit, any other keys to check other ingredients");
+		String continueOrNot = scanner.nextLine();
+		if (!continueOrNot.equals("q")) {
+			return true;
+		} return false;
+	}
+
+	
+	
 	
 	
 }
