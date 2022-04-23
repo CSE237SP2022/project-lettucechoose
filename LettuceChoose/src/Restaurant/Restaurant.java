@@ -97,6 +97,7 @@ public class Restaurant {
 	
 	public Boolean askAndSetName(Order order, Scanner scanner) {
 		System.out.println("Please enter your name!");
+		System.out.print("> ");
 		String inputName = scanner.nextLine();
 		if (inputName.equals("q")) {
 			return false;
@@ -109,8 +110,9 @@ public class Restaurant {
 	public Boolean askAndSetIngredients(Order order, String category, Scanner scanner) {
 		Boolean isChosen = false;
 		while(!isChosen) {
-			System.out.println("Please select your " + category + ".");
+			System.out.print("Please select your " + category + ".");
 			promptOptions(category);
+			System.out.print("> ");
 			String inputIngredient = scanner.nextLine();
 			if (inputIngredient.equals("q")) {
 				resetOrder(order);
@@ -138,16 +140,17 @@ public class Restaurant {
 	
 	public void promptOptions(String category) {
 		if (category.equals("base")) {
-			System.out.println("Options: salad, soba, rice");
+			System.out.println(" Options: salad, soba, rice");
 		}else if (category.equals("protein")) {
-			System.out.println("Options: beef, chicken, tofu");
+			System.out.println(" Options: beef, chicken, tofu");
 		}else {
-			System.out.println("Options: edamame, avocado, tomato, mango");
+			System.out.println(" Options: edamame, avocado, tomato, mango");
 		}
 	}
 
 	public Boolean askForTip(Order order, Scanner scanner) {
 		System.out.println("Would you like to tip? Please enter in numbers");
+		System.out.print("> ");
 		String inputTipString = scanner.nextLine();
 		if (inputTipString.equals("q")) {
 			resetOrder(order);
@@ -187,6 +190,7 @@ public class Restaurant {
 
 	public String vendorCheckIngredientQuantity(Scanner scanner) {
 		System.out.println("Type in any ingredients to check the quantity.");
+		System.out.print("> ");
 		String checkIngredient = scanner.nextLine();
 		
 		int ingredientQuantity = this.checkQuantity(checkIngredient);
@@ -201,6 +205,7 @@ public class Restaurant {
 	
 	public void vendorRestockQuantity(String ingredient, Scanner scanner) {
 		System.out.println("Would you like to restock " + ingredient + "? (y/n)");
+		System.out.print("> ");
 		String yn = scanner.nextLine();
 		if (yn.equals("y")) {
 			System.out.println("How much quantity are you restocking?");
@@ -218,6 +223,7 @@ public class Restaurant {
 	
 	public Boolean vendorAskQuit(Scanner scanner) {
 		System.out.println("Please type 'q' to quit or any other keys to check other ingredients.");
+		System.out.print("> ");
 		String continueOrNot = scanner.nextLine();
 		if (!continueOrNot.equals("q")) {
 			return true;
