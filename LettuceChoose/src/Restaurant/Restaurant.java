@@ -69,10 +69,24 @@ public class Restaurant {
 		return false;
 	}
 	
+	public int checkQuantity(String item) {
+		if (isValidIngredient(item)) {
+			Ingredient selectedIngredient = this.getInventory().get(item);
+			return selectedIngredient.getQuantity();
+		} else {
+			return -1;
+		}
+	}
+	
 	
 	public void decrementQuantity(String item) {
 		Ingredient selectedIngredient = this.getInventory().get(item);
 		selectedIngredient.updateQuantity(-1);
+	}
+	
+	public void incrementQuantity(String item, int amount) {
+		Ingredient selectedIngredient = this.getInventory().get(item);
+		selectedIngredient.updateQuantity(amount);
 	}
 	
 	
