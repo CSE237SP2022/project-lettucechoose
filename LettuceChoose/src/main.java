@@ -16,7 +16,7 @@ public class main {
 				takeNewOrder(restaurant);
 			}
 			System.out.println("-----------------------");
-			System.out.println("Next in line please!");
+			System.out.println("  Next in line please!");
 			System.out.println("-----------------------");
 		}
 	}

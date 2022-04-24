@@ -100,6 +100,7 @@ public class Restaurant {
 		System.out.print("> ");
 		String inputName = scanner.nextLine();
 		if (inputName.equals("q")) {
+			resetOrder(order);
 			return false;
 		}
 		order.setName(inputName);
