@@ -52,7 +52,19 @@ public class Order {
 	public void setTipAmount(double tip) {
 		this.tip = tip;
 	}
-
+	
+	public String getBase() {
+		return this.base;
+	}
+	
+	public String getProtein() {
+		return this.protein;
+	}
+	
+	public List<String> getToppings() {
+		return this.toppings;
+	}
+ 
 	public double calculateSubtotal() {
 		double basePrice = restaurant.getInventory().get(base).getPrice();
 		double proteinPrice = restaurant.getInventory().get(protein).getPrice();
@@ -101,10 +113,7 @@ public class Order {
 		for (String topping : this.toppings) {
 			System.out.println(String.format("│%-10s", "     Topping: ") + String.format("%-17s│", topping));
 		}
-		
-		// System.out.println(String.format("│%-10s", " Drink: ") +
-		// String.format("%-8s", receiptDrink) + String.format("%8s │", "$"+
-		// receiptDrinkPrice));
+
 		System.out.println("│  ===========================  │");
 		System.out.println(String.format("│%-24s", "   Subtotal") + String.format("%-7s│", "$"+ this.subTotal));
 		System.out.println(String.format("│%-24s", "   Tax") + String.format("%-7s│", "$" + this.tax));
