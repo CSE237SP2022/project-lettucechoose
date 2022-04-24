@@ -95,6 +95,7 @@ public class Order {
 		System.out.println(".");
 		System.out.println("┌───────────────────────────────┐");
 		System.out.println(emptySpace);
+		printReceiptDateAndCustomer(emptySpace);
 		printReceiptSaladIngredients();
 		printReceiptPrice();
 		System.out.println("│  ===========================  │");
