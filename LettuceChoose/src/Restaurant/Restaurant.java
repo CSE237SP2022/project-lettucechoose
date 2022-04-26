@@ -14,7 +14,6 @@ public class Restaurant {
 		inventory = new HashMap<String, Ingredient>();
 		setInventory();
 	}
-	
 
 	public void setInventory() { 		// type, name, price, quantity
 		putBaseToInventory();
@@ -32,8 +31,6 @@ public class Restaurant {
 		this.inventory.put("tomato", tomato);
 		this.inventory.put("mango", mango);
 	}
-
-
 
 	private void putProteinToInventory() {
 		Ingredient beef = new Ingredient("protein", "beef", 5, 3);
@@ -53,12 +50,9 @@ public class Restaurant {
 		this.inventory.put("rice", rice);
 	}
 	
-	
-	
 	public Boolean isValidIngredient(String item) {
 		return this.getInventory().containsKey(item);
 	}
-	
 	
 	public Boolean isInStock(String item) {
 		Ingredient selectedIngredient = this.getInventory().get(item);
@@ -77,7 +71,6 @@ public class Restaurant {
 		}
 	}
 	
-	
 	public void decrementQuantity(String item) {
 		Ingredient selectedIngredient = this.getInventory().get(item);
 		selectedIngredient.updateQuantity(-1);
@@ -93,8 +86,6 @@ public class Restaurant {
 		return this.inventory;
 	}
 	
-	
-	
 	public Boolean askAndSetName(Order order, Scanner scanner) {
 		System.out.println("Please enter your name!");
 		System.out.print("> ");
@@ -106,7 +97,6 @@ public class Restaurant {
 		order.setName(inputName);
 		return true;
 	}
-
 	
 	public Boolean askAndSetIngredients(Order order, String category, Scanner scanner) {
 		Boolean isChosen = false;
@@ -162,14 +152,11 @@ public class Restaurant {
 		return true;
 	}
 	
-	
 
 	// visibility changed to public for the testing purposes
 	public boolean isInCategory(String inputIngredient, String category) {
 		return this.inventory.get(inputIngredient).getCategory().equals(category);
 	}
-
-	
 	
 	public void resetOrder(Order order) {
 		System.out.println("Canceling your order..");
@@ -186,9 +173,7 @@ public class Restaurant {
 		}
 	}
 	
-	
 	//vendor functionalities
-
 	public String vendorCheckIngredientQuantity(Scanner scanner) {
 		System.out.println("Type in any ingredients to check the quantity.");
 		System.out.print("> ");
@@ -202,7 +187,6 @@ public class Restaurant {
 		System.out.println(checkIngredient + ": " + ingredientQuantity);
 		return checkIngredient;
 	}
-	
 	
 	public void vendorRestockQuantity(String ingredient, Scanner scanner) {
 		System.out.println("Would you like to restock " + ingredient + "? (y/n)");
@@ -231,8 +215,5 @@ public class Restaurant {
 		} return false;
 	}
 
-	
-	
-	
 	
 }

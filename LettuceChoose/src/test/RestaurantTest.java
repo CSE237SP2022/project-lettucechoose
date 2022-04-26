@@ -18,10 +18,18 @@ class RestaurantTest {
 	
 	@Test
 	void testDecrementQuantity() {
-		testRestaurant.decrementQuantity("Salad");
-		Ingredient selectedIngredient = testRestaurant.getInventory().get("Salad");
+		testRestaurant.decrementQuantity("salad");
+		Ingredient selectedIngredient = testRestaurant.getInventory().get("salad");
 		int quantity = selectedIngredient.getQuantity();
 		assertEquals(2, quantity);
+	}
+	
+	@Test
+	void testIncrementQuantity() {
+		testRestaurant.incrementQuantity("salad", 3);
+		Ingredient selectedIngredient = testRestaurant.getInventory().get("salad");
+		int quantity = selectedIngredient.getQuantity();
+		assertEquals(6, quantity);
 	}
 	
 	@Test
