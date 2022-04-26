@@ -3,6 +3,25 @@
 By YJ Yoon, Kon Yoo, Tony Kwon, Jiwoo Seo
 
 
+## 3rd Iteration
+### What user stories were completed this iteration?
+* Users can now quit their orders at any time. (They can type 'q')
+* Vendors can check the quantities of ingredients and restock them.
+
+
+
+### What user stories do you intend to complete next iteration?
+* We worked so that users can quit the order at anytime - we are having progress, but did not merge into main because it's not complete yet. We will try to implement it by the next iteration.
+* Vendors will be able to restock any sold-out items.
+### Is there anything that you implemented but doesn't currently work?
+* All the functionalites should run.
+### What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)
+* At the root folder, run: <code> ./script.sh </code>
+* If you are unable to run the bash script, try <code> chmod 744 script.sh </code>
+
+* The user will be prompted to answer a set of questions to order a bowl of salad
+
+
 ## 2nd Iteration
 ### What user stories were completed this iteration?
 * Refactored structures of classes (Base, Protein, Topping) based on feedbacks and updated main() to reflect those changes.
