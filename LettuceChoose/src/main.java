@@ -25,26 +25,24 @@ public class main {
 		Scanner scanner = new Scanner(System.in);
 		Order order = new Order();
 		Boolean customerContinues = true;
-		while (customerContinues) {
-			customerContinues = restaurant.askAndSetName(order, scanner);
-			if (!customerContinues) break;
-			customerContinues = restaurant.askAndSetIngredients(order, "base", scanner);
-			if (!customerContinues) break;
-			customerContinues = restaurant.askAndSetIngredients(order, "protein", scanner);
-			if (!customerContinues) break;
-			customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
-			if (!customerContinues) break;
-			customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
-			if (!customerContinues) break;
-			customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
-			if (!customerContinues) break;
-			customerContinues = restaurant.askForTip(order, scanner);
-			if (!customerContinues) break;
-			
-			order.printReceipt();
-			
-			customerContinues = false;
-		}
+
+		customerContinues = restaurant.askAndSetName(order, scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askAndSetIngredients(order, "base", scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askAndSetIngredients(order, "protein", scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askForTip(order, scanner);
+		if (!customerContinues) return;
 		
+		order.printReceipt();
+			
+
 	}
 }
