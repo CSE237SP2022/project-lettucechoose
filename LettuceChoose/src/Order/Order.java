@@ -64,7 +64,19 @@ public class Order {
 	public List<String> getToppings() {
 		return this.toppings;
 	}
- 
+
+	public void printReceipt() {
+		calculateSubtotal();
+		calculateTax();
+		calculateTotal();
+		
+		printReceiptTopTemplate();
+		printReceiptDateAndCustomer();
+		printReceiptSaladIngredients();
+		printReceiptPrice();
+		printReceiptBottomTemplate();
+	}
+	
 	public double calculateSubtotal() {
 		double basePrice = restaurant.getInventory().get(base).getPrice();
 		double proteinPrice = restaurant.getInventory().get(protein).getPrice();
@@ -86,35 +98,31 @@ public class Order {
 		return this.finalTotal;
 	}
 
-	public void printReceipt() {
-		calculateSubtotal();
-		calculateTax();
-		calculateTotal();
-		String emptySpace = "│                               │";
+	private void printReceiptTopTemplate() {
 		System.out.println(".");
 		System.out.println(".");
 		System.out.println("┌───────────────────────────────┐");
-		System.out.println(emptySpace);
-		printReceiptDateAndCustomer(emptySpace);
-		printReceiptSaladIngredients();
-		printReceiptPrice();
+		System.out.println(printReceiptEmptySpace());
+	}
+	
+	private void printReceiptBottomTemplate() {
 		System.out.println("│  ===========================  │");
-		System.out.println(emptySpace);
+		System.out.println(printReceiptEmptySpace());
 		System.out.println("│       T h a n k  y o u        │");
 		System.out.println("└───────────────────────────────┘");
 	}
-	
-	public void printReceiptDateAndCustomer(String emptySpace) {
+
+	private void printReceiptDateAndCustomer() {
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime currentTime = LocalDateTime.now();
 		System.out.println("│         LettuceChoose         │");
 		System.out.println("│      " + dateTimeFormat.format(currentTime) + "      │");
-		System.out.println(emptySpace);
+		System.out.println(printReceiptEmptySpace());
 		System.out.println(String.format("│%-8s", "   Order for: ") + String.format("%-17s│", this.name));
-		System.out.println(emptySpace);
+		System.out.println(printReceiptEmptySpace());
 	}
 	
-	public void printReceiptSaladIngredients() {
+	private void printReceiptSaladIngredients() {
 		System.out.println(String.format("│%-10s", "     Base: ") + String.format("%-20s│", this.base));
 		System.out.println(String.format("│%-10s", "     Protein: ") + String.format("%-17s│", this.protein));
 		for (String topping : this.toppings) {
@@ -122,11 +130,15 @@ public class Order {
 		}
 	}
 	
-	public void printReceiptPrice() {
+	private void printReceiptPrice() {
 		System.out.println(String.format("│%-24s", "   Subtotal") + String.format("%-7s│", "$"+ this.subTotal));
 		System.out.println(String.format("│%-24s", "   Tax") + String.format("%-7s│", "$" + this.tax));
 		System.out.println(String.format("│%-24s", "   Tip") + String.format("%-7s│", "$" + this.tip));
 		System.out.println(String.format("│%-24s", "   Total") + String.format("%-7s│", "$" + this.finalTotal));
 	}
-
+	
+	private String printReceiptEmptySpace() {
+		String emptySpace = "│                               │";
+		return emptySpace;
+	}
 }

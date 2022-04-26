@@ -56,9 +56,9 @@ public class main {
 
 	private static Boolean checkIfVendor() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Please press ENTER to start!");
+		System.out.println("Please press ENTER to start! If you are vendor, please type [vendor].");
 		String vendorPasscode = scanner.nextLine();
-		return (vendorPasscode.equals("vendor1234"));
+		return (vendorPasscode.equals("vendor"));
 	}
 	
 	
