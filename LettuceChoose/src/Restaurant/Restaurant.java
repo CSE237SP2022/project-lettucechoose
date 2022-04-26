@@ -187,6 +187,27 @@ public class Restaurant {
 	
 	
 	//vendor functionalities
+	public Boolean checkIfVendor() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please press ENTER to start! If you are vendor, please type [vendor].");
+		String vendorPasscode = scanner.nextLine();
+		return (vendorPasscode.equals("vendor"));
+	}
+	
+	
+	public void vendorFunctionalities() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("====Vendor Page====");
+
+		Boolean vendorContinue = true;
+		while(vendorContinue) {
+			String ingredient = this.vendorCheckIngredientQuantity(scanner);
+			if (!ingredient.equals("Invalid")) {
+				this.vendorRestockQuantity(ingredient, scanner);
+			} 		
+			vendorContinue = this.vendorAskQuit(scanner);
+		}
+	}
 
 	public String vendorCheckIngredientQuantity(Scanner scanner) {
 		System.out.println("Type in any ingredients to check the quantity.");
