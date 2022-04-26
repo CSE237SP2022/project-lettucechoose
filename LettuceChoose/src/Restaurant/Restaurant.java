@@ -99,10 +99,7 @@ public class Restaurant {
 		System.out.println("Please enter your name!");
 		System.out.print("> ");
 		String inputName = scanner.nextLine();
-		if (inputName.equals("q")) {
-			resetOrder(order);
-			return false;
-		}
+		if (checkUserQuits(inputName, order) == false) return false;  
 		order.setName(inputName);
 		return true;
 	}
@@ -115,10 +112,7 @@ public class Restaurant {
 			promptOptions(category);
 			System.out.print("> ");
 			String inputIngredient = scanner.nextLine();
-			if (inputIngredient.equals("q")) {
-				resetOrder(order);
-				return false;
-			}
+			if (checkUserQuits(inputIngredient, order) == false) return false;  
 			inputIngredient = inputIngredient.toLowerCase();
 			if (isValidIngredient(inputIngredient) && isInStock(inputIngredient) && isInCategory(inputIngredient, category)) {
 				decrementQuantity(inputIngredient);
@@ -153,10 +147,7 @@ public class Restaurant {
 		System.out.println("Would you like to tip? Please enter in numbers");
 		System.out.print("> ");
 		String inputTipString = scanner.nextLine();
-		if (inputTipString.equals("q")) {
-			resetOrder(order);
-			return false;
-		}
+		if (checkUserQuits(inputTipString, order) == false) return false;  
 		double inputTip = Double.parseDouble(inputTipString);
 		order.setTipAmount(inputTip);
 		return true;
@@ -169,7 +160,13 @@ public class Restaurant {
 		return this.inventory.get(inputIngredient).getCategory().equals(category);
 	}
 
-	
+	public Boolean checkUserQuits(String inputPrompt, Order order) {
+		if (inputPrompt.equals("q")) {
+			resetOrder(order);
+			return false;
+		}
+		return true;
+	}
 	
 	public void resetOrder(Order order) {
 		System.out.println("Canceling your order..");
@@ -187,13 +184,15 @@ public class Restaurant {
 	}
 	
 	
+	
+	
 	//vendor functionalities
 
 	public String vendorCheckIngredientQuantity(Scanner scanner) {
 		System.out.println("Type in any ingredients to check the quantity.");
 		System.out.print("> ");
 		String checkIngredient = scanner.nextLine();
-		
+		checkIngredient = checkIngredient.toLowerCase();
 		int ingredientQuantity = this.checkQuantity(checkIngredient);
 		if (ingredientQuantity == -1) {
 			System.out.println("Invalid ingredient name");
@@ -207,14 +206,14 @@ public class Restaurant {
 	public void vendorRestockQuantity(String ingredient, Scanner scanner) {
 		System.out.println("Would you like to restock " + ingredient + "? (y/n)");
 		System.out.print("> ");
-		String yn = scanner.nextLine();
-		if (yn.equals("y")) {
+		String restockResponse = scanner.nextLine();
+		if (restockResponse.equals("y")) {
 			System.out.println("How much quantity are you restocking?");
 			int restockCount = scanner.nextInt();
 			scanner.nextLine();
 			this.incrementQuantity(ingredient, restockCount);
 			System.out.println("You have successfully restocked " + ingredient + ".");
-		} else if (yn.equals("n")) {
+		} else if (restockResponse.equals("n")) {
 			System.out.println("You have successfully not restocked " + ingredient + ".");
 		} else {
 			System.out.println("Please answer in 'y' or 'n'.");
