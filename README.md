@@ -2,6 +2,23 @@
    
 By YJ Yoon, Kon Yoo, Jiwoo Seo
 
+## Users can..
+1. Order a customized salad.
+   - Choose base, protein, toppings (upto 3).
+2. Add some tips to their orders.
+3. Quit the order at any time.
+4. Make orders after orders.
+5. Get a virtual receipt.
+6. If the user is a vendor, s/he can restock sold-out ingredients. 
+   - Initial quantities of ingredients are set to 3.
+
+## To run the program..
+* At the root folder, run: <code> ./script.sh </code>
+* If you are unable to run the bash script, try <code> chmod 744 script.sh </code>
+* The user will be prompted to answer a set of questions to order a bowl of salad
+* To quit the program, press <code> ctrl+c </code>
+* To quit the order, press 'q'
+      
 
 ## 3rd Iteration
 ### What user stories were completed this iteration?
