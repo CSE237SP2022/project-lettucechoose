@@ -1,18 +1,15 @@
 # Lettuce Choose - a kiosk app for customized salad!
    
-By YJ Yoon, Kon Yoo, Tony Kwon, Jiwoo Seo
+By YJ Yoon, Kon Yoo, Jiwoo Seo
 
 
 ## 3rd Iteration
 ### What user stories were completed this iteration?
 * Users can now quit their orders at any time. (They can type 'q')
 * Vendors can check the quantities of ingredients and restock them.
+   * At the start of the order, vendors can type 'vendor' to log-in to vendor page. 
+   * We first implemented this feature without informing the non-vendor users (customers), but for the reviewers, we decided to make it more public.
 
-
-
-### What user stories do you intend to complete next iteration?
-* We worked so that users can quit the order at anytime - we are having progress, but did not merge into main because it's not complete yet. We will try to implement it by the next iteration.
-* Vendors will be able to restock any sold-out items.
 ### Is there anything that you implemented but doesn't currently work?
 * All the functionalites should run.
 ### What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)
@@ -36,13 +33,6 @@ By YJ Yoon, Kon Yoo, Tony Kwon, Jiwoo Seo
 * Vendors will be able to restock any sold-out items.
 ### Is there anything that you implemented but doesn't currently work?
 * As mentioned above, we are trying to allow users to quit the order or the program.
-### What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)
-* At the root folder, run: <code> ./script.sh </code>
-* If you are unable to run the bash script, try <code> chmod 744 script.sh </code>
-
-* The user will be prompted to answer a set of questions to order a bowl of salad
-
-
 
 
 ## 1st Iteration
@@ -63,11 +53,3 @@ By YJ Yoon, Kon Yoo, Tony Kwon, Jiwoo Seo
 ### Is there anything that you implemented but doesn't currently work?
 * We are trying to make our code as neat as possible - So some concerns arise in constructing classes and inner-classes.
 
-### What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)
-* At the root folder, run: <code> ./script.sh </code>
-* If you are unable to run the bash script, try <code> chmod 744 script.sh </code>
-
-* The user will be prompted to answer a set of questions to order a bowl of salad
-* Below is an screenshot of a sample order
-<img width="614" alt="image" src="https://user-images.githubusercontent.com/43775491/160733696-0236273a-29d8-4311-9340-cb2bcd286f40.png">
-<img width="251" alt="image" src="https://user-images.githubusercontent.com/43775491/160733715-89eb8940-eb3b-42bc-8366-72db8e6d79b6.png">
