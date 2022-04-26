@@ -230,6 +230,7 @@ public class Restaurant {
 		String restockResponse = scanner.nextLine();
 		if (restockResponse.equals("y")) {
 			System.out.println("How much quantity are you restocking?");
+			System.out.print("> ");
 			int restockCount = scanner.nextInt();
 			scanner.nextLine();
 			this.incrementQuantity(ingredient, restockCount);
