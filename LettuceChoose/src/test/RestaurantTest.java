@@ -33,6 +33,27 @@ class RestaurantTest {
 	}
 	
 	@Test
+	void testInStock() {
+		assertEquals(testRestaurant.isInStock("salad"), true);
+		for(int i = 0; i <= 2; i++) {
+			testRestaurant.decrementQuantity("salad");
+		}
+		assertEquals(testRestaurant.isInStock("salad"), false);
+	}
+	
+	@Test
+	void testCheckQuantity() {
+		assertEquals(testRestaurant.checkQuantity("salad"), 3);
+		assertEquals(testRestaurant.checkQuantity("saladdddd"), -1);
+	}
+	
+	@Test
+	void testResetOrder() {
+		testRestaurant.decrementQuantity("salad");
+		
+	}
+	
+	@Test
 	void testCategory() {
 		Boolean testCategory = testRestaurant.isInCategory("chicken", "base");
 		assertEquals(false, testCategory);

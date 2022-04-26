@@ -41,7 +41,7 @@ public class Restaurant {
 		this.inventory.put("tofu", tofu);
 	}
 	
-	public void putBaseToInventory() {
+	private void putBaseToInventory() {
 		Ingredient salad = new Ingredient("base", "salad", 3.5, 3);
 		Ingredient soba = new Ingredient("base", "soba", 4, 3);
 		Ingredient rice = new Ingredient("base", "rice", 3.5, 3);
