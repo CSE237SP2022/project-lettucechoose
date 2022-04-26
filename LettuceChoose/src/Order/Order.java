@@ -104,13 +104,6 @@ public class Order {
 		System.out.println("┌───────────────────────────────┐");
 		System.out.println(printReceiptEmptySpace());
 	}
-	
-	private void printReceiptBottomTemplate() {
-		System.out.println("│  ===========================  │");
-		System.out.println(printReceiptEmptySpace());
-		System.out.println("│       T h a n k  y o u        │");
-		System.out.println("└───────────────────────────────┘");
-	}
 
 	private void printReceiptDateAndCustomer() {
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -135,6 +128,13 @@ public class Order {
 		System.out.println(String.format("│%-24s", "   Tax") + String.format("%-7s│", "$" + this.tax));
 		System.out.println(String.format("│%-24s", "   Tip") + String.format("%-7s│", "$" + this.tip));
 		System.out.println(String.format("│%-24s", "   Total") + String.format("%-7s│", "$" + this.finalTotal));
+	}
+	
+	private void printReceiptBottomTemplate() {
+		System.out.println("│  ===========================  │");
+		System.out.println(printReceiptEmptySpace());
+		System.out.println("│       T h a n k  y o u        │");
+		System.out.println("└───────────────────────────────┘");
 	}
 	
 	private String printReceiptEmptySpace() {
