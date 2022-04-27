@@ -33,7 +33,7 @@ class RestaurantTest {
 	}
 	
 	@Test
-	void testInStock() {
+	void testInStockWithExistingItem() {
 		assertEquals(testRestaurant.isInStock("salad"), true);
 		for(int i = 0; i <= 2; i++) {
 			testRestaurant.decrementQuantity("salad");
@@ -49,6 +49,12 @@ class RestaurantTest {
 		assertEquals(testRestaurant.checkQuantity("saladdddd"), -1);
 		assertEquals(testRestaurant.checkQuantity("CHicken"), -1);
 		assertEquals(testRestaurant.checkQuantity("manGO"), -1);
+	}
+	
+	@Test
+	void testCheckQuantityWithDecrement() {
+		testRestaurant.decrementQuantity("salad");
+		assertEquals(testRestaurant.checkQuantity("salad"), 2);
 	}
 	
 	@Test
