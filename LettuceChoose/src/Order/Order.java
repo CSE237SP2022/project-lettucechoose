@@ -26,13 +26,16 @@ public class Order {
 	double tax;
 	double subTotal;
 	double finalTotal;
-
+	
+	/**
+	 * Constructor for Order class
+	 * @param restaurant
+	 */
 	public Order(Restaurant restaurant) {
 		this.restaurant = restaurant;
 		toppings = new ArrayList<String>();
 	}
 
-	
 	public void setName(String nameInput) {
 		this.name = nameInput;
 	}
@@ -49,6 +52,10 @@ public class Order {
 		this.toppings.add(toppingInput);
 	}
 
+	/**
+	 * Set tip for the order. If tip input is negative, tip amount is converted into positive value. 
+	 * @param tip
+	 */
 	public void setTipAmount(double tip) {
 		if (tip < 0) {
 			tip = tip*-1;
@@ -68,6 +75,9 @@ public class Order {
 		return this.toppings;
 	}
 	
+	/**
+	 * calculate price based on ingredient chosen by user. 
+	 */
 	public void calculateIngredientPrice() {
 		basePrice = restaurant.getInventory().get(base).getPrice();
 		proteinPrice = restaurant.getInventory().get(protein).getPrice();
@@ -81,6 +91,9 @@ public class Order {
 		return restaurant.getInventory().get(topping).getPrice();
 	}
 
+	/**
+	 * Call functions to calculate price and print receipt of the order
+	 */
 	public void printReceipt() {
 		calculateSubtotal();
 		calculateTax();
@@ -93,12 +106,20 @@ public class Order {
 		printReceiptBottomTemplate();
 	}
 	
+	/**
+	 * Calculate subtotal price of the order
+	 * @return subtotal amount
+	 */
 	public double calculateSubtotal() {
 		calculateIngredientPrice();
 		this.subTotal = basePrice + proteinPrice + toppingPrice;
 		return this.subTotal;
 	}
 
+	/**
+	 * Calculate tax based on the price of the order
+	 * @return tax amount
+	 */
 	public double calculateTax() {
 		this.tax = Math.round(this.subTotal * taxRate * 100.0) / 100.0;
 		return this.tax;
@@ -109,6 +130,9 @@ public class Order {
 		return this.finalTotal;
 	}
 
+	/**
+	 * Print top part of the receipt form
+	 */
 	private void printReceiptTopTemplate() {
 		System.out.println(".");
 		System.out.println(".");
@@ -116,6 +140,9 @@ public class Order {
 		System.out.println(printReceiptEmptySpace());
 	}
 
+	/**
+	 * Print order date and customer information
+	 */
 	private void printReceiptDateAndCustomer() {
 		DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime currentTime = LocalDateTime.now();
@@ -126,6 +153,9 @@ public class Order {
 		System.out.println(printReceiptEmptySpace());
 	}
 	
+	/**
+	 * Print user's menu with price
+	 */
 	private void printReceiptSaladIngredients() {
 		calculateIngredientPrice();
 		System.out.println(String.format("│%-22s", "   Base: " + this.base) + String.format("%-9s│", "$" + this.basePrice ));
@@ -136,6 +166,9 @@ public class Order {
 		System.out.println("│  ===========================  │");
 	}
 	
+	/**
+	 * Print information about price of user's order
+	 */
 	private void printReceiptPrice() {
 		System.out.println(String.format("│%-22s", "   Subtotal") + String.format("%-9s│", "$"+ this.subTotal));
 		System.out.println(String.format("│%-22s", "   Tax") + String.format("%-9s│", "$" + this.tax));
@@ -143,12 +176,19 @@ public class Order {
 		System.out.println(String.format("│%-22s", "   Total") + String.format("%-9s│", "$" + this.finalTotal));
 	}
 	
+	/**
+	 * Print bottom part of the receipt
+	 */
 	private void printReceiptBottomTemplate() {
 		System.out.println(printReceiptEmptySpace());
 		System.out.println("│       T h a n k  y o u        │");
 		System.out.println("└───────────────────────────────┘");
 	}
 	
+	/**
+	 * Print empty row for the receipt
+	 * @return empty row template
+	 */
 	private String printReceiptEmptySpace() {
 		String emptySpace = "│                               │";
 		return emptySpace;
