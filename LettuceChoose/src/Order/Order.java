@@ -64,6 +64,19 @@ public class Order {
 	public List<String> getToppings() {
 		return this.toppings;
 	}
+	
+	public void calculateIngredientPrice() {
+		basePrice = restaurant.getInventory().get(base).getPrice();
+		proteinPrice = restaurant.getInventory().get(protein).getPrice();
+		toppingPrice = 0;
+		for (String topping : this.toppings) {
+			toppingPrice += restaurant.getInventory().get(topping).getPrice();
+		}
+	}
+	
+	public double getEachToppingPrice(String topping) {
+		return restaurant.getInventory().get(topping).getPrice();
+	}
 
 	public void printReceipt() {
 		calculateSubtotal();
@@ -78,12 +91,7 @@ public class Order {
 	}
 	
 	public double calculateSubtotal() {
-		double basePrice = restaurant.getInventory().get(base).getPrice();
-		double proteinPrice = restaurant.getInventory().get(protein).getPrice();
-		double toppingPrice = 0;
-		for (String topping : this.toppings) {
-			toppingPrice += restaurant.getInventory().get(topping).getPrice();
-		}
+		calculateIngredientPrice();
 		this.subTotal = basePrice + proteinPrice + toppingPrice;
 		return this.subTotal;
 	}
@@ -116,22 +124,23 @@ public class Order {
 	}
 	
 	private void printReceiptSaladIngredients() {
-		System.out.println(String.format("│%-10s", "     Base: ") + String.format("%-20s│", this.base));
-		System.out.println(String.format("│%-10s", "     Protein: ") + String.format("%-17s│", this.protein));
+		calculateIngredientPrice();
+		System.out.println(String.format("│%-22s", "   Base: " + this.base) + String.format("%-9s│", "$" + this.basePrice ));
+		System.out.println(String.format("│%-22s", "   Protein: " + this.protein) + String.format("%-9s│", "$" + this.proteinPrice));
 		for (String topping : this.toppings) {
-			System.out.println(String.format("│%-10s", "     Topping: ") + String.format("%-17s│", topping));
+			System.out.println(String.format("│%-22s", "   Topping: " + topping) + String.format("%-9s│", "$" + getEachToppingPrice(topping)));
 		}
+		System.out.println("│  ===========================  │");
 	}
 	
 	private void printReceiptPrice() {
-		System.out.println(String.format("│%-24s", "   Subtotal") + String.format("%-7s│", "$"+ this.subTotal));
-		System.out.println(String.format("│%-24s", "   Tax") + String.format("%-7s│", "$" + this.tax));
-		System.out.println(String.format("│%-24s", "   Tip") + String.format("%-7s│", "$" + this.tip));
-		System.out.println(String.format("│%-24s", "   Total") + String.format("%-7s│", "$" + this.finalTotal));
+		System.out.println(String.format("│%-22s", "   Subtotal") + String.format("%-9s│", "$"+ this.subTotal));
+		System.out.println(String.format("│%-22s", "   Tax") + String.format("%-9s│", "$" + this.tax));
+		System.out.println(String.format("│%-22s", "   Tip") + String.format("%-9s│", "$" + this.tip));
+		System.out.println(String.format("│%-22s", "   Total") + String.format("%-9s│", "$" + this.finalTotal));
 	}
 	
 	private void printReceiptBottomTemplate() {
-		System.out.println("│  ===========================  │");
 		System.out.println(printReceiptEmptySpace());
 		System.out.println("│       T h a n k  y o u        │");
 		System.out.println("└───────────────────────────────┘");

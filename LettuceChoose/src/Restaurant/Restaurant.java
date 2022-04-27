@@ -127,7 +127,7 @@ public class Restaurant {
 			System.out.println(" Options: beef, chicken, tofu");
 		}else {
 			int index = order.getToppings().size() + 1;
-			System.out.println(" You'll choose 3 toppings. Options: edamame, avocado, tomato, mango (" + index + "/3)");
+			System.out.println(" You'll choose 3 toppings (" + index + "/3). Options: edamame, avocado, tomato, mango ");
 		}
 	}
 
@@ -140,9 +140,14 @@ public class Restaurant {
 			if (checkUserQuits(inputTipString, order) == false) return false;  
 			try {
 				double inputTip = Double.parseDouble(inputTipString);
-				order.setTipAmount(inputTip);
-				isChosen = true;
-				return true;
+				if (inputTip >= 0) {
+					order.setTipAmount(inputTip);
+					isChosen = true;
+					return true;
+				} else {
+					System.out.println("Please type in a positive numeric value.");
+				}
+				
 			} catch (NumberFormatException e) {
 			    System.out.println("Please type in a numeric value for a tip.");
 			}
