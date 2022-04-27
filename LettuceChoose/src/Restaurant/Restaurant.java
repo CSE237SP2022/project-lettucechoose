@@ -50,17 +50,32 @@ public class Restaurant {
 		this.inventory.put("rice", rice);
 	}
 	
+	/*
+	 * checks if the input string is a valid type of Ingredient
+	 * @param user-input string of ingredient
+	 * @return false if input is invalid
+	 */
+	
 	public Boolean isValidIngredient(String item) {
 		return this.getInventory().containsKey(item);
 	}
 	
+	/*
+	 * checks if the item is in stock by calling checkQuantity()
+	 * @param user-input string of ingredient
+	 * @return boolean value of quantity being greater than 0
+	 */
+	
 	public Boolean isInStock(String item) {
 		Ingredient selectedIngredient = this.getInventory().get(item);
-		if (selectedIngredient.getQuantity() > 0) {
-			return true;
-		}
-		return false;
+		return (selectedIngredient.getQuantity() > 0);
 	}
+	
+	/*
+	 * checks if the item is available by checking its quantity
+	 * @param user-input string of ingredient
+	 * @return int value of quantity
+	 */
 	
 	public int checkQuantity(String item) {
 		if (isValidIngredient(item)) {
@@ -99,7 +114,7 @@ public class Restaurant {
 		Boolean isChosen = false;
 		while(!isChosen) {
 			System.out.print("Please select your " + category + ".");
-			promptOptions(category);
+			promptOptions(category, order);
 			System.out.print("> ");
 			String inputIngredient = scanner.nextLine();
 			if (checkUserQuits(inputIngredient, order) == false) return false;  
@@ -123,31 +138,43 @@ public class Restaurant {
 		return true;
 	}
 	
-	public void promptOptions(String category) {
+	public void promptOptions(String category, Order order) {
 		if (category.equals("base")) {
 			System.out.println(" Options: salad, soba, rice");
 		}else if (category.equals("protein")) {
 			System.out.println(" Options: beef, chicken, tofu");
 		}else {
-			System.out.println(" Options: edamame, avocado, tomato, mango");
+			int index = order.getToppings().size() + 1;
+			System.out.println(" You'll choose 3 toppings. Options: edamame, avocado, tomato, mango (" + index + "/3)");
 		}
 	}
 
 	public Boolean askForTip(Order order, Scanner scanner) {
-		System.out.println("Would you like to tip? Please enter in numbers");
-		System.out.print("> ");
-		String inputTipString = scanner.nextLine();
-		if (checkUserQuits(inputTipString, order) == false) return false;  
-		double inputTip = Double.parseDouble(inputTipString);
-		order.setTipAmount(inputTip);
+		Boolean isChosen = false;
+		while (!isChosen) {
+			System.out.println("Would you like to tip? Please enter in numbers. If not, please enter '0'");
+			System.out.print("> ");
+			String inputTipString = scanner.nextLine();
+			if (checkUserQuits(inputTipString, order) == false) return false;  
+			try {
+				double inputTip = Double.parseDouble(inputTipString);
+				order.setTipAmount(inputTip);
+				isChosen = true;
+				return true;
+			} catch (NumberFormatException e) {
+			    System.out.println("Please type in a numeric value for a tip.");
+			}
+		}
 		return true;
+		
+		
 	}
-	
 
 	// visibility changed to public for the testing purposes
-	public boolean isInCategory(String inputIngredient, String category) {
+	public Boolean isInCategory(String inputIngredient, String category) {
 		return this.inventory.get(inputIngredient).getCategory().equals(category);
 	}
+
   
 	public Boolean checkUserQuits(String inputPrompt, Order order) {
 		if (inputPrompt.equals("q")) {
@@ -156,6 +183,12 @@ public class Restaurant {
 		}
 		return true;
 	}
+	
+	/*
+	 * resets the current order on request
+	 * @param the current order
+	 * 
+	 */
 	
 	public void resetOrder(Order order) {
 		System.out.println("Canceling your order..");
