@@ -18,10 +18,39 @@ class RestaurantTest {
 	
 	@Test
 	void testDecrementQuantity() {
-		testRestaurant.decrementQuantity("Salad");
-		Ingredient selectedIngredient = testRestaurant.getInventory().get("Salad");
+		testRestaurant.decrementQuantity("salad");
+		Ingredient selectedIngredient = testRestaurant.getInventory().get("salad");
 		int quantity = selectedIngredient.getQuantity();
 		assertEquals(2, quantity);
+	}
+	
+	@Test
+	void testIncrementQuantity() {
+		testRestaurant.incrementQuantity("salad", 3);
+		Ingredient selectedIngredient = testRestaurant.getInventory().get("salad");
+		int quantity = selectedIngredient.getQuantity();
+		assertEquals(6, quantity);
+	}
+	
+	@Test
+	void testInStock() {
+		assertEquals(testRestaurant.isInStock("salad"), true);
+		for(int i = 0; i <= 2; i++) {
+			testRestaurant.decrementQuantity("salad");
+		}
+		assertEquals(testRestaurant.isInStock("salad"), false);
+	}
+	
+	@Test
+	void testCheckQuantity() {
+		assertEquals(testRestaurant.checkQuantity("salad"), 3);
+		assertEquals(testRestaurant.checkQuantity("saladdddd"), -1);
+	}
+	
+	@Test
+	void testResetOrder() {
+		testRestaurant.decrementQuantity("salad");
+		
 	}
 	
 	@Test
