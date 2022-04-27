@@ -15,7 +15,7 @@ public class Restaurant {
 		setInventory();
 	}
 
-	public void setInventory() { 		// type, name, price, quantity
+	public void setInventory() { 		// category, name, price, quantity
 		putBaseToInventory();
 		putProteinToInventory();
 		putToppingToInventory();
@@ -120,14 +120,7 @@ public class Restaurant {
 			if (checkUserQuits(inputIngredient, order) == false) return false;  
 			inputIngredient = inputIngredient.toLowerCase();
 			if (isValidIngredient(inputIngredient) && isInStock(inputIngredient) && isInCategory(inputIngredient, category)) {
-				decrementQuantity(inputIngredient);
-				if (category.equals("base")) {
-					order.setBase(inputIngredient);
-				}else if (category.equals("protein")) {
-					order.setProtein(inputIngredient);
-				}else if (category.equals("topping")) {
-					order.setTopping(inputIngredient);
-				}
+				setOrder(order, category, inputIngredient);
 				isChosen = true;
 			}else if (isValidIngredient(inputIngredient) && !isInStock(inputIngredient) && isInCategory(inputIngredient, category)) {
 				System.out.println("Sorry, " + inputIngredient + " is sold out. Please select from other options.");
@@ -136,6 +129,17 @@ public class Restaurant {
 			}
 		}
 		return true;
+	}
+
+	private void setOrder(Order order, String category, String inputIngredient) {
+		decrementQuantity(inputIngredient);
+		if (category.equals("base")) {
+			order.setBase(inputIngredient);
+		}else if (category.equals("protein")) {
+			order.setProtein(inputIngredient);
+		}else if (category.equals("topping")) {
+			order.setTopping(inputIngredient);
+		}
 	}
 	
 	public void promptOptions(String category, Order order) {
@@ -171,8 +175,6 @@ public class Restaurant {
 			}
 		}
 		return true;
-		
-		
 	}
 
 	// visibility changed to public for the testing purposes
@@ -209,6 +211,9 @@ public class Restaurant {
 			incrementQuantity(topping, 1);
 		}
 	}
+	
+	
+	
 	
 	//vendor functionalities
 	public Boolean checkIfVendor() {
