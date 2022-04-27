@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 
 import Order.Order;
+import Restaurant.Restaurant;
+
 import org.junit.jupiter.api.Test;
 
 
@@ -14,7 +16,8 @@ class OrderTest {
 	
 	@BeforeEach
 	void setup() {
-		order = new Order();
+		Restaurant restaurant = new Restaurant();
+		order = new Order(restaurant);
 		order.setBase("salad");
 		order.setProtein("beef");
 		order.setTopping("edamame");

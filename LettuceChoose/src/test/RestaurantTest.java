@@ -50,15 +50,24 @@ class RestaurantTest {
 	@Test
 	void testResetOrder() {
 		testRestaurant.decrementQuantity("salad");
-		
 	}
 	
 	@Test
-	void testCategory() {
+	void testCategoryWithNonExistingItem() {
 		Boolean testCategory = testRestaurant.isInCategory("chicken", "base");
 		assertEquals(false, testCategory);
 	}
 	
+	@Test
+	void testCategoryWithExistingItem() {
+		Boolean testCategory = testRestaurant.isInCategory("salad", "base");
+		assertEquals(true, testCategory);
+	}
 	
+	@Test
+	void testCategoryWithNonExistingCategory() {
+		Boolean testCategory = testRestaurant.isInCategory("salad", "baseee");
+		assertEquals(false, testCategory);
+	}
 
 }

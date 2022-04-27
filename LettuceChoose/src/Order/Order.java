@@ -27,8 +27,8 @@ public class Order {
 	double subTotal;
 	double finalTotal;
 
-	public Order() {
-		restaurant = new Restaurant();
+	public Order(Restaurant restaurant) {
+		this.restaurant = restaurant;
 		toppings = new ArrayList<String>();
 	}
 

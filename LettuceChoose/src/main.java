@@ -23,7 +23,7 @@ public class main {
 	
 	private static void takeNewOrder(Restaurant restaurant) {
 		Scanner scanner = new Scanner(System.in);
-		Order order = new Order();
+		Order order = new Order(restaurant);
 		Boolean customerContinues = true;
 
 		customerContinues = restaurant.askAndSetName(order, scanner);
