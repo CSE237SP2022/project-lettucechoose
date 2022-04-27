@@ -71,7 +71,6 @@ class RestaurantTest {
 	// the quantity of the base shouldn't be decremented
 	@Test
 	void testCancelOrder() {
-		
 		int initialQuantity = testRestaurant.checkQuantity("salad");
 		testRestaurant.setOrder(testOrder, "base", "salad");
 		testRestaurant.resetOrder(testOrder);
