@@ -62,10 +62,7 @@ public class Restaurant {
 	
 	public Boolean isInStock(String item) {
 		Ingredient selectedIngredient = this.getInventory().get(item);
-		if (selectedIngredient.getQuantity() > 0) {
-			return true;
-		}
-		return false;
+		return (selectedIngredient.getQuantity() > 0);
 	}
 	
 	public int checkQuantity(String item) {
@@ -109,7 +106,7 @@ public class Restaurant {
 		Boolean isChosen = false;
 		while(!isChosen) {
 			System.out.print("Please select your " + category + ".");
-			promptOptions(category);
+			promptOptions(category, order);
 			System.out.print("> ");
 			String inputIngredient = scanner.nextLine();
 			if (checkUserQuits(inputIngredient, order) == false) return false;  
@@ -133,24 +130,36 @@ public class Restaurant {
 		return true;
 	}
 	
-	public void promptOptions(String category) {
+	public void promptOptions(String category, Order order) {
 		if (category.equals("base")) {
 			System.out.println(" Options: salad, soba, rice");
 		}else if (category.equals("protein")) {
 			System.out.println(" Options: beef, chicken, tofu");
 		}else {
-			System.out.println(" Options: edamame, avocado, tomato, mango");
+			int index = order.getToppings().size() + 1;
+			System.out.println(" You'll choose 3 toppings. Options: edamame, avocado, tomato, mango (" + index + "/3)");
 		}
 	}
 
 	public Boolean askForTip(Order order, Scanner scanner) {
-		System.out.println("Would you like to tip? Please enter in numbers");
-		System.out.print("> ");
-		String inputTipString = scanner.nextLine();
-		if (checkUserQuits(inputTipString, order) == false) return false;  
-		double inputTip = Double.parseDouble(inputTipString);
-		order.setTipAmount(inputTip);
+		Boolean isChosen = false;
+		while (!isChosen) {
+			System.out.println("Would you like to tip? Please enter in numbers. If not, please enter '0'");
+			System.out.print("> ");
+			String inputTipString = scanner.nextLine();
+			if (checkUserQuits(inputTipString, order) == false) return false;  
+			try {
+				double inputTip = Double.parseDouble(inputTipString);
+				order.setTipAmount(inputTip);
+				isChosen = true;
+				return true;
+			} catch (NumberFormatException e) {
+			    System.out.println("Please type in a numeric value for a tip.");
+			}
+		}
 		return true;
+		
+		
 	}
 	
 	
@@ -160,6 +169,7 @@ public class Restaurant {
 		return this.inventory.get(inputIngredient).getCategory().equals(category);
 	}
 
+	
 	public Boolean checkUserQuits(String inputPrompt, Order order) {
 		if (inputPrompt.equals("q")) {
 			resetOrder(order);
