@@ -10,8 +10,8 @@ public class main {
 		while(true) {
 			System.out.println("Hi, Welcome to LettuceChoose!");
 			
-			if (checkIfVendor()) {
-				vendorFunctionalities(restaurant);
+			if (restaurant.checkIfVendor()) {
+				restaurant.vendorFunctionalities();
 			} else {
 				takeNewOrder(restaurant);
 			}
@@ -25,54 +25,24 @@ public class main {
 		Scanner scanner = new Scanner(System.in);
 		Order order = new Order();
 		Boolean customerContinues = true;
-		while (customerContinues) {
-			customerContinues = restaurant.askAndSetName(order, scanner);
-			if (!customerContinues) break;
-			
-			customerContinues = restaurant.askAndSetIngredients(order, "base", scanner);
-			if (!customerContinues) break;
-			
-			customerContinues = restaurant.askAndSetIngredients(order, "protein", scanner);
-			if (!customerContinues) break;
-			
-			customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
-			if (!customerContinues) break;
-			
-			customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
-			if (!customerContinues) break;
-			
-			customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
-			if (!customerContinues) break;
-			
-			customerContinues = restaurant.askForTip(order, scanner);
-			if (!customerContinues) break;
-			
-			order.printReceipt();
-			
-			customerContinues = false;
-		}
+
+		customerContinues = restaurant.askAndSetName(order, scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askAndSetIngredients(order, "base", scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askAndSetIngredients(order, "protein", scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askAndSetIngredients(order, "topping", scanner);
+		if (!customerContinues) return;
+		customerContinues = restaurant.askForTip(order, scanner);
+		if (!customerContinues) return;
 		
-	}
+		order.printReceipt();
+			
 
-	private static Boolean checkIfVendor() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Please press ENTER to start!");
-		String vendorPasscode = scanner.nextLine();
-		return (vendorPasscode.equals("vendor1234"));
-	}
-	
-	
-	private static void vendorFunctionalities(Restaurant restaurant) {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("====Vendor Page====");
-
-		Boolean vendorContinue = true;
-		while(vendorContinue) {
-			String ingredient = restaurant.vendorCheckIngredientQuantity(scanner);
-			if (!ingredient.equals("Invalid")) {
-				restaurant.vendorRestockQuantity(ingredient, scanner);
-			} 		
-			vendorContinue = restaurant.vendorAskQuit(scanner);
-		}
 	}
 }

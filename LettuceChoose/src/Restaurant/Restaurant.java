@@ -90,10 +90,7 @@ public class Restaurant {
 		System.out.println("Please enter your name!");
 		System.out.print("> ");
 		String inputName = scanner.nextLine();
-		if (inputName.equals("q")) {
-			resetOrder(order);
-			return false;
-		}
+		if (checkUserQuits(inputName, order) == false) return false;  
 		order.setName(inputName);
 		return true;
 	}
@@ -105,10 +102,7 @@ public class Restaurant {
 			promptOptions(category);
 			System.out.print("> ");
 			String inputIngredient = scanner.nextLine();
-			if (inputIngredient.equals("q")) {
-				resetOrder(order);
-				return false;
-			}
+			if (checkUserQuits(inputIngredient, order) == false) return false;  
 			inputIngredient = inputIngredient.toLowerCase();
 			if (isValidIngredient(inputIngredient) && isInStock(inputIngredient) && isInCategory(inputIngredient, category)) {
 				decrementQuantity(inputIngredient);
@@ -143,10 +137,7 @@ public class Restaurant {
 		System.out.println("Would you like to tip? Please enter in numbers");
 		System.out.print("> ");
 		String inputTipString = scanner.nextLine();
-		if (inputTipString.equals("q")) {
-			resetOrder(order);
-			return false;
-		}
+		if (checkUserQuits(inputTipString, order) == false) return false;  
 		double inputTip = Double.parseDouble(inputTipString);
 		order.setTipAmount(inputTip);
 		return true;
@@ -156,6 +147,14 @@ public class Restaurant {
 	// visibility changed to public for the testing purposes
 	public boolean isInCategory(String inputIngredient, String category) {
 		return this.inventory.get(inputIngredient).getCategory().equals(category);
+	}
+  
+	public Boolean checkUserQuits(String inputPrompt, Order order) {
+		if (inputPrompt.equals("q")) {
+			resetOrder(order);
+			return false;
+		}
+		return true;
 	}
 	
 	public void resetOrder(Order order) {
@@ -174,11 +173,32 @@ public class Restaurant {
 	}
 	
 	//vendor functionalities
+	public Boolean checkIfVendor() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please press ENTER to start! If you are vendor, please type [vendor].");
+		String vendorPasscode = scanner.nextLine();
+		return (vendorPasscode.equals("vendor"));
+	}
+	
+	public void vendorFunctionalities() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("====Vendor Page====");
+
+		Boolean vendorContinue = true;
+		while(vendorContinue) {
+			String ingredient = this.vendorCheckIngredientQuantity(scanner);
+			if (!ingredient.equals("Invalid")) {
+				this.vendorRestockQuantity(ingredient, scanner);
+			} 		
+			vendorContinue = this.vendorAskQuit(scanner);
+		}
+	}
+
 	public String vendorCheckIngredientQuantity(Scanner scanner) {
 		System.out.println("Type in any ingredients to check the quantity.");
 		System.out.print("> ");
 		String checkIngredient = scanner.nextLine();
-		
+		checkIngredient = checkIngredient.toLowerCase();
 		int ingredientQuantity = this.checkQuantity(checkIngredient);
 		if (ingredientQuantity == -1) {
 			System.out.println("Invalid ingredient name");
@@ -191,14 +211,15 @@ public class Restaurant {
 	public void vendorRestockQuantity(String ingredient, Scanner scanner) {
 		System.out.println("Would you like to restock " + ingredient + "? (y/n)");
 		System.out.print("> ");
-		String yn = scanner.nextLine();
-		if (yn.equals("y")) {
+		String restockResponse = scanner.nextLine();
+		if (restockResponse.equals("y")) {
 			System.out.println("How much quantity are you restocking?");
+			System.out.print("> ");
 			int restockCount = scanner.nextInt();
 			scanner.nextLine();
 			this.incrementQuantity(ingredient, restockCount);
 			System.out.println("You have successfully restocked " + ingredient + ".");
-		} else if (yn.equals("n")) {
+		} else if (restockResponse.equals("n")) {
 			System.out.println("You have successfully not restocked " + ingredient + ".");
 		} else {
 			System.out.println("Please answer in 'y' or 'n'.");
