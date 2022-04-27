@@ -19,7 +19,9 @@ By YJ Yoon, Kon Yoo, Jiwoo Seo
 * The user will be prompted to answer a set of questions to order a bowl of salad
 * To quit the program, press <code> ctrl+c </code>
 * To quit the order, press <code> q </code>
-      
+
+## If you find an error like this..
+* If you encounter errors that look like: <code> unmappable character (0x8D) for encoding windows-1252 </code>, it may be due to Java Environment Set-up. We removed all the other emojis that may cause errors, but the program still has characters like '┌─' and '─┐' for receipt printings. We also added some commands to map the characters, but if you still see errors like this, please try [this](https://stackoverflow.com/questions/23399865/java-ant-error-unmappable-character-for-encoding-cp1252/23399955#23399955) on Stack Overflow. Thank you! :)
 
 ## 3rd Iteration
 ### What user stories were completed this iteration?
