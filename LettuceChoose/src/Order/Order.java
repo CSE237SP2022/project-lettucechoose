@@ -50,6 +50,9 @@ public class Order {
 	}
 
 	public void setTipAmount(double tip) {
+		if (tip < 0) {
+			tip = tip*-1;
+		}
 		this.tip = tip;
 	}
 	

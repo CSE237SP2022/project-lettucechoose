@@ -26,23 +26,43 @@ class OrderTest {
 	}
 
 	@Test
-	void testcalculateSubTotal() {
-		assertEquals(13, order.calculateSubtotal());
+	void testCalculateSubTotal() {
+		double subtotal = order.calculateSubtotal();
+		assertEquals(13, subtotal);
 	}
 
 	@Test
-	void testcalculateTax() {
+	void testCalculateTax() {
 		order.calculateSubtotal();
-		assertEquals(1.95, order.calculateTax());
+		Double tax = order.calculateTax();
+		assertEquals(1.95, tax);
 	}
 	
 	@Test
-	void testcalculateFinalTotal() {
+	void testCalculateFinalTotal() {
 		order.setTipAmount(3.0);
 		order.calculateSubtotal();
 		order.calculateTax();
 		
 		assertEquals(17.95, order.calculateTotal());
+	}
+	
+	@Test
+	void testCalculateFinalTotalWithNoTip() {
+		order.setTipAmount(0);
+		order.calculateSubtotal();
+		order.calculateTax();
+		
+		assertEquals(14.95, order.calculateTotal());
+	}
+	
+	@Test
+	void testCalculateFinalTotalWithNegativeTip() {
+		order.setTipAmount(-1);
+		order.calculateSubtotal();
+		order.calculateTax();
+		
+		assertEquals(15.95, order.calculateTotal());
 	}
 
 }
