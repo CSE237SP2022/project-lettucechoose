@@ -29,6 +29,7 @@ class OrderTest {
 	@Test
 	void testCalculateSubTotal() {
 		double subtotal = order.calculateSubtotal();
+		
 		assertEquals(13, subtotal);
 	}
 
@@ -36,6 +37,7 @@ class OrderTest {
 	void testCalculateTax() {
 		order.calculateSubtotal();
 		Double tax = order.calculateTax();
+		
 		assertEquals(1.95, tax);
 	}
 	
@@ -44,6 +46,7 @@ class OrderTest {
 		order.setTipAmount(3.0);
 		order.calculateSubtotal();
 		order.calculateTax();
+		
 		assertEquals(17.95, order.calculateTotal());
 	}
 	
@@ -52,6 +55,7 @@ class OrderTest {
 		order.setTipAmount(0);
 		order.calculateSubtotal();
 		order.calculateTax();
+		
 		assertEquals(14.95, order.calculateTotal());
 	}
 	
@@ -60,6 +64,7 @@ class OrderTest {
 		order.setTipAmount(-1);
 		order.calculateSubtotal();
 		order.calculateTax();
+		
 		assertEquals(15.95, order.calculateTotal());
 	}
 	
@@ -68,6 +73,7 @@ class OrderTest {
 		Order newOrder = new Order(restaurant);
 		restaurant.setOrder(newOrder, "base", "soba");
 		String baseOrder = newOrder.getBase();
+		
 		assertEquals("soba", baseOrder);
 	}
 	

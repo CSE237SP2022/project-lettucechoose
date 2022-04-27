@@ -25,9 +25,9 @@ class RestaurantTest {
 		testRestaurant.setOrder(testOrder, "base", "salad");
 		Ingredient selectedIngredient = testRestaurant.getInventory().get("salad");
 		int quantity = selectedIngredient.getQuantity();
+		
 		assertEquals(initialQuantity-1, quantity);
 	}
-	
 	
 	@Test
 	void testIncrementQuantity() {
@@ -35,6 +35,7 @@ class RestaurantTest {
 		testRestaurant.incrementQuantity("salad", 3);
 		Ingredient selectedIngredient = testRestaurant.getInventory().get("salad");
 		int quantity = selectedIngredient.getQuantity();
+		
 		assertEquals(initialQuantity+3, quantity);
 	}
 	
@@ -46,8 +47,6 @@ class RestaurantTest {
 		}
 		assertEquals(false, testRestaurant.isInStock("edamame"));
 	}
-	
-
 	
 	// checkQuantity() returns -1 if the input is an invalid ingredient
 	@Test
@@ -64,6 +63,7 @@ class RestaurantTest {
 	void testCheckQuantityWithDecrement() {
 		int initialQuantity = testRestaurant.checkQuantity("salad");
 		testRestaurant.decrementQuantity("salad");
+		
 		assertEquals(initialQuantity-1, testRestaurant.checkQuantity("salad"));
 	}
 	
@@ -74,24 +74,28 @@ class RestaurantTest {
 		int initialQuantity = testRestaurant.checkQuantity("salad");
 		testRestaurant.setOrder(testOrder, "base", "salad");
 		testRestaurant.resetOrder(testOrder);
+		
 		assertEquals(initialQuantity, testRestaurant.checkQuantity("salad"));
 	}
 	
 	@Test
 	void testCategoryWithNonExistingItem() {
 		Boolean testCategory = testRestaurant.isInCategory("chicken", "base");
+		
 		assertEquals(false, testCategory);
 	}
 	
 	@Test
 	void testCategoryWithExistingItem() {
 		Boolean testCategory = testRestaurant.isInCategory("salad", "base");
+		
 		assertEquals(true, testCategory);
 	}
 	
 	@Test
 	void testCategoryWithNonExistingCategory() {
 		Boolean testCategory = testRestaurant.isInCategory("salad", "baseee");
+		
 		assertEquals(false, testCategory);
 	}
 

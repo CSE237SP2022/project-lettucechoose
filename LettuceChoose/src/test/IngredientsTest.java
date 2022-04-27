@@ -30,6 +30,7 @@ class IngredientsTest {
 	void testUpdateQuantity() {
 		int initialQuantity = testSalad.getQuantity();
 		testSalad.updateQuantity(10);
+		
 		assertEquals(initialQuantity+10, testSalad.getQuantity());
 	}
 	
