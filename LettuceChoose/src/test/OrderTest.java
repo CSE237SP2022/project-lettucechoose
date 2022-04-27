@@ -13,10 +13,11 @@ import org.junit.jupiter.api.Test;
 class OrderTest {
 	
 	Order order;
+	Restaurant restaurant;
 	
 	@BeforeEach
 	void setup() {
-		Restaurant restaurant = new Restaurant();
+		restaurant = new Restaurant();
 		order = new Order(restaurant);
 		order.setBase("salad");
 		order.setProtein("beef");
@@ -28,6 +29,7 @@ class OrderTest {
 	@Test
 	void testCalculateSubTotal() {
 		double subtotal = order.calculateSubtotal();
+		
 		assertEquals(13, subtotal);
 	}
 
@@ -35,6 +37,7 @@ class OrderTest {
 	void testCalculateTax() {
 		order.calculateSubtotal();
 		Double tax = order.calculateTax();
+		
 		assertEquals(1.95, tax);
 	}
 	
@@ -64,5 +67,16 @@ class OrderTest {
 		
 		assertEquals(15.95, order.calculateTotal());
 	}
+	
+	@Test 
+	void testIfIngredientSetCorrectly() {
+		Order newOrder = new Order(restaurant);
+		restaurant.setOrder(newOrder, "base", "soba");
+		String baseOrder = newOrder.getBase();
+		
+		assertEquals("soba", baseOrder);
+	}
+	
+	
 
 }

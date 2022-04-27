@@ -24,12 +24,14 @@ class IngredientsTest {
 		testSalad = new Ingredient("base", "salad", 3, 3);
 	}
 
+	// didn't test getter/setter methods
+	
 	@Test
 	void testUpdateQuantity() {
+		int initialQuantity = testSalad.getQuantity();
 		testSalad.updateQuantity(10);
-		assertEquals(13, testSalad.getQuantity());
+		assertEquals(initialQuantity+10, testSalad.getQuantity());
 	}
 	
-	
- 
+
 }

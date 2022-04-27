@@ -131,7 +131,7 @@ public class Restaurant {
 		return true;
 	}
 
-	private void setOrder(Order order, String category, String inputIngredient) {
+	public void setOrder(Order order, String category, String inputIngredient) {
 		decrementQuantity(inputIngredient);
 		if (category.equals("base")) {
 			order.setBase(inputIngredient);
@@ -225,7 +225,7 @@ public class Restaurant {
 	
 	public void vendorFunctionalities() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("====Vendor Page====");
+		System.out.println("====== Vendor Page ======");
 
 		Boolean vendorContinue = true;
 		while(vendorContinue) {
