@@ -44,7 +44,11 @@ class RestaurantTest {
 	@Test
 	void testCheckQuantity() {
 		assertEquals(testRestaurant.checkQuantity("salad"), 3);
+		assertEquals(testRestaurant.checkQuantity("chicken"), 3);
+		assertEquals(testRestaurant.checkQuantity("mango"), 3);
 		assertEquals(testRestaurant.checkQuantity("saladdddd"), -1);
+		assertEquals(testRestaurant.checkQuantity("CHicken"), -1);
+		assertEquals(testRestaurant.checkQuantity("manGO"), -1);
 	}
 	
 	@Test
