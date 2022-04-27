@@ -4,20 +4,21 @@ By YJ Yoon, Kon Yoo, Jiwoo Seo
 
 ## Users can..
 1. Order a customized salad.
-   - Choose base, protein, toppings (upto 3).
+   - Choose a base, a protein, three toppings.
 2. Add some tips to their orders.
 3. Quit the order at any time.
-4. Make orders after orders.
-5. Get a virtual receipt.
+4. Get a virtual receipt.
+5. Make orders after orders.
 6. If the user is a vendor, s/he can restock sold-out ingredients. 
    - Initial quantities of ingredients are set to 3.
+* If an ingredient is ordered three times, it gets sold-out, and cannot be ordered unless a vendor restocks it. Try this feature as well!
 
 ## To run the program..
 * At the root folder, run: <code> ./script.sh </code>
 * If you are unable to run the bash script, try <code> chmod 744 script.sh </code>
 * The user will be prompted to answer a set of questions to order a bowl of salad
 * To quit the program, press <code> ctrl+c </code>
-* To quit the order, press 'q'
+* To quit the order, press <code> q </code>
       
 
 ## 3rd Iteration
@@ -29,15 +30,14 @@ By YJ Yoon, Kon Yoo, Jiwoo Seo
 
 ### Is there anything that you implemented but doesn't currently work?
 * All the functionalites should run.
-### What commands are needed to compile and run your code from the command line (or better yet, provide a script that people can use to run your program!)
-* At the root folder, run: <code> ./script.sh </code>
-* If you are unable to run the bash script, try <code> chmod 744 script.sh </code>
-
-* The user will be prompted to answer a set of questions to order a bowl of salad
 
 
-## 2nd Iteration
-### What user stories were completed this iteration?
+
+<details>
+<summary><b>Previous Iterations</b></summary>
+
+### 2nd Iteration
+#### What user stories were completed this iteration?
 * Refactored structures of classes (Base, Protein, Topping) based on feedbacks and updated main() to reflect those changes.
 * We have set limited quantity for Base, Protein, and Toppings. If there's no stock, users are prompted to make other choice.
 * Drink menu is implemented - users can now add drinks to their orders. Each drink has different price.
@@ -45,20 +45,19 @@ By YJ Yoon, Kon Yoo, Jiwoo Seo
   <img width="363" alt="Screen Shot 2022-04-13 at 3 42 22 AM" src="https://user-images.githubusercontent.com/43775491/163136845-d2f97cae-4f95-4cde-bb7f-2cdc5ab033e9.png">
 
 
-### What user stories do you intend to complete next iteration?
+#### What user stories do you intend to complete next iteration?
 * We worked so that users can quit the order at anytime - we are having progress, but did not merge into main because it's not complete yet. We will try to implement it by the next iteration.
 * Vendors will be able to restock any sold-out items.
-### Is there anything that you implemented but doesn't currently work?
+#### Is there anything that you implemented but doesn't currently work?
 * As mentioned above, we are trying to allow users to quit the order or the program.
 
-
-## 1st Iteration
-### What user stories were completed this iteration?
+### 1st Iteration
+#### What user stories were completed this iteration?
 * Users can order customized salad in command lines. 
 * Users can make multiple orders after orders. 
 * Currently, base items have limited quantity. If there's no stock, users are prompted to make other choice.
 
-### What user stories do you intend to complete next iteration?
+#### What user stories do you intend to complete next iteration?
 * We need to implement other customizable items (such as drizzles, drinks) and allow more creativity to users.
 * Prettier receipts with String Formatter
 * The menu will adjust to the user's diet/allergies.
@@ -67,6 +66,9 @@ By YJ Yoon, Kon Yoo, Jiwoo Seo
 * We will improve our Order.java to keep track of the user's order. (rather than stack them in main.java)
    * While doing so, we'll make JUnit tests for complicated orders. 
 
-### Is there anything that you implemented but doesn't currently work?
+#### Is there anything that you implemented but doesn't currently work?
 * We are trying to make our code as neat as possible - So some concerns arise in constructing classes and inner-classes.
 
+
+
+</details>
